@@ -77,14 +77,14 @@ This is a known **"lure" repository** designed to deliver the **BeaverTail infos
 
 **Official confirmation this was fraudulent:**
 
-![Fraudulent assignment confirmed](<screenshots/Screenshot 2026-04-18 at 12.30.53.png>)
+![Confirmed fraudulent assignment](<screenshots/Screenshot 2026-04-18 at 12.30.53.png>)
 
 *"The coding assignment you received was fraudulent — please do not run it"*
 
-![Evidence 1](<screenshots/Screenshot 2026-04-18 at 12.37.49.png>)
-![Evidence 2](<screenshots/Screenshot 2026-04-18 at 12.37.56.png>)
-![Initial outreach 1](<screenshots/Screenshot 2026-04-13 at 09.29.13.png>)
-![Initial outreach 2](<screenshots/Screenshot 2026-04-13 at 09.29.29.png>)
+![Initial outreach from "Josépha Russe"](<screenshots/Screenshot 2026-04-18 at 12.37.49.png>)
+![PDF pitch details](<screenshots/Screenshot 2026-04-18 at 12.37.56.png>)
+![Follow-up details and next steps](<screenshots/Screenshot 2026-04-13 at 09.29.13.png>)
+![Code test assessment invitation](<screenshots/Screenshot 2026-04-13 at 09.29.29.png>)
 ![Additional evidence](<screenshots/Screenshot 2026-04-18 at 12.38.45.png>)
 
 > **Note:** I didn't think about this at the time, but I did open the PDF. Gemini confirmed it's possible for malicious code (scripts) to be embedded in a downloaded PDF.
