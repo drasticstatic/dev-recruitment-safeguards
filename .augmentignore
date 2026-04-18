@@ -1,0 +1,96 @@
+# ======= .augmentignore - dev-recruitment-safeguards =======
+#
+# Controls what AI tools index from this workspace.
+# Uses .gitignore syntax.
+# ================================================
+
+
+# -----------------------------------------------
+# Sensitive data — never index
+# -----------------------------------------------
+.env*
+service_account.json
+*service_account*
+gws-credentials*
+.gws/
+secrets/
+keys/
+*.key
+*.pem
+data/committee/
+data/raw/
+
+
+# -----------------------------------------------
+# Build artifacts
+# -----------------------------------------------
+dist/
+build/
+out/
+*.min.js
+*.min.css
+
+
+# -----------------------------------------------
+# Logs and temp files
+# -----------------------------------------------
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.swp
+
+
+# -----------------------------------------------
+# Cache directories
+# -----------------------------------------------
+.cache/
+node_modules/.cache/
+.npm/
+.yarn/
+
+
+# -----------------------------------------------
+# IDE and OS files
+# -----------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+
+# -----------------------------------------------
+# Large media and binary files
+# -----------------------------------------------
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.mp4
+*.avi
+*.mov
+*.mp3
+*.wav
+*.zip
+*.tar.gz
+*.pdf
+
+# PNGs: raw art excluded; compressed dashboard/temp-gallery PNGs are fine to index
+temp-gallery/raw/
+data/raw/
+
+
+# -----------------------------------------------
+# Node dependencies
+# -----------------------------------------------
+node_modules/
+
+
+# -----------------------------------------------
+# Python environments
+# -----------------------------------------------
+venv/
+.venv/
+env/
+__pycache__/

