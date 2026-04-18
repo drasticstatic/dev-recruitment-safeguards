@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="sh" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="32" height="32" rx="5" fill="#0a0f1e"/>
+  <!-- Shield -->
+  <path d="M16 3 L28 7 L28 16.5 Q28 24.5 16 29 Q4 24.5 4 16.5 L4 7 Z"
+        fill="url(#sh)" stroke="#f87171" stroke-width="0.8" stroke-opacity="0.6"/>
+  <!-- Checkmark -->
+  <path d="M10.5 16.5 L14.5 20.5 L22 13"
+        stroke="white" stroke-width="2.5" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

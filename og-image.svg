@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Grid -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1e293b" stroke-width="0.8"/>
+    </pattern>
+    <!-- Red glow (top-left, over the shield) -->
+    <radialGradient id="glow" cx="28%" cy="0%" r="65%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#0a0f1e" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Shield gradient -->
+    <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </linearGradient>
+    <!-- Title gradient (red → amber) -->
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="1200" height="630" fill="#0a0f1e"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- ── Left panel: Shield ── -->
+  <!-- Shield shape centered at (230, 295) -->
+  <path d="M230,128 L395,176 L395,294 Q395,406 230,468 Q65,406 65,294 L65,176 Z"
+        fill="url(#shieldGrad)"/>
+  <!-- Shield border -->
+  <path d="M230,128 L395,176 L395,294 Q395,406 230,468 Q65,406 65,294 L65,176 Z"
+        fill="none" stroke="#ef4444" stroke-width="2.5" stroke-opacity="0.7"/>
+  <!-- Shield inner ring (subtle) -->
+  <path d="M230,152 L370,194 L370,294 Q370,390 230,444 Q90,390 90,294 L90,194 Z"
+        fill="none" stroke="#ef4444" stroke-width="1" stroke-opacity="0.2"/>
+  <!-- Checkmark -->
+  <path d="M150,294 L205,350 L318,228"
+        stroke="white" stroke-width="22" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+
+  <!-- Active threat pill -->
+  <rect x="110" y="500" width="240" height="32" rx="16" fill="#450a0a"/>
+  <rect x="110" y="500" width="240" height="32" rx="16" fill="none" stroke="#ef4444" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="138" cy="516" r="5.5" fill="#ef4444"/>
+  <text x="154" y="521"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="13" font-weight="700" fill="#fca5a5" letter-spacing="1.8">ACTIVE THREAT</text>
+
+  <!-- ── Divider ── -->
+  <line x1="468" y1="60" x2="468" y2="570" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- ── Right panel: Text ── -->
+
+  <!-- Title: Dev Recruitment -->
+  <text x="520" y="210"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="56" font-weight="900" fill="white" letter-spacing="-1.5">Dev Recruitment</text>
+
+  <!-- Title: Safeguards (gradient) -->
+  <text x="520" y="274"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="56" font-weight="900" fill="url(#titleGrad)" letter-spacing="-1.5">Safeguards</text>
+
+  <!-- Subtitle -->
+  <text x="522" y="305"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="17" fill="#f59e0b" letter-spacing="0.5">— LinkedIn Scam Alerts</text>
+
+  <!-- Separator -->
+  <line x1="520" y1="324" x2="1150" y2="324" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Description -->
+  <text x="520" y="358"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="19" fill="#94a3b8">Security awareness portal documenting sophisticated</text>
+  <text x="520" y="384"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="19" fill="#94a3b8">LinkedIn recruitment scams targeting Web3 &amp;</text>
+  <text x="520" y="410"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="19" fill="#94a3b8">fullstack developers.</text>
+
+  <!-- Case badges -->
+  <rect x="520" y="438" width="140" height="28" rx="14" fill="#450a0a"/>
+  <rect x="520" y="438" width="140" height="28" rx="14" fill="none" stroke="#ef4444" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="590" y="457"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="12" font-weight="700" fill="#fca5a5" text-anchor="middle" letter-spacing="0.5">REPO TRAP</text>
+
+  <rect x="672" y="438" width="128" height="28" rx="14" fill="#451a03"/>
+  <rect x="672" y="438" width="128" height="28" rx="14" fill="none" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="736" y="457"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="12" font-weight="700" fill="#fcd34d" text-anchor="middle" letter-spacing="0.5">THE LURE</text>
+
+  <rect x="812" y="438" width="178" height="28" rx="14" fill="#2e1065"/>
+  <rect x="812" y="438" width="178" height="28" rx="14" fill="none" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="901" y="457"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="12" font-weight="700" fill="#c4b5fd" text-anchor="middle" letter-spacing="0.5">IMPERSONATION</text>
+
+  <!-- URL -->
+  <text x="520" y="530"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="14" fill="#475569" letter-spacing="0.3">drasticstatic.github.io/dev-recruitment-safeguards</text>
+
+  <!-- Outer border -->
+  <rect x="1" y="1" width="1198" height="628" fill="none" stroke="#1e293b" stroke-width="2"/>
+</svg>
