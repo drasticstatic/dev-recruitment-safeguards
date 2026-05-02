@@ -2,6 +2,13 @@
 
 > **A living database of high-fidelity recruitment scams targeting Web3 and fullstack developers.**
 
+[![VirusTotal — APOM-DAPP PDF](https://img.shields.io/badge/VirusTotal%20APOM--DAPP%20PDF-0%2F72%20engines-brightgreen?style=flat-square&logo=virustotal&logoColor=white)](https://www.virustotal.com/gui/file/a4c04694e8e703f30e64423d60148de58d7f6f9829f356f40acf9596b4442b57)
+[![Portal Live](https://img.shields.io/badge/portal-live-0a7bff?style=flat-square&logo=githubpages&logoColor=white)](https://drasticstatic.github.io/dev-recruitment-safeguards)
+[![Cases Documented](https://img.shields.io/badge/cases_documented-3-critical?style=flat-square&logo=databricks&logoColor=white)](https://github.com/drasticstatic/dev-recruitment-safeguards#-documented-case-studies)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange?style=flat-square&logo=github&logoColor=white)](https://github.com/drasticstatic/dev-recruitment-safeguards/blob/main/CONTRIBUTING.md)
+[![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
+[![Security Policy](https://img.shields.io/badge/security_policy-active-blueviolet?style=flat-square&logo=shieldsdotio&logoColor=white)](SECURITY.md)
+
 In the current job market, scammers are deploying sophisticated **"long-con" tactics** — professional 15-page PDFs, fake company identities, shell corporations, and hijacked LinkedIn profiles — to deliver infostealers and Remote Access Trojans (RATs). This project documents real-world examples with full technical analysis to help developers stay safe.
 
 ## 🚀 Live Portal
@@ -76,7 +83,7 @@ Before responding to **any** unsolicited recruiter message:
 The sample PDF included in this repo was fully vetted via VirusTotal before inclusion:
 
 - **Hash:** `a4c04694e8e703f30e64423d60148de58d7f6f9829f356f40acf9596b4442b57`
-- **Score:** 0/70 (no detections)
+- **Score:** 0/72 (no detections)
 - **Contacted domains:** `acroipm2.adobe.com`, `a1672.dscr.akamai.net` (both legitimate Adobe/Akamai)
 - **Dropped files:** 13 temporary cache files — no `.exe`, `.dll`, or `.ps1`
 - **Verdict:** ✅ Safe for educational use
