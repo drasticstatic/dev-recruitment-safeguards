@@ -42,3 +42,43 @@
 - Commit after every meaningful change
 - Never leave uncommitted work at session end
 - After every `git commit`, run `git push origin main`
+
+
+---
+
+## Before Cloning or Installing Any External Repo / Package
+
+Before running `git clone`, `npm install`, `pip install`, or adding any external dependency:
+1. **Review `package.json` scripts** — flag any `postinstall`, `preinstall`, or `prepare` hooks that execute shell commands
+2. **Scan for credential harvesting** — look for patterns accessing `~/.ssh`, `~/.aws`, `.env`, `process.env`, or system credential paths in unexpected files
+3. **Verify provenance** — check GitHub repo age, star/fork count, recent commit activity, and maintainer identity
+4. **Check for typosquatting** — verify package names exactly match the intended library (e.g. `lodash` not `1odash`)
+5. **Audit unexpected network calls** — flag external HTTP requests in scripts, entrypoints, or install hooks
+6. **When in doubt, ask Christopher before proceeding** with any install or clone
+
+---
+
+## Skills
+
+Claude Code skills are structured prompt files that give the agent a repeatable procedure for common tasks. Only the header is read at context start; full body loads when triggered.
+
+**Available in this repo:**
+
+| Skill | Trigger |
+|-------|---------|
+| `/create-skill` | "create a skill for X" |
+| `/startup` (global) | "startup" — any repo |
+
+**Full skill library + deployment guide:** `trading-assistant/AGENT-SYNC/CROSS_REPO_SKILLS_DEPLOY.md`
+
+---
+
+## Canonical References
+
+When skills, specs, or task files exist for a topic — follow the logic there, not here. This file holds identity, pointers, and short rules only.
+
+- **AGENTS.md** — root-level config for all AI agents (Claude Code, Cursor, Copilot)
+- **Skills:** `.claude/skills/` — full procedure lives in the skill file; CLAUDE.md holds triggers only
+- **Tasks:** `PENDING-TASKS.md` or `tasks.md` if present — active/completed task tracking
+- **Agent handoffs:** `AGENT-SYNC/` (hub: `~/code/trading-assistant/`) — see `AGENT_SYNC.md` for current state
+- **Memory:** `~/.claude/projects/.../memory/MEMORY.md` — auto-loaded; detail in topic files
