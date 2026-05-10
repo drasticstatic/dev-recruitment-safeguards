@@ -8,6 +8,7 @@
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange?style=flat-square&logo=github&logoColor=white)](https://github.com/drasticstatic/dev-recruitment-safeguards/blob/main/CONTRIBUTING.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
 [![Security Policy](https://img.shields.io/badge/security_policy-active-blueviolet?style=flat-square&logo=shieldsdotio&logoColor=white)](SECURITY.md)
+[![Pages](https://github.com/drasticstatic/dev-recruitment-safeguards/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/drasticstatic/dev-recruitment-safeguards/actions/workflows/pages/pages-build-deployment)
 
 In the current job market, scammers are deploying sophisticated **"long-con" tactics** — professional 15-page PDFs, fake company identities, shell corporations, and hijacked LinkedIn profiles — to deliver infostealers and Remote Access Trojans (RATs). This project documents real-world examples with full technical analysis to help developers stay safe.
 
