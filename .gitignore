@@ -61,6 +61,7 @@ gws-credentials*
 !.eslintrc.json
 !.prettierrc.json
 !gitexporter.config.json
+!graphify-out/graph.json
 !dashboard/data.json
 
 
@@ -155,3 +156,13 @@ coverage/
 *.lcov
 __snapshots__/
 setup/*.pdf
+
+# Claude Code local config — skills tracked, everything else local only
+.claude/*
+!.claude/skills/
+!.claude/settings.json
+
+# Graphify — local-only outputs (graph.json, GRAPH_REPORT.md, graph.html are committed)
+graphify-out/manifest.json
+graphify-out/cost.json
+graphify-out/cache/
