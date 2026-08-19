@@ -108,6 +108,7 @@
       <a href="#case-studies" class="hover:text-red-400    transition-colors">Case Studies</a>
       <a href="#virustotal"   class="hover:text-cyan-400   transition-colors">VirusTotal</a>
       <a href="#defense"      class="hover:text-emerald-400 transition-colors">Defense</a>
+      <a href="#wild"         class="hover:text-red-400    transition-colors">In the Wild</a>
     </div>
     <a href="https://github.com/drasticstatic/dev-recruitment-safeguards" target="_blank" rel="noopener"
        class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-full text-slate-300 transition-colors border border-slate-700">
@@ -135,13 +136,13 @@
     <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
       Real-world documentation of sophisticated "long-con" recruitment scams targeting
       <strong class="text-slate-200">Web3 &amp; fullstack developers</strong> on LinkedIn.
-      Three confirmed attack vectors. Three real personas.
+      Seven documented cases — six confirmed, one under active investigation.
     </p>
 
     <div class="flex flex-wrap justify-center gap-4 mb-10">
       <div class="bg-slate-800/60 border border-slate-700 rounded-xl px-5 py-3 text-center">
-        <div class="text-2xl font-black text-red-400">3</div>
-        <div class="text-xs text-slate-400 mt-0.5">Attack Vectors</div>
+        <div class="text-2xl font-black text-red-400">7</div>
+        <div class="text-xs text-slate-400 mt-0.5">Documented Cases</div>
       </div>
       <div class="bg-slate-800/60 border border-slate-700 rounded-xl px-5 py-3 text-center">
         <div class="text-2xl font-black text-amber-400">0/70</div>
@@ -317,11 +318,11 @@
 ═══════════════════════════════════════════ -->
 <section id="case-studies" class="max-w-6xl mx-auto px-4 pb-16">
   <div class="text-center mb-12">
-    <h2 class="text-3xl md:text-4xl font-black text-white mb-3">📂 Confirmed Case Studies</h2>
-    <p class="text-slate-400 text-sm">Three real attack campaigns — documented from first contact to full analysis. Click <strong class="text-cyan-400">Deep Dive</strong> for technical details.</p>
+    <h2 class="text-3xl md:text-4xl font-black text-white mb-3">📂 Documented Case Studies</h2>
+    <p class="text-slate-400 text-sm">Seven real attack campaigns — documented from first contact to full analysis. Click <strong class="text-cyan-400">Deep Dive</strong> for technical details.</p>
   </div>
 
-  <div class="grid lg:grid-cols-3 gap-6">
+  <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-6">
 
     <!-- ── Case 1: Repo Trap ── -->
     <div class="case-card bg-slate-900 border border-red-900/50 rounded-2xl overflow-hidden flex flex-col">
@@ -483,6 +484,190 @@
       </div>
     </div>
 
+    <!-- ── Case 4: The Typosquat ── -->
+    <div class="case-card bg-slate-900 border border-red-900/50 rounded-2xl overflow-hidden flex flex-col">
+      <div class="bg-gradient-to-r from-red-950 to-slate-900 p-5 border-b border-red-900/30">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full pulse-red">🔴 CRITICAL</span>
+          <span class="text-slate-500 text-xs">Case #4</span>
+        </div>
+        <h3 class="text-xl font-black text-white mb-1">🪤 The Typosquat</h3>
+        <p class="text-slate-400 text-sm">Supply-chain wallet drainer via misspelled <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">npm install</code></p>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="space-y-2.5 mb-5 flex-1 text-sm">
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
+            <span class="text-red-300 font-medium italic">Educational exemplar</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Vector</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt" data-tip="Typosquatted packages mirror legitimate names: web3-react-modall vs web3-react-modal. npm install completes without complaint; a postinstall hook wraps window.ethereum.send() and quietly rewrites the recipient on transactions above a threshold.">Typosquatted npm pkg</span>
+              in normal dev work
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Trigger</span>
+            <span class="text-slate-300">
+              <span class="tt text-amber-300" data-tip="postinstall runs the moment npm finishes resolving dependencies — before you write any of your own code. It has the same access as your user account: can read .env, SSH keys, AWS creds; can wrap window.ethereum with a transparent address-rewriting proxy.">postinstall hook</span>
+              at install time
+            </span>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="text-slate-500 w-16 flex-shrink-0">npm audit</span>
+            <span class="text-emerald-400 font-mono font-bold">0 issues</span>
+            <span class="tt text-amber-300 text-xs ml-1" data-tip="npm audit only matches entries in known vulnerability databases. A fresh typosquat with no reported CVE is invisible to it — exactly what makes the supply-chain attack viable.">← what this means ⚠️</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Victim</span>
+            <span class="text-slate-300 text-xs">Working dev. <strong class="text-white">No recruiter contact required</strong></span>
+          </div>
+          <div class="mt-2 p-3 bg-red-950/30 border border-red-800/30 rounded-xl">
+            <div class="text-xs text-red-300 font-semibold mb-1">🎯 Key insight</div>
+            <div class="text-xs text-slate-400">Attacks #1–3 need a recruiter. This one doesn't. <strong class="text-white">The most dangerous scams need the least social engineering.</strong></div>
+          </div>
+        </div>
+        <button onclick="openModal('modal-typosquat')"
+          class="w-full bg-red-800/30 hover:bg-red-700/40 border border-red-700/50 text-red-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
+          🔬 Deep Dive + Heuristics
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Case 5: The Wrapped Link ── -->
+    <div class="case-card bg-slate-900 border border-amber-900/50 rounded-2xl overflow-hidden flex flex-col">
+      <div class="bg-gradient-to-r from-amber-950 to-slate-900 p-5 border-b border-amber-900/30">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">🟠 HIGH</span>
+          <span class="text-slate-500 text-xs">Case #5</span>
+        </div>
+        <h3 class="text-xl font-black text-white mb-1">🔗 The Wrapped Link</h3>
+        <p class="text-slate-400 text-sm">LinkedIn redirect wrapper hides the real destination of a Google Doc lure</p>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="space-y-2.5 mb-5 flex-1 text-sm">
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
+            <span class="text-amber-300 font-medium">"Daniel Perez Valdes"</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Vector</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt" data-tip="linkedin.com/safety/go?url=... is LinkedIn's own outbound link wrapper. Scammers rely on it to make an arbitrary destination inherit LinkedIn's high-reputation domain in link previews and scanners.">LinkedIn redirect wrapper</span>
+              → docs.google.com pitch doc
+            </span>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="text-slate-500 w-16 flex-shrink-0">VT flag</span>
+            <span class="text-slate-300 text-xs">"Phishing Attachment IOC"</span>
+            <span class="tt text-amber-300 text-xs ml-1" data-tip="The flagged domain in this VT report was linkedin.com itself — a stale, 2-year-old ArcSight entry that VirusTotal's own classification describes as 'Legitimate website which does not serve any malicious purpose.' It's evidence the WRAPPER has been abused before, not that this specific link is malicious.">← read it carefully ⚠️</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Real risk</span>
+            <span class="text-slate-300 text-xs">Not the doc load itself — <strong class="text-white">links clicked inside it</strong>, or an OAuth "connect this app" prompt if one appears</span>
+          </div>
+          <div class="mt-2 p-3 bg-amber-950/30 border border-amber-800/30 rounded-xl">
+            <div class="text-xs text-amber-300 font-semibold mb-1">💡 Key lesson</div>
+            <div class="text-xs text-slate-400">A high-reputation wrapper domain (LinkedIn, Google) tells you nothing about the content it's wrapping. Check the <strong class="text-white">final destination</strong>, not the outer shell.</div>
+          </div>
+        </div>
+        <button onclick="openModal('modal-wrapped-link')"
+          class="w-full bg-amber-800/30 hover:bg-amber-700/40 border border-amber-700/50 text-amber-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
+          🔬 Deep Dive + VT Analysis
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Case 6: The Real Project, Fake Recruiter ── -->
+    <div class="case-card bg-slate-900 border border-purple-900/50 rounded-2xl overflow-hidden flex flex-col">
+      <div class="bg-gradient-to-r from-purple-950 to-slate-900 p-5 border-b border-purple-900/30">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-slate-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">🔵 INVESTIGATING</span>
+          <span class="text-slate-500 text-xs">Case #6</span>
+        </div>
+        <h3 class="text-xl font-black text-white mb-1">🎭 The Real Project, Fake Recruiter</h3>
+        <p class="text-slate-400 text-sm">Impersonation of a confirmed, funded, real Web3/AI project</p>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="space-y-2.5 mb-5 flex-1 text-sm">
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
+            <span class="text-purple-300 font-medium">"Joe Gump Linda Gump"</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Targets</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt" data-tip="Verified independently: Ritual is a real, funded project building a sovereign execution layer for AI, with Infernet as a live shipped product. Confirmed via official ritual.net blog, an active Greenhouse job board, and a Blockworks podcast interview with a founding member.">Ritual / Infernet</span>
+              (confirmed real, funded project)
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Red flag</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt text-red-400" data-tip="A LinkedIn profile combining two first names and two last names ('Joe Gump Linda Gump') is a known artifact of merged, purchased, or auto-generated accounts — not a name a real employee would have.">Double-name profile</span>
+              — merged/bot-farmed account signature
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Status</span>
+            <span class="text-slate-300 text-xs">Google Doc received, <strong class="text-white">internal links not yet clicked</strong> — investigation ongoing</span>
+          </div>
+          <div class="mt-2 p-3 bg-slate-800/50 border border-slate-700/50 rounded-xl">
+            <div class="text-xs text-slate-300 font-semibold mb-1">⏳ Placeholder — not yet confirmed malicious</div>
+            <div class="text-xs text-slate-400">Ritual being real doesn't clear this contact — it's the exact playbook of Case #3 (real project, impersonated outreach). If this resolves to a legitimate hiring partner, this card gets redeemed with an update, not deleted.</div>
+          </div>
+        </div>
+        <button onclick="openModal('modal-real-fake-recruiter')"
+          class="w-full bg-purple-800/30 hover:bg-purple-700/40 border border-purple-700/50 text-purple-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
+          🔬 Deep Dive + Evidence
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Case 7: The Pre-Hired Take-Home ── -->
+    <div class="case-card bg-slate-900 border border-red-900/50 rounded-2xl overflow-hidden flex flex-col">
+      <div class="bg-gradient-to-r from-red-950 to-slate-900 p-5 border-b border-red-900/30">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full pulse-red">🔴 CRITICAL</span>
+          <span class="text-slate-500 text-xs">Case #7</span>
+        </div>
+        <h3 class="text-xl font-black text-white mb-1">⏱️ The Pre-Hired Take-Home</h3>
+        <p class="text-slate-400 text-sm">Real-time transcript: pre-hired framing → 24-hour take-home pressure</p>
+      </div>
+      <div class="p-5 flex flex-col flex-1">
+        <div class="space-y-2.5 mb-5 flex-1 text-sm">
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
+            <span class="text-red-300 font-medium">"Justin Miller"</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Pitch</span>
+            <span class="text-slate-300 text-xs">Blockchain-based real estate platform, $80–$120/hr, fully remote</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Playbook match</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt text-red-400" data-tip="\"Strong match\" verdict arrived after a single portfolio link — no technical screen. Then a scripted 4-step hiring process appeared: Technical Assessment (take-home) → Technical Interview → Final Interview → NDA. Classic Case #1 shape.">Near-identical to Case #1</span>
+              — pre-hired hook, then take-home
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Mutual conn.</span>
+            <span class="text-slate-300 text-xs">Yes — <strong class="text-white">did not clear the account</strong>. Compromised/cloned profiles ride real connection graphs precisely to lower guard</span>
+          </div>
+          <div class="mt-2 p-3 bg-red-950/30 border border-red-800/30 rounded-xl">
+            <div class="text-xs text-red-300 font-semibold mb-1">🎯 Key insight</div>
+            <div class="text-xs text-slate-400">A trusted mutual connection is a social-proof signal, not a verification step. Verify the account and the recruiter independently — every time.</div>
+          </div>
+        </div>
+        <button onclick="openModal('modal-pre-hired')"
+          class="w-full bg-red-800/30 hover:bg-red-700/40 border border-red-700/50 text-red-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
+          🔬 Deep Dive + Transcript
+        </button>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -608,6 +793,41 @@
       <p class="text-slate-400 text-xs leading-relaxed">Before any technical work, request a 15-min video call. <strong class="text-emerald-400">Real recruiters welcome it.</strong> Bots and scam ops ghost immediately or cite camera problems.</p>
     </div>
 
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     RELATED INCIDENTS IN THE WILD
+═══════════════════════════════════════════ -->
+<section id="wild" class="max-w-6xl mx-auto px-4 pb-20">
+  <div class="text-center mb-10">
+    <h2 class="text-3xl font-black text-white mb-3">🌐 This Isn't Isolated</h2>
+    <p class="text-slate-400 text-sm">Independent research confirms the same playbooks documented above, at scale, across the industry</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-4 mb-6">
+    <div class="bg-slate-900 border border-slate-700/50 rounded-xl p-5 text-center">
+      <div class="text-3xl font-black text-red-400 mb-1">$17B</div>
+      <div class="text-xs text-slate-400">lost to crypto scams industry-wide in 2025</div>
+    </div>
+    <div class="bg-slate-900 border border-slate-700/50 rounded-xl p-5 text-center">
+      <div class="text-3xl font-black text-amber-400 mb-1">1,400%</div>
+      <div class="text-xs text-slate-400">year-over-year growth in impersonation-style attacks</div>
+    </div>
+    <div class="bg-slate-900 border border-slate-700/50 rounded-xl p-5 text-center">
+      <div class="text-3xl font-black text-cyan-400 mb-1">7</div>
+      <div class="text-xs text-slate-400">independently confirmed distinct vectors, documented on this page</div>
+    </div>
+  </div>
+
+  <div class="bg-slate-900 border border-slate-700/50 rounded-xl p-6">
+    <h3 class="font-bold text-white text-sm mb-3">📖 Confirms the Pattern</h3>
+    <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside leading-relaxed">
+      <li><strong class="text-white">ReversingLabs</strong> documented an active <em>"fake recruiter campaign targets crypto developers with RAT"</em> — same malware-delivery shape as Cases #1 and #2 on this page: unsolicited outreach → trust-building → malicious "technical test" → RAT deployment.</li>
+      <li><strong class="text-white">MetaMask's own security team</strong> maintains a dedicated crypto-job-scams help article, confirming this targets the wallet-holding developer population specifically, not developers broadly.</li>
+      <li><strong class="text-white">The FTC</strong> has issued consumer alerts specifically on scammers impersonating well-known companies to recruit for fake jobs on LinkedIn and other job platforms — the exact shape of Cases #3 and #6 above.</li>
+    </ul>
+    <p class="text-xs text-slate-500 mt-4 italic">Sources cited for educational cross-reference. Verify current figures independently before citing elsewhere — scam-loss statistics are updated frequently by their originating research organizations.</p>
   </div>
 </section>
 
@@ -926,6 +1146,340 @@
   </div>
 </div>
 
+<!-- Modal: The Typosquat -->
+<div id="modal-typosquat" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-typosquat')"></div>
+  <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
+      <h3 class="text-lg font-black text-white">🪤 Deep Dive: The Typosquat</h3>
+      <button onclick="closeModal('modal-typosquat')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
+    </div>
+    <div class="p-6 space-y-5">
+
+      <div class="bg-red-950/30 border border-red-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-red-300 text-sm mb-3">⚙️ Attack Chain</h4>
+        <ol class="space-y-2 text-sm text-slate-300 list-decimal list-inside leading-relaxed">
+          <li>Dev types: <code class="text-cyan-400 bg-slate-800 px-1 rounded text-xs">npm install --save web3-react-modall</code> — one stray <code class="text-red-400 bg-slate-800 px-1 rounded text-xs">l</code></li>
+          <li>npm resolves the typosquatted name; a 9-week-old package with ~8 weekly downloads installs cleanly</li>
+          <li><code class="text-red-400 bg-slate-800 px-1 rounded text-xs">postinstall</code> script fires immediately; wraps <code class="text-cyan-400 bg-slate-800 px-1 rounded text-xs">window.ethereum.send</code> with a transparent proxy</li>
+          <li>Dev keeps building the wallet-connect modal; MetaMask events behave normally</li>
+          <li>The next "approve token" or "swap" call: recipient address silently rewritten to the attacker's contract</li>
+          <li>Transaction confirms in MetaMask; on-chain inspection reveals the funds went elsewhere</li>
+        </ol>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🔍 Malicious vs. Legitimate package.json</h4>
+        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
+          <pre class="text-slate-300"><span class="text-slate-500">// 🚩 MALICIOUS — typosquat postinstall (runs with full user perms):</span>
+<span class="text-amber-300">"scripts"</span>: {
+  <span class="text-red-400">"postinstall"</span>: <span class="text-red-300">"node -e 'require(\"./assets/setup.js\")'"</span>
+}
+
+<span class="text-slate-500">// ✅ LEGITIMATE — what safe scripts look like:</span>
+<span class="text-amber-300">"scripts"</span>: {
+  <span class="text-emerald-400">"build"</span>: <span class="text-emerald-300">"webpack --config webpack.config.js"</span>,
+  <span class="text-emerald-400">"test"</span>: <span class="text-emerald-300">"jest --coverage"</span>
+}</pre>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🕵️ Heuristics — Spot a Typosquat Before It Runs</h4>
+        <ul class="space-y-1.5 text-sm text-slate-300 list-disc list-inside leading-relaxed">
+          <li><strong class="text-white">Weekly downloads &lt; 100</strong> for any package claiming to be mainstream (legit packages have thousands)</li>
+          <li><strong class="text-white">Package age &lt; 6 months</strong> with no GitHub history that ties to a credible maintainer</li>
+          <li><strong class="text-white">Empty <code class="text-cyan-400 text-xs">homepage</code></strong>, or one that points to a generic URL (404, parked domain, or a copy of the original package's README)</li>
+          <li><strong class="text-white">README loaded with badges</strong> but missing real usage examples or API documentation</li>
+          <li><strong class="text-white">Maintainer count = 1</strong> and that maintainer's other packages were all published in the same week</li>
+          <li><strong class="text-white">Diff against the real package</strong> — <code class="text-cyan-400 text-xs">npm diff web3-react-modal web3-react-modall</code> surfaces structural anomalies fast</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🛡️ Defense-in-Depth</h4>
+        <ol class="space-y-1.5 text-sm text-slate-400 list-decimal list-inside leading-relaxed">
+          <li>Always read <code class="text-cyan-400 text-xs">node_modules/&lt;pkg&gt;/package.json</code> scripts before adding to a project you care about</li>
+          <li>Use <code class="text-cyan-400 text-xs">npm install --ignore-scripts</code> for cold installs of unfamiliar packages; re-enable per-package only after review</li>
+          <li>Pin to <strong class="text-white">exact versions</strong>. Avoid <code class="text-cyan-400 text-xs">^</code> and <code class="text-cyan-400 text-xs">~</code> floating ranges for sensitive dependencies</li>
+          <li>Watch for post-install network traffic during test installs — Wireshark or a quick tcpdump catches outbound calls that have no business running at install time</li>
+          <li>For Web3 projects: keep wallet operations on a separate, version-pinned dependency graph. Don't let wallet-touching code share a graph with marketing/UI deps</li>
+        </ol>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">📚 Documented Supply-Chain Attacks (Precedent)</h4>
+        <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 text-sm text-slate-300 space-y-2">
+          <p><strong class="text-red-400">event-stream (2018):</strong> a popular flat-map utility; compromised via a maintainer hand-off. A malicious payload targeting a Bitcoin wallet library was published as a transitive dependency for ~2 months before discovery</p>
+          <p><strong class="text-red-400">ua-parser-js (2021):</strong> legitimate package hijacked via compromised maintainer credentials, mined cryptocurrency and stole credentials in installer environments</p>
+          <p><strong class="text-red-400">colors.js / faker.js (2022):</strong> maintainer-introduced compromise — broken releases were pushed to protest corporate use. No malware, but a vivid reminder that maintainer trust is a single point of failure</p>
+          <p class="text-xs text-slate-500 italic">Primary sources: GitHub Advisory Database, Snyk vulnerability database. Verify before citing in your own materials.</p>
+        </div>
+      </div>
+
+      <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-emerald-300 text-sm mb-2">✅ Recap</h4>
+        <ul class="space-y-1 text-sm text-slate-300 list-disc list-inside">
+          <li>Typosquats need no recruiter contact — they land via your typing speed</li>
+          <li><code class="text-cyan-400 text-xs">npm audit</code> ≠ safety. Check the package's DNA, not just its CVEs</li>
+          <li>Every install script runs with your full user permissions; treat them as <code class="text-cyan-400 text-xs">curl &lt;remote&gt; | bash</code> equivalent</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: The Wrapped Link -->
+<div id="modal-wrapped-link" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-wrapped-link')"></div>
+  <div class="relative bg-slate-900 border border-amber-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
+      <h3 class="text-lg font-black text-white">🔗 Deep Dive: The Wrapped Link</h3>
+      <button onclick="closeModal('modal-wrapped-link')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
+    </div>
+    <div class="p-6 space-y-5">
+
+      <div class="bg-amber-950/30 border border-amber-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">📎 Why a Wrapper Domain Fools Scanners and Humans Alike</h4>
+        <p class="text-slate-400 text-sm">LinkedIn rewrites outbound links through <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">linkedin.com/safety/go?url=...</code> for click tracking and its own safety scan. That means the visible, hoverable domain in a message is <strong class="text-white">always linkedin.com</strong> — regardless of where it actually sends you. A link scanner, a coworker glancing at the URL, or a "domain reputation" check all see the wrapper's reputation, not the destination's.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🧪 Reading the VirusTotal Result Correctly</h4>
+        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed text-slate-300 space-y-1">
+          <p><span class="text-red-400">Phishing Attachment IOC</span> — according to source ArcSight Threat Intelligence — 2 years ago</p>
+          <p><span class="text-slate-500">Contextual Indicators:</span> Domain is classified as Social Networking</p>
+          <p><span class="text-slate-500">Contextual Indicators:</span> Cisco Umbrella rank 228 · Alexa rank 12 · popular worldwide</p>
+          <p><span class="text-slate-500">Classification Description:</span> <span class="text-emerald-400">"Legitimate website which does not serve any malicious purpose."</span></p>
+        </div>
+        <p class="text-slate-400 text-sm mt-3">Read that last line again: <strong class="text-white">VirusTotal's own classification says the flagged domain is legitimate.</strong> The IOC is a stale, 2-year-old entry attached to <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">linkedin.com</code> itself — evidence the wrapper pattern has been abused by scammers historically, not that this specific message is malicious. It is not proof of compromise either way. Treat it as a prompt to check the <em>real</em> destination, not a verdict.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">⚠️ Where the Actual Risk Lives</h4>
+        <div class="space-y-3">
+          <div class="flex gap-3 bg-slate-800/50 rounded-xl p-3">
+            <span class="text-emerald-400 text-sm flex-shrink-0 font-bold">Low risk</span>
+            <div>
+              <div class="text-sm font-semibold text-white">Loading the Google Doc itself</div>
+              <div class="text-xs text-slate-400 mt-0.5">A Google Doc renders inside Google's sandboxed infrastructure. Viewing it does not execute code on your device — this is not a downloadable file.</div>
+            </div>
+          </div>
+          <div class="flex gap-3 bg-slate-800/50 rounded-xl p-3">
+            <span class="text-red-400 text-sm flex-shrink-0 font-bold">Real risk</span>
+            <div>
+              <div class="text-sm font-semibold text-white">Clicking links embedded inside the doc</div>
+              <div class="text-xs text-slate-400 mt-0.5">The doc's own links are unverified destinations. Don't click through until each one is checked independently.</div>
+            </div>
+          </div>
+          <div class="flex gap-3 bg-slate-800/50 rounded-xl p-3">
+            <span class="text-red-400 text-sm flex-shrink-0 font-bold">Real risk</span>
+            <div>
+              <div class="text-sm font-semibold text-white">Approving an OAuth "connect this app" prompt</div>
+              <div class="text-xs text-slate-400 mt-0.5">If a sign-in page appears that isn't <code class="text-cyan-400 text-xs">accounts.google.com</code>, or a screen asks to grant a third-party app access to your Google account — stop and don't approve.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">📸 Evidence</h4>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <img src="screenshots/Daniel_Screenshot%202026-08-17%20at%2008.53.25.png" alt="Daniel Perez Valdes initial outreach" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Initial outreach from "Daniel Perez Valdes"</p>
+          </div>
+          <div>
+            <img src="screenshots/Daniel_Screenshot%202026-08-17%20at%2008.53.40.png" alt="LinkedIn wrapped link to Google Doc" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">LinkedIn-wrapped link to the pitch doc</p>
+          </div>
+          <div>
+            <img src="screenshots/Daniel_Screenshot%202026-08-17%20at%2008.55.33.png" alt="VirusTotal Phishing Attachment IOC flag" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">VirusTotal IOC flag on the linkedin.com wrapper</p>
+          </div>
+          <div>
+            <img src="screenshots/Daniel_Screenshot%202026-08-17%20at%2008.55.53.png" alt="VirusTotal legitimate classification detail" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">VT's own "legitimate" classification detail</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-emerald-300 text-sm mb-2">✅ Safe Practice</h4>
+        <ul class="space-y-1 text-sm text-slate-300 list-disc list-inside">
+          <li>Hover/copy the link and check the actual destination, not just what LinkedIn displays</li>
+          <li>Don't click links embedded inside an unsolicited doc — read the text, ignore the hyperlinks, until independently verified</li>
+          <li>Check <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener" class="text-cyan-400 underline">myaccount.google.com/permissions</a> periodically for unfamiliar third-party app access</li>
+          <li>If you forwarded a link before verifying it, a calm accurate heads-up beats a panic warning: ask if anyone clicked through or approved a permission prompt — that's the only actual exposure</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: The Real Project, Fake Recruiter -->
+<div id="modal-real-fake-recruiter" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-real-fake-recruiter')"></div>
+  <div class="relative bg-slate-900 border border-purple-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
+      <h3 class="text-lg font-black text-white">🎭 Deep Dive: The Real Project, Fake Recruiter</h3>
+      <button onclick="closeModal('modal-real-fake-recruiter')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
+    </div>
+    <div class="p-6 space-y-5">
+
+      <div class="bg-slate-800/50 border border-slate-600 rounded-xl p-4">
+        <h4 class="font-bold text-slate-200 text-sm mb-2">⏳ Investigation Status: Pending</h4>
+        <p class="text-slate-400 text-sm">This case is <strong class="text-white">not yet confirmed malicious</strong>. It's included because the pattern matches Case #3 closely enough to warrant caution and documentation. If it resolves to a legitimate hiring partner of Ritual, this card will be updated to reflect that — not deleted. Educational integrity over drama.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">✅ What's Confirmed Real</h4>
+        <div class="bg-emerald-950/20 border border-emerald-800/30 rounded-xl p-4 text-sm text-slate-300 space-y-2">
+          <p><strong class="text-emerald-400">Ritual</strong> is a real, funded project building a "sovereign execution layer for AI." <strong class="text-emerald-400">Infernet</strong>, its first product, is a live decentralized oracle network for off-chain AI workloads — confirmed via the official <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">ritual.net</code> blog, an active Greenhouse job board, and a Blockworks 0xResearch podcast interview with a founding member.</p>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🚩 What Doesn't Add Up</h4>
+        <ul class="space-y-1.5 text-sm text-slate-300 list-disc list-inside leading-relaxed">
+          <li><strong class="text-white">The profile name:</strong> "Joe Gump Linda Gump" combines two first names and two last names — a known artifact of merged, purchased, or auto-generated LinkedIn accounts, not a plausible real name</li>
+          <li><strong class="text-white">The pitch mirrors Case #3's structure exactly:</strong> real funded project name for legitimacy → Google Doc pitch → "would you be open to a brief chat?"</li>
+          <li><strong class="text-white">No independent verification yet:</strong> not confirmed against Ritual's official Discord/Twitter whether this contact is an authorized hiring partner</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🔍 Next Verification Steps</h4>
+        <ol class="space-y-1.5 text-sm text-slate-400 list-decimal list-inside leading-relaxed">
+          <li>Ask in Ritual's official Discord/Twitter whether "Joe Gump" or this recruiting contact is an authorized hiring partner</li>
+          <li>Do not click any links embedded inside the Google Doc until each is independently checked</li>
+          <li>Request a video call before any further engagement — same standard as every other case here</li>
+          <li>Check the sender's LinkedIn Activity tab for post history consistent with a real, long-tenured employee</li>
+        </ol>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">📸 Evidence</h4>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <img src="screenshots/Joe_Screenshot%202026-08-19%20at%2017.08.02.png" alt="Joe Gump Linda Gump initial outreach" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Initial outreach from "Joe Gump Linda Gump"</p>
+          </div>
+          <div>
+            <img src="screenshots/Joe_Screenshot%202026-08-19%20at%2017.08.10.png" alt="Ritual pitch details" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Ritual/Infernet pitch details</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-purple-950/30 border border-purple-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-purple-300 text-sm mb-2">🎓 The Lesson, Regardless of Outcome</h4>
+        <p class="text-sm text-slate-300">A real, fundable, legitimate project name is not proof the person contacting you represents it. Verify the <strong class="text-white">messenger</strong>, not just the project — every time, even (especially) when the brand checks out on a quick search.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: The Pre-Hired Take-Home -->
+<div id="modal-pre-hired" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-pre-hired')"></div>
+  <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
+      <h3 class="text-lg font-black text-white">⏱️ Deep Dive: The Pre-Hired Take-Home</h3>
+      <button onclick="closeModal('modal-pre-hired')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
+    </div>
+    <div class="p-6 space-y-5">
+
+      <div class="bg-red-950/30 border border-red-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-red-300 text-sm mb-3">⚙️ Attack Chain</h4>
+        <ol class="space-y-2 text-sm text-slate-300 list-decimal list-inside leading-relaxed">
+          <li>"Justin Miller" pitches a blockchain-based real estate platform, $80–$120/hr, fully remote, flexible hours</li>
+          <li>Asked for resume/GitHub for consideration — a normal, low-pressure ask</li>
+          <li>Within hours: <em>"we are pleased to inform you that you are a strong match"</em> — no technical screen occurred</li>
+          <li>Immediately outlines a 4-step process: Technical Assessment (take-home) → Technical Interview → Final Interview → NDA signing</li>
+          <li>Requests availability to complete the take-home within <strong class="text-red-400">24 hours</strong> of receiving it</li>
+        </ol>
+      </div>
+
+      <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4">
+        <h4 class="font-bold text-white text-sm mb-3">💬 Transcript Excerpt</h4>
+        <div class="text-sm text-slate-300 italic leading-relaxed space-y-2">
+          <p><strong class="text-white not-italic">Justin Miller:</strong> "Thanks for sharing your impressive previous experience. After reviewing your background, we are pleased to inform you that you are a strong match for the current project we are developing... 1. Technical Assessment (Short-term home task) 2. Technical Interview... If you're interested in moving forward, please let me know when you would be available to complete the take-home assignment. We typically ask candidates to submit it within 24 hours of receiving it."</p>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">🔬 Why This Matches Case #1's Playbook</h4>
+        <div class="overflow-x-auto rounded-xl border border-slate-700 overflow-hidden">
+          <table class="w-full text-xs text-left">
+            <thead class="bg-slate-800">
+              <tr>
+                <th class="py-2.5 px-3 text-slate-400">Signal</th>
+                <th class="py-2.5 px-3 text-red-400">Case #1 (Repo Trap)</th>
+                <th class="py-2.5 px-3 text-red-400">Case #7 (This one)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">Screening</td>
+                <td class="py-2.5 px-3">Skipped — "already confident in your contribution"</td>
+                <td class="py-2.5 px-3">Skipped — "strong match" after one portfolio link</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">Ask</td>
+                <td class="py-2.5 px-3">Clone repo, "review the UI workflow"</td>
+                <td class="py-2.5 px-3">Complete a take-home coding assignment</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-slate-500">Pressure</td>
+                <td class="py-2.5 px-3">Implicit — get you running <code class="text-xs">npm install</code> fast</td>
+                <td class="py-2.5 px-3">Explicit — 24-hour submission window</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-amber-950/30 border border-amber-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-amber-300 text-sm mb-2">🤝 The Mutual-Connection Trap</h4>
+        <p class="text-sm text-slate-300">This contact shares a mutual connection with someone the recipient trusts. <strong class="text-white">That does not clear the account.</strong> Compromised or cloned profiles often ride on a victim's real connection graph specifically because it's what lowers defensive guard — a shared connection is social proof, not identity verification.</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-sm mb-3">📸 Evidence</h4>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <img src="screenshots/Justin_Screenshot%202026-08-19%20at%2017.06.33.png" alt="Justin Miller initial outreach" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">Initial outreach from "Justin Miller"</p>
+          </div>
+          <div>
+            <img src="screenshots/Justin_Screenshot%202026-08-19%20at%2017.06.50.png" alt="Strong match message with no technical screen" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">"Strong match" — zero technical screen</p>
+          </div>
+          <div>
+            <img src="screenshots/Justin_Screenshot%202026-08-19%20at%2017.07.01.png" alt="24-hour take-home pressure" class="rounded-xl border border-slate-700 w-full cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open(this.src)" />
+            <p class="text-xs text-slate-500 mt-1 text-center">24-hour take-home submission pressure</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
+        <h4 class="font-bold text-emerald-300 text-sm mb-2">✅ Safe Response Protocol</h4>
+        <ul class="space-y-1 text-sm text-slate-300 list-disc list-inside">
+          <li>A "strong match" verdict with no technical screen is itself a red flag — real hiring processes screen before assessing</li>
+          <li>Request a video call before agreeing to any take-home assignment</li>
+          <li>Treat any take-home repo per Case #1's protocol — Docker/Codespaces, never run locally against real credentials</li>
+          <li>A mutual connection warrants a direct check-in with that person, not automatic trust transfer</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- Modal: VirusTotal Threat Graph -->
 <div id="modal-virustotal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-virustotal')"></div>
@@ -1020,7 +1574,7 @@
      JAVASCRIPT
 ═══════════════════════════════════════════ -->
 <script>
-  const MODAL_IDS = ['modal-repo-trap','modal-lure','modal-impersonation','modal-virustotal'];
+  const MODAL_IDS = ['modal-repo-trap','modal-lure','modal-impersonation','modal-virustotal','modal-typosquat','modal-wrapped-link','modal-real-fake-recruiter','modal-pre-hired'];
 
   function openModal(id) {
     document.getElementById(id).classList.remove('hidden');
