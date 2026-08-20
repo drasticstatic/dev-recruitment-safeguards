@@ -214,6 +214,17 @@
     }
     #backToTop.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
+    /* ── Modal footer: only appears once the reader has actually
+       scrolled to the bottom of that modal's content ── */
+    .modal-footer {
+      opacity: 0; pointer-events: none; max-height: 0; overflow: hidden;
+      transition: opacity 0.2s ease, max-height 0.2s ease;
+    }
+    .modal-footer.visible { opacity: 1; pointer-events: auto; max-height: 60px; }
+    @media (prefers-reduced-motion: reduce) {
+      #backToTop, .modal-footer { transition: none; }
+    }
+
     /* ── Whole-card click affordance ── */
     .case-card-link { cursor: pointer; }
   </style>
@@ -1049,6 +1060,62 @@
     </ul>
     <p class="text-xs text-slate-500 mt-4 italic">Sources cited for educational cross-reference. Verify current figures independently before citing elsewhere — scam-loss statistics are updated frequently by their originating research organizations.</p>
   </div>
+
+  <div class="bg-slate-900 border border-amber-700/40 rounded-xl p-6 mt-6">
+    <h3 class="font-bold text-amber-300 text-sm mb-2">🔓 How These Profiles Get This Convincing — Aged Accounts, Not Fake Ones</h3>
+    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+      A natural question after reading Cases #4, #7, and #8: how do these accounts pass every obvious
+      "is this fake?" check — real mutual connections, years of history, even LinkedIn's own verification
+      badges? The LinkedIn profile metadata for three of the personas on this page tells a consistent
+      story:
+    </p>
+    <div class="overflow-x-auto rounded-xl border border-slate-700 overflow-hidden mb-4">
+      <table class="w-full text-xs text-left">
+        <thead class="bg-slate-800">
+          <tr>
+            <th class="py-2.5 px-3 text-slate-400">Persona</th>
+            <th class="py-2.5 px-3 text-slate-400">Joined LinkedIn</th>
+            <th class="py-2.5 px-3 text-slate-400">Verification on File</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800 text-slate-300">
+          <tr>
+            <td class="py-2.5 px-3 text-slate-500">"Daniel Perez Valdes"</td>
+            <td class="py-2.5 px-3">January 2008</td>
+            <td class="py-2.5 px-3 text-emerald-400">ING — verified via work email, Dec 2024</td>
+          </tr>
+          <tr>
+            <td class="py-2.5 px-3 text-slate-500">"Justin Miller"</td>
+            <td class="py-2.5 px-3">October 2008</td>
+            <td class="py-2.5 px-3 text-emerald-400">Identity — verified via government ID, June 2024</td>
+          </tr>
+          <tr>
+            <td class="py-2.5 px-3 text-slate-500">"Joe Gump Linda Gump"</td>
+            <td class="py-2.5 px-3">January 2012</td>
+            <td class="py-2.5 px-3 text-slate-500">No verifications on file</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-sm text-slate-300 leading-relaxed mb-3">
+      Every one of these accounts predates LinkedIn's own IPO. No one builds a 15-to-18-year-old account
+      from scratch to run a single scam — <strong class="text-white">these read as aged, real accounts that
+      were compromised or acquired</strong>, not accounts fabricated for this campaign. That distinction
+      matters for two reasons:
+    </p>
+    <ul class="space-y-1.5 text-sm text-slate-300 list-disc list-inside leading-relaxed mb-3">
+      <li><strong class="text-white">A verification badge is a snapshot, not a live guarantee.</strong> "Verified via government ID, June 2024" means whoever controlled the account proved identity <em>at that moment</em> — not that the same person is operating it today. LinkedIn doesn't continuously reverify; if an account is taken over afterward (credential stuffing from an old breach, a phishing click, a stolen session), the badge stays displayed exactly as-is.</li>
+      <li><strong class="text-white">The mutual connections are real, not fabricated</strong> — which is what makes this dangerous. An attacker who takes over an aged account inherits its original owner's genuine decade-plus network instantly. That's precisely why a real mutual connection (Cases #4 and #8) can pass the "I know someone who knows them" gut-check so convincingly: the connection graph itself was never faked, only who's currently behind the keyboard.</li>
+    </ul>
+    <p class="text-sm text-slate-300 leading-relaxed">
+      Aged, verified accounts are a known black-market commodity for exactly this reason — they clear
+      every "new account" red flag a target might otherwise catch. If this reading is correct, the real
+      people named "Daniel Perez Valdes" and "Justin Miller" are themselves likely victims of account
+      takeover, the same way Eric Zhong's identity was spoofed onto forged commits in Case #6 — different
+      mechanism, same underlying pattern: <strong class="text-white">borrowing a real person's credibility
+      without their knowledge.</strong>
+    </p>
+  </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
@@ -1094,7 +1161,7 @@
   <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
     <div class="flex-shrink-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🪤 Deep Dive: The Repo Trap</h3>
-      <div class="flex items-center gap-1"><button onclick="modalScrollTo('scroll-modal-repo-trap','top')" aria-label="Jump to top of this modal" title="Jump to top" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button><button onclick="modalScrollTo('scroll-modal-repo-trap','bottom')" aria-label="Jump to bottom of this modal" title="Jump to bottom" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button><button onclick="closeModal('modal-repo-trap')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
+      <div class="flex items-center gap-2"><button onclick="modalScrollTo('scroll-modal-repo-trap','bottom')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-8 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span class="hidden sm:inline">Bottom</span></button><button onclick="closeModal('modal-repo-trap')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
     </div>
     <div id="scroll-modal-repo-trap" class="p-6 space-y-5 modal-scroll flex-1 min-h-0 overflow-y-auto">
 
@@ -1170,8 +1237,9 @@
       </div>
 
     </div>
-    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+    <div id="footer-modal-repo-trap" class="modal-footer flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 flex items-center justify-between">
       <p class="text-xs text-slate-600">— End of case file —</p>
+      <button onclick="modalScrollTo('scroll-modal-repo-trap','top')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-7 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Top</span></button>
     </div>
   </div>
 </div>
@@ -1182,7 +1250,7 @@
   <div class="relative bg-slate-900 border border-amber-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
     <div class="flex-shrink-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🎣 Deep Dive: The Lure</h3>
-      <div class="flex items-center gap-1"><button onclick="modalScrollTo('scroll-modal-lure','top')" aria-label="Jump to top of this modal" title="Jump to top" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button><button onclick="modalScrollTo('scroll-modal-lure','bottom')" aria-label="Jump to bottom of this modal" title="Jump to bottom" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button><button onclick="closeModal('modal-lure')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
+      <div class="flex items-center gap-2"><button onclick="modalScrollTo('scroll-modal-lure','bottom')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-8 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span class="hidden sm:inline">Bottom</span></button><button onclick="closeModal('modal-lure')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
     </div>
     <div id="scroll-modal-lure" class="p-6 space-y-5 modal-scroll flex-1 min-h-0 overflow-y-auto">
 
@@ -1282,8 +1350,9 @@
       </div>
 
     </div>
-    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+    <div id="footer-modal-lure" class="modal-footer flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 flex items-center justify-between">
       <p class="text-xs text-slate-600">— End of case file —</p>
+      <button onclick="modalScrollTo('scroll-modal-lure','top')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-7 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Top</span></button>
     </div>
   </div>
 </div>
@@ -1294,7 +1363,7 @@
   <div class="relative bg-slate-900 border border-purple-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
     <div class="flex-shrink-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🎭 Deep Dive: The Impersonation</h3>
-      <div class="flex items-center gap-1"><button onclick="modalScrollTo('scroll-modal-impersonation','top')" aria-label="Jump to top of this modal" title="Jump to top" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button><button onclick="modalScrollTo('scroll-modal-impersonation','bottom')" aria-label="Jump to bottom of this modal" title="Jump to bottom" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button><button onclick="closeModal('modal-impersonation')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
+      <div class="flex items-center gap-2"><button onclick="modalScrollTo('scroll-modal-impersonation','bottom')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-8 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span class="hidden sm:inline">Bottom</span></button><button onclick="closeModal('modal-impersonation')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
     </div>
     <div id="scroll-modal-impersonation" class="p-6 space-y-5 modal-scroll flex-1 min-h-0 overflow-y-auto">
 
@@ -1378,8 +1447,9 @@
       </div>
 
     </div>
-    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+    <div id="footer-modal-impersonation" class="modal-footer flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 flex items-center justify-between">
       <p class="text-xs text-slate-600">— End of case file —</p>
+      <button onclick="modalScrollTo('scroll-modal-impersonation','top')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-7 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Top</span></button>
     </div>
   </div>
 </div>
@@ -1391,7 +1461,7 @@
   <div class="relative bg-slate-900 border-2 border-red-700 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
     <div class="flex-shrink-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">💣 Deep Dive: The Weaponized Repo</h3>
-      <div class="flex items-center gap-1"><button onclick="modalScrollTo('scroll-modal-weaponized-repo','top')" aria-label="Jump to top of this modal" title="Jump to top" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button><button onclick="modalScrollTo('scroll-modal-weaponized-repo','bottom')" aria-label="Jump to bottom of this modal" title="Jump to bottom" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button><button onclick="closeModal('modal-weaponized-repo')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
+      <div class="flex items-center gap-2"><button onclick="modalScrollTo('scroll-modal-weaponized-repo','bottom')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-8 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span class="hidden sm:inline">Bottom</span></button><button onclick="closeModal('modal-weaponized-repo')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
     </div>
     <div id="scroll-modal-weaponized-repo" class="p-6 space-y-5 modal-scroll flex-1 min-h-0 overflow-y-auto">
 
@@ -1562,8 +1632,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
       </div>
 
     </div>
-    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+    <div id="footer-modal-weaponized-repo" class="modal-footer flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 flex items-center justify-between">
       <p class="text-xs text-slate-600">— End of case file —</p>
+      <button onclick="modalScrollTo('scroll-modal-weaponized-repo','top')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-7 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Top</span></button>
     </div>
   </div>
 </div>
@@ -1573,7 +1644,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
   <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
     <div class="flex-shrink-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🪤 Deep Dive: The Typosquat</h3>
-      <div class="flex items-center gap-1"><button onclick="modalScrollTo('scroll-modal-typosquat','top')" aria-label="Jump to top of this modal" title="Jump to top" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button><button onclick="modalScrollTo('scroll-modal-typosquat','bottom')" aria-label="Jump to bottom of this modal" title="Jump to bottom" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button><button onclick="closeModal('modal-typosquat')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
+      <div class="flex items-center gap-2"><button onclick="modalScrollTo('scroll-modal-typosquat','bottom')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-8 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span class="hidden sm:inline">Bottom</span></button><button onclick="closeModal('modal-typosquat')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
     </div>
     <div id="scroll-modal-typosquat" class="p-6 space-y-5 modal-scroll flex-1 min-h-0 overflow-y-auto">
 
@@ -1649,8 +1720,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
       </div>
 
     </div>
-    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+    <div id="footer-modal-typosquat" class="modal-footer flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 flex items-center justify-between">
       <p class="text-xs text-slate-600">— End of case file —</p>
+      <button onclick="modalScrollTo('scroll-modal-typosquat','top')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-7 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Top</span></button>
     </div>
   </div>
 </div>
@@ -1661,7 +1733,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
   <div class="relative bg-slate-900 border border-amber-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
     <div class="flex-shrink-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🔗 Deep Dive: The Wrapped Link</h3>
-      <div class="flex items-center gap-1"><button onclick="modalScrollTo('scroll-modal-wrapped-link','top')" aria-label="Jump to top of this modal" title="Jump to top" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button><button onclick="modalScrollTo('scroll-modal-wrapped-link','bottom')" aria-label="Jump to bottom of this modal" title="Jump to bottom" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button><button onclick="closeModal('modal-wrapped-link')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
+      <div class="flex items-center gap-2"><button onclick="modalScrollTo('scroll-modal-wrapped-link','bottom')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-8 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span class="hidden sm:inline">Bottom</span></button><button onclick="closeModal('modal-wrapped-link')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
     </div>
     <div id="scroll-modal-wrapped-link" class="p-6 space-y-5 modal-scroll flex-1 min-h-0 overflow-y-auto">
 
@@ -1741,8 +1813,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
       </div>
 
     </div>
-    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+    <div id="footer-modal-wrapped-link" class="modal-footer flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 flex items-center justify-between">
       <p class="text-xs text-slate-600">— End of case file —</p>
+      <button onclick="modalScrollTo('scroll-modal-wrapped-link','top')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-7 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Top</span></button>
     </div>
   </div>
 </div>
@@ -1753,7 +1826,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
   <div class="relative bg-slate-900 border border-purple-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
     <div class="flex-shrink-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🎭 Deep Dive: The Real Project, Fake Recruiter</h3>
-      <div class="flex items-center gap-1"><button onclick="modalScrollTo('scroll-modal-real-fake-recruiter','top')" aria-label="Jump to top of this modal" title="Jump to top" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button><button onclick="modalScrollTo('scroll-modal-real-fake-recruiter','bottom')" aria-label="Jump to bottom of this modal" title="Jump to bottom" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button><button onclick="closeModal('modal-real-fake-recruiter')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
+      <div class="flex items-center gap-2"><button onclick="modalScrollTo('scroll-modal-real-fake-recruiter','bottom')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-8 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span class="hidden sm:inline">Bottom</span></button><button onclick="closeModal('modal-real-fake-recruiter')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
     </div>
     <div id="scroll-modal-real-fake-recruiter" class="p-6 space-y-5 modal-scroll flex-1 min-h-0 overflow-y-auto">
 
@@ -1808,8 +1881,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
       </div>
 
     </div>
-    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+    <div id="footer-modal-real-fake-recruiter" class="modal-footer flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 flex items-center justify-between">
       <p class="text-xs text-slate-600">— End of case file —</p>
+      <button onclick="modalScrollTo('scroll-modal-real-fake-recruiter','top')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-7 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Top</span></button>
     </div>
   </div>
 </div>
@@ -1820,7 +1894,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
   <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
     <div class="flex-shrink-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">⏱️ Deep Dive: The Pre-Hired Take-Home</h3>
-      <div class="flex items-center gap-1"><button onclick="modalScrollTo('scroll-modal-pre-hired','top')" aria-label="Jump to top of this modal" title="Jump to top" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button><button onclick="modalScrollTo('scroll-modal-pre-hired','bottom')" aria-label="Jump to bottom of this modal" title="Jump to bottom" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button><button onclick="closeModal('modal-pre-hired')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
+      <div class="flex items-center gap-2"><button onclick="modalScrollTo('scroll-modal-pre-hired','bottom')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-8 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span class="hidden sm:inline">Bottom</span></button><button onclick="closeModal('modal-pre-hired')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
     </div>
     <div id="scroll-modal-pre-hired" class="p-6 space-y-5 modal-scroll flex-1 min-h-0 overflow-y-auto">
 
@@ -1908,8 +1982,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
       </div>
 
     </div>
-    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+    <div id="footer-modal-pre-hired" class="modal-footer flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 flex items-center justify-between">
       <p class="text-xs text-slate-600">— End of case file —</p>
+      <button onclick="modalScrollTo('scroll-modal-pre-hired','top')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-7 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Top</span></button>
     </div>
   </div>
 </div>
@@ -1920,7 +1995,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
   <div class="relative bg-slate-900 border border-cyan-900/50 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
     <div class="flex-shrink-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">📊 VirusTotal Threat Graph — APOM-DAPP PDF</h3>
-      <div class="flex items-center gap-1"><button onclick="modalScrollTo('scroll-modal-virustotal','top')" aria-label="Jump to top of this modal" title="Jump to top" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button><button onclick="modalScrollTo('scroll-modal-virustotal','bottom')" aria-label="Jump to bottom of this modal" title="Jump to bottom" class="text-slate-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button><button onclick="closeModal('modal-virustotal')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
+      <div class="flex items-center gap-2"><button onclick="modalScrollTo('scroll-modal-virustotal','bottom')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-8 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span class="hidden sm:inline">Bottom</span></button><button onclick="closeModal('modal-virustotal')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button></div>
     </div>
     <div id="scroll-modal-virustotal" class="p-6 space-y-5 modal-scroll flex-1 min-h-0 overflow-y-auto">
 
@@ -2001,8 +2076,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
       </div>
 
     </div>
-    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+    <div id="footer-modal-virustotal" class="modal-footer flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 flex items-center justify-between">
       <p class="text-xs text-slate-600">— End of case file —</p>
+      <button onclick="modalScrollTo('scroll-modal-virustotal','top')" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white pl-2 pr-2.5 h-7 rounded-lg hover:bg-slate-800 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Top</span></button>
     </div>
   </div>
 </div>
@@ -2030,6 +2106,18 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
     if (!el) return;
     el.scrollTo({ top: where === 'top' ? 0 : el.scrollHeight, behavior: 'smooth' });
   }
+
+  // Reveal each modal's footer ("Top" button) only once the reader has
+  // actually scrolled to the bottom of that modal's content.
+  MODAL_IDS.forEach(id => {
+    const scrollEl = document.getElementById('scroll-' + id);
+    const footerEl = document.getElementById('footer-' + id);
+    if (!scrollEl || !footerEl) return;
+    scrollEl.addEventListener('scroll', () => {
+      const atBottom = scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 8;
+      footerEl.classList.toggle('visible', atBottom);
+    }, { passive: true });
+  });
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') MODAL_IDS.forEach(closeModal);
