@@ -26,9 +26,6 @@
   <meta name="twitter:title" content="Dev Recruitment Safeguards — LinkedIn Scam Alerts" />
   <meta name="twitter:description" content="Security awareness portal documenting sophisticated LinkedIn recruitment scams targeting Web3 and fullstack developers." />
   <meta name="twitter:image" content="https://drasticstatic.github.io/dev-recruitment-safeguards/og-image.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,800;8..60,900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -48,8 +45,8 @@
       --wire: #3d5a75;
       --stamp: #c9a227;
       --evidence: #4dd4c4;
-      --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-      --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      --font-display: Iowan, 'Iowan Old Style', Georgia, 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+      --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', Menlo, Consolas, monospace;
     }
 
     body {
@@ -73,20 +70,37 @@
     /* ── Evidence/utility mono: hashes, IDs, code, citations ── */
     code, .font-mono { font-family: var(--font-mono); }
 
-    /* ── Signature element: redaction bar over the case-number strip.
-       Underlying text stays in the DOM at all times — this is a visual
-       cover only, not a display:none — so it never depends on color
-       alone and always reads correctly to assistive tech. ── */
-    .redacted { position: relative; display: inline-block; }
+    /* ── Signature element: a document-redaction bar over each case's
+       persona name — solid black, sharp edges, a small "REDACTED" mark,
+       exactly the look of a declassified document. Underlying text
+       stays in the DOM at all times (visual cover only, never
+       display:none), so it always reads correctly to assistive tech
+       regardless of the hover/focus state. ── */
+    .redacted {
+      position: relative; display: inline-block; cursor: pointer;
+      padding: 0 3px; border-radius: 2px;
+    }
     .redacted .redacted-bar {
-      position: absolute; inset: 0;
-      background: var(--redaction);
-      border-radius: 2px;
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      transform-origin: left center;
+      position: absolute; inset: -1px;
+      background: #0a0a0c;
+      background-image: repeating-linear-gradient(
+        135deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 6px
+      );
+      border: 1px solid #000;
+      display: flex; align-items: center; justify-content: center;
+      gap: 5px;
+      transition: opacity 0.2s ease;
+    }
+    .redacted .redacted-bar::before {
+      content: '🔒'; font-size: 0.65em; opacity: 0.7;
+    }
+    .redacted .redacted-bar::after {
+      content: 'REDACTED';
+      font-family: var(--font-mono); font-size: 0.62em; font-weight: 600;
+      letter-spacing: 0.08em; color: #6b6b74;
     }
     .redacted:hover .redacted-bar,
-    .redacted:focus-within .redacted-bar { opacity: 0; transform: scaleX(0.02); }
+    .redacted:focus-visible .redacted-bar { opacity: 0; pointer-events: none; }
     @media (prefers-reduced-motion: reduce) {
       .redacted .redacted-bar { transition: none; }
     }
@@ -122,23 +136,60 @@
     .case-card-header { min-height: 108px; }
     @media (min-width: 1280px) { .case-card-header { min-height: 96px; } }
 
-    /* ── Threat badge pulse ── */
+    /* ── Threat badge pulse (case cards other than the flagship) ── */
     .pulse-red { animation: pulseRed 2s ease-in-out infinite; }
     @keyframes pulseRed {
       0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
       50%      { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
     }
 
-    /* ── Code ── */
-    .code-block { background:#0d1117; border:1px solid #30363d; border-radius:8px; font-family:'Fira Code','Cascadia Code',monospace; }
+    /* ── Flagship case: a slow ambient glow on the card border instead of
+       the badge-flash pulse used elsewhere — reads as "this one is
+       different" without competing for attention on hover. The "why
+       flagship" blurb inside gets its own quieter breathing glow. ── */
+    .case-card-flagship {
+      animation: flagshipGlow 3.5s ease-in-out infinite;
+    }
+    @keyframes flagshipGlow {
+      0%,100% { box-shadow: 0 0 0 1px rgba(220,38,38,0.35), 0 0 18px rgba(220,38,38,0.12); }
+      50%     { box-shadow: 0 0 0 1px rgba(220,38,38,0.6),  0 0 28px rgba(220,38,38,0.28); }
+    }
+    .case-card-flagship-blurb {
+      animation: flagshipBlurbGlow 3.5s ease-in-out infinite;
+    }
+    @keyframes flagshipBlurbGlow {
+      0%,100% { box-shadow: inset 0 0 0 1px rgba(220,38,38,0.15); }
+      50%     { box-shadow: inset 0 0 0 1px rgba(220,38,38,0.4); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .case-card-flagship, .case-card-flagship-blurb { animation: none; box-shadow: 0 0 0 1px rgba(220,38,38,0.5); }
+    }
 
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #0a0f1e; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    /* ── Code ── */
+    .code-block { background:#0d1117; border:1px solid #30363d; border-radius:8px; font-family: var(--font-mono); }
+
+    /* ── Scrollbar: page + generic ── */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--wire); border-radius: 4px; border: 2px solid var(--ink); background-clip: padding-box; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--evidence); background-clip: padding-box; }
+    * { scrollbar-width: thin; scrollbar-color: var(--wire) var(--ink); }
 
     /* ── Modal scroll lock ── */
     .modal-open { overflow: hidden; }
+
+    /* ── Modal inner scrollbar: color-matched, clipped to the rounded
+       corners instead of the default square track spilling past them.
+       The scroll container itself carries the rounding + clip, so the
+       track can never render outside the card's rounded edge. ── */
+    .modal-scroll {
+      border-radius: 1rem; /* matches rounded-2xl */
+      scrollbar-width: thin; scrollbar-color: var(--wire) var(--dossier-card);
+    }
+    .modal-scroll::-webkit-scrollbar { width: 8px; }
+    .modal-scroll::-webkit-scrollbar-track { background: var(--dossier-card); }
+    .modal-scroll::-webkit-scrollbar-thumb { background: var(--wire); border-radius: 4px; border: 2px solid var(--dossier-card); background-clip: padding-box; }
+    .modal-scroll::-webkit-scrollbar-thumb:hover { background: var(--evidence); background-clip: padding-box; }
 
     /* ── Anchor offset: keeps section titles clear of the sticky nav ── */
     section[id] { scroll-margin-top: 88px; }
@@ -248,7 +299,7 @@
 <!-- ═══════════════════════════════════════════
      SECURITY CHECKLIST
 ═══════════════════════════════════════════ -->
-<section id="checklist" class="max-w-6xl mx-auto px-4 py-16">
+<section id="checklist" class="max-w-6xl mx-auto px-4 pt-4 pb-16">
   <div class="bg-gradient-to-br from-amber-950/40 to-slate-900 border border-amber-700/50 rounded-2xl p-6 md:p-8">
 
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
@@ -564,50 +615,46 @@
       </div>
     </div>
 
-    <!-- ── Case 4: The Weaponized Repo ── -->
-    <div class="case-card case-card-link bg-slate-900 border-2 border-red-700 rounded-2xl overflow-hidden flex flex-col ring-2 ring-red-900/40" onclick="openModal('modal-weaponized-repo')">
-      <div class="case-card-header bg-gradient-to-r from-red-950 to-slate-900 p-5 border-b border-red-900/30">
+    <!-- ── Case 4: The Wrapped Link (entry point — how this was found) ── -->
+    <div class="case-card case-card-link bg-slate-900 border border-amber-900/50 rounded-2xl overflow-hidden flex flex-col" onclick="openModal('modal-wrapped-link')">
+      <div class="case-card-header bg-gradient-to-r from-amber-950 to-slate-900 p-5 border-b border-amber-900/30">
         <div class="flex items-center justify-between mb-3">
-          <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full pulse-red">🔴 CRITICAL — CONFIRMED RCE</span>
+          <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">🟠 HIGH</span>
           <span class="text-slate-500 text-xs">Case #4</span>
         </div>
-        <h3 class="font-display text-xl text-white mb-1">💣 The Weaponized Repo</h3>
-        <p class="text-slate-400 text-sm">Remote-code-execution backdoor hidden in a stolen sniper-bot, disguised as a hiring take-home</p>
+        <h3 class="font-display text-xl text-white mb-1">🔗 The Wrapped Link</h3>
+        <p class="text-slate-400 text-sm">LinkedIn redirect wrapper hides the real destination of a Google Doc lure</p>
       </div>
       <div class="p-5 flex flex-col flex-1">
         <div class="space-y-2.5 mb-5 flex-1 text-sm">
           <div class="flex gap-2">
             <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
-            <span class="redacted text-red-300 font-medium" tabindex="0">"Daniel Perez Valdes" — mutual connection with a trusted DappU instructor<span class="redacted-bar" aria-hidden="true"></span></span>
-          </div>
-          <div class="flex gap-2 items-center">
-            <span class="text-slate-500 w-16 flex-shrink-0">Repo</span>
-            <code class="text-cyan-400 text-xs bg-slate-800 px-1.5 py-0.5 rounded">nitroe1/TokenPromotingDapp</code>
+            <span class="redacted text-amber-300 font-medium" tabindex="0">"Daniel Perez Valdes"<span class="redacted-bar" aria-hidden="true"></span></span>
           </div>
           <div class="flex gap-2">
-            <span class="text-slate-500 w-16 flex-shrink-0">Backdoor</span>
+            <span class="text-slate-500 w-16 flex-shrink-0">Vector</span>
             <span class="text-slate-300 text-xs">
-              <span class="tt text-red-400" data-tip="verifyToken() fires unconditionally at module load. It fetches a private Google Doc, base64-decodes the contents, then runs new Function('axios','require', code)(axios, require) — arbitrary attacker-controlled code with exfil and require access.">frontController.js: verifyToken()</span>
-              — fetches + evals remote code on <code class="text-red-400 text-xs">npm start</code>
+              <span class="tt" data-tip="linkedin.com/safety/go?url=... is LinkedIn's own outbound link wrapper. Scammers rely on it to make an arbitrary destination inherit LinkedIn's high-reputation domain in link previews and scanners.">LinkedIn redirect wrapper</span>
+              → docs.google.com pitch doc
             </span>
           </div>
-          <div class="flex gap-2">
-            <span class="text-slate-500 w-16 flex-shrink-0">Also</span>
-            <span class="text-slate-300 text-xs">A real front-running/sniper bot underneath, requiring a live wallet private key from environment</span>
-          </div>
           <div class="flex gap-2 items-center">
-            <span class="text-slate-500 w-16 flex-shrink-0">VT score</span>
-            <span class="text-emerald-400 font-mono font-bold">0 community flags</span>
-            <span class="tt text-amber-300 text-xs ml-1" data-tip="Same lesson as every other case here: a clean VirusTotal score reflects known-signature scanning of the repo listing, not a live security audit of every source file and its remote payload fetch.">← again, not a clearance ⚠️</span>
+            <span class="text-slate-500 w-16 flex-shrink-0">VT flag</span>
+            <span class="text-slate-300 text-xs">"Phishing Attachment IOC"</span>
+            <span class="tt text-amber-300 text-xs ml-1" data-tip="The flagged domain in this VT report was linkedin.com itself — a stale, 2-year-old ArcSight entry that VirusTotal's own classification describes as 'Legitimate website which does not serve any malicious purpose.' It's evidence the WRAPPER has been abused before, not that this specific link is malicious.">← read it carefully ⚠️</span>
           </div>
-          <div class="mt-2 p-3 bg-red-950/30 border border-red-800/30 rounded-xl">
-            <div class="text-xs text-red-300 font-semibold mb-1">🎯 Why this is the flagship case</div>
-            <div class="text-xs text-slate-400">Fully sourced: GitHub API timestamps, signature-verification data, and direct source review — not inference. Confirmed <strong class="text-white">DO NOT FORK, DO NOT RUN.</strong></div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Real risk</span>
+            <span class="text-slate-300 text-xs">Not the doc load itself — <strong class="text-white">links clicked inside it</strong>, or an OAuth "connect this app" prompt if one appears</span>
+          </div>
+          <div class="mt-2 p-3 bg-amber-950/30 border border-amber-800/30 rounded-xl">
+            <div class="text-xs text-amber-300 font-semibold mb-1">💡 Key lesson</div>
+            <div class="text-xs text-slate-400">A high-reputation wrapper domain (LinkedIn, Google) tells you nothing about the content it's wrapping. Check the <strong class="text-white">final destination</strong>, not the outer shell.</div>
           </div>
         </div>
-        <button onclick="openModal('modal-weaponized-repo')"
-          class="w-full bg-red-700 hover:bg-red-600 border border-red-600 text-white text-sm font-bold py-2.5 rounded-xl transition-colors">
-          🔬 Full Forensic Deep Dive
+        <button onclick="openModal('modal-wrapped-link')"
+          class="w-full bg-amber-800/30 hover:bg-amber-700/40 border border-amber-700/50 text-amber-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
+          🔬 Deep Dive + VT Analysis
         </button>
       </div>
     </div>
@@ -666,46 +713,50 @@
       </div>
     </div>
 
-    <!-- ── Case 6: The Wrapped Link ── -->
-    <div class="case-card case-card-link bg-slate-900 border border-amber-900/50 rounded-2xl overflow-hidden flex flex-col" onclick="openModal('modal-wrapped-link')">
-      <div class="case-card-header bg-gradient-to-r from-amber-950 to-slate-900 p-5 border-b border-amber-900/30">
+    <!-- ── Case 6: The Weaponized Repo (flagship — where the Wrapped Link led) ── -->
+    <div class="case-card case-card-link case-card-flagship bg-slate-900 border-2 border-red-700 rounded-2xl overflow-hidden flex flex-col" onclick="openModal('modal-weaponized-repo')">
+      <div class="case-card-header bg-gradient-to-r from-red-950 to-slate-900 p-5 border-b border-red-900/30">
         <div class="flex items-center justify-between mb-3">
-          <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">🟠 HIGH</span>
+          <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap pulse-red">🔴 CONFIRMED RCE</span>
           <span class="text-slate-500 text-xs">Case #6</span>
         </div>
-        <h3 class="font-display text-xl text-white mb-1">🔗 The Wrapped Link</h3>
-        <p class="text-slate-400 text-sm">LinkedIn redirect wrapper hides the real destination of a Google Doc lure</p>
+        <h3 class="font-display text-xl text-white mb-1">💣 The Weaponized Repo</h3>
+        <p class="text-slate-400 text-sm">Remote-code-execution backdoor hidden in a stolen sniper-bot, disguised as a hiring take-home</p>
       </div>
       <div class="p-5 flex flex-col flex-1">
         <div class="space-y-2.5 mb-5 flex-1 text-sm">
           <div class="flex gap-2">
             <span class="text-slate-500 w-16 flex-shrink-0">Persona</span>
-            <span class="redacted text-amber-300 font-medium" tabindex="0">"Daniel Perez Valdes"<span class="redacted-bar" aria-hidden="true"></span></span>
-          </div>
-          <div class="flex gap-2">
-            <span class="text-slate-500 w-16 flex-shrink-0">Vector</span>
-            <span class="text-slate-300 text-xs">
-              <span class="tt" data-tip="linkedin.com/safety/go?url=... is LinkedIn's own outbound link wrapper. Scammers rely on it to make an arbitrary destination inherit LinkedIn's high-reputation domain in link previews and scanners.">LinkedIn redirect wrapper</span>
-              → docs.google.com pitch doc
-            </span>
+            <span class="redacted text-red-300 font-medium" tabindex="0">"Daniel Perez Valdes" — mutual connection with a trusted DappU instructor<span class="redacted-bar" aria-hidden="true"></span></span>
           </div>
           <div class="flex gap-2 items-center">
-            <span class="text-slate-500 w-16 flex-shrink-0">VT flag</span>
-            <span class="text-slate-300 text-xs">"Phishing Attachment IOC"</span>
-            <span class="tt text-amber-300 text-xs ml-1" data-tip="The flagged domain in this VT report was linkedin.com itself — a stale, 2-year-old ArcSight entry that VirusTotal's own classification describes as 'Legitimate website which does not serve any malicious purpose.' It's evidence the WRAPPER has been abused before, not that this specific link is malicious.">← read it carefully ⚠️</span>
+            <span class="text-slate-500 w-16 flex-shrink-0">Repo</span>
+            <code class="text-cyan-400 text-xs bg-slate-800 px-1.5 py-0.5 rounded">nitroe1/TokenPromotingDapp</code>
           </div>
           <div class="flex gap-2">
-            <span class="text-slate-500 w-16 flex-shrink-0">Real risk</span>
-            <span class="text-slate-300 text-xs">Not the doc load itself — <strong class="text-white">links clicked inside it</strong>, or an OAuth "connect this app" prompt if one appears</span>
+            <span class="text-slate-500 w-16 flex-shrink-0">Backdoor</span>
+            <span class="text-slate-300 text-xs">
+              <span class="tt text-red-400" data-tip="verifyToken() fires unconditionally at module load. It fetches a private Google Doc, base64-decodes the contents, then runs new Function('axios','require', code)(axios, require) — arbitrary attacker-controlled code with exfil and require access.">frontController.js: verifyToken()</span>
+              — fetches + evals remote code on <code class="text-red-400 text-xs">npm start</code>
+            </span>
           </div>
-          <div class="mt-2 p-3 bg-amber-950/30 border border-amber-800/30 rounded-xl">
-            <div class="text-xs text-amber-300 font-semibold mb-1">💡 Key lesson</div>
-            <div class="text-xs text-slate-400">A high-reputation wrapper domain (LinkedIn, Google) tells you nothing about the content it's wrapping. Check the <strong class="text-white">final destination</strong>, not the outer shell.</div>
+          <div class="flex gap-2">
+            <span class="text-slate-500 w-16 flex-shrink-0">Also</span>
+            <span class="text-slate-300 text-xs">A real front-running/sniper bot underneath, requiring a live wallet private key from environment</span>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="text-slate-500 w-16 flex-shrink-0">VT score</span>
+            <span class="text-emerald-400 font-mono font-bold">0 community flags</span>
+            <span class="tt text-amber-300 text-xs ml-1" data-tip="Same lesson as every other case here: a clean VirusTotal score reflects known-signature scanning of the repo listing, not a live security audit of every source file and its remote payload fetch.">← again, not a clearance ⚠️</span>
+          </div>
+          <div class="mt-2 p-3 bg-red-950/30 border border-red-800/30 rounded-xl case-card-flagship-blurb">
+            <div class="text-xs text-red-300 font-semibold mb-1">🎯 Why this is the flagship case</div>
+            <div class="text-xs text-slate-400">Fully sourced: GitHub API timestamps, signature-verification data, and direct source review — not inference. Confirmed <strong class="text-white">DO NOT FORK, DO NOT RUN.</strong></div>
           </div>
         </div>
-        <button onclick="openModal('modal-wrapped-link')"
-          class="w-full bg-amber-800/30 hover:bg-amber-700/40 border border-amber-700/50 text-amber-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
-          🔬 Deep Dive + VT Analysis
+        <button onclick="openModal('modal-weaponized-repo')"
+          class="w-full bg-red-700 hover:bg-red-600 border border-red-600 text-white text-sm font-bold py-2.5 rounded-xl transition-colors">
+          🔬 Full Forensic Deep Dive
         </button>
       </div>
     </div>
@@ -991,7 +1042,7 @@
      BACK TO TOP
 ═══════════════════════════════════════════ -->
 <a href="#top" id="backToTop" aria-label="Back to top"
-   class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white shadow-lg flex items-center justify-center transition-colors">
+   class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-slate-800 hover:bg-red-900/60 border border-red-800/50 text-red-400 hover:text-white shadow-lg flex items-center justify-center transition-colors">
   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
 </a>
 
@@ -1002,7 +1053,7 @@
 <!-- Modal: Repo Trap -->
 <div id="modal-repo-trap" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-repo-trap')"></div>
-  <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+  <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl modal-scroll">
     <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🪤 Deep Dive: The Repo Trap</h3>
       <button onclick="closeModal('modal-repo-trap')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
@@ -1086,7 +1137,7 @@
 <!-- Modal: The Lure -->
 <div id="modal-lure" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-lure')"></div>
-  <div class="relative bg-slate-900 border border-amber-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+  <div class="relative bg-slate-900 border border-amber-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl modal-scroll">
     <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🎣 Deep Dive: The Lure</h3>
       <button onclick="closeModal('modal-lure')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
@@ -1195,7 +1246,7 @@
 <!-- Modal: Impersonation -->
 <div id="modal-impersonation" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-impersonation')"></div>
-  <div class="relative bg-slate-900 border border-purple-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+  <div class="relative bg-slate-900 border border-purple-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl modal-scroll">
     <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🎭 Deep Dive: The Impersonation</h3>
       <button onclick="closeModal('modal-impersonation')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
@@ -1289,7 +1340,7 @@
 <!-- Modal: The Weaponized Repo -->
 <div id="modal-weaponized-repo" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-weaponized-repo')"></div>
-  <div class="relative bg-slate-900 border-2 border-red-700 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl">
+  <div class="relative bg-slate-900 border-2 border-red-700 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl modal-scroll">
     <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">💣 Deep Dive: The Weaponized Repo</h3>
       <button onclick="closeModal('modal-weaponized-repo')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
@@ -1442,7 +1493,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
 
 <div id="modal-typosquat" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-typosquat')"></div>
-  <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+  <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl modal-scroll">
     <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🪤 Deep Dive: The Typosquat</h3>
       <button onclick="closeModal('modal-typosquat')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
@@ -1526,7 +1577,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
 <!-- Modal: The Wrapped Link -->
 <div id="modal-wrapped-link" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-wrapped-link')"></div>
-  <div class="relative bg-slate-900 border border-amber-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+  <div class="relative bg-slate-900 border border-amber-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl modal-scroll">
     <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🔗 Deep Dive: The Wrapped Link</h3>
       <button onclick="closeModal('modal-wrapped-link')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
@@ -1615,7 +1666,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
 <!-- Modal: The Real Project, Fake Recruiter -->
 <div id="modal-real-fake-recruiter" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-real-fake-recruiter')"></div>
-  <div class="relative bg-slate-900 border border-purple-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+  <div class="relative bg-slate-900 border border-purple-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl modal-scroll">
     <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">🎭 Deep Dive: The Real Project, Fake Recruiter</h3>
       <button onclick="closeModal('modal-real-fake-recruiter')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
@@ -1679,7 +1730,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
 <!-- Modal: The Pre-Hired Take-Home -->
 <div id="modal-pre-hired" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-pre-hired')"></div>
-  <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+  <div class="relative bg-slate-900 border border-red-900/50 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl modal-scroll">
     <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">⏱️ Deep Dive: The Pre-Hired Take-Home</h3>
       <button onclick="closeModal('modal-pre-hired')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
@@ -1776,7 +1827,7 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
 <!-- Modal: VirusTotal Threat Graph -->
 <div id="modal-virustotal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeModal('modal-virustotal')"></div>
-  <div class="relative bg-slate-900 border border-cyan-900/50 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl">
+  <div class="relative bg-slate-900 border border-cyan-900/50 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl modal-scroll">
     <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-800 p-5 flex items-center justify-between z-10">
       <h3 class="text-lg font-black text-white">📊 VirusTotal Threat Graph — APOM-DAPP PDF</h3>
       <button onclick="closeModal('modal-virustotal')" class="text-slate-400 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors">&times;</button>
