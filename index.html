@@ -181,10 +181,10 @@
       scrollbar-width: thin !important;
       scrollbar-color: var(--wire) var(--ink) !important;
     }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--ink) !important; }
-    ::-webkit-scrollbar-thumb { background: var(--wire) !important; border-radius: 4px; border: 2px solid var(--ink); background-clip: padding-box; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--evidence) !important; background-clip: padding-box; }
+    *::-webkit-scrollbar { width: 8px !important; height: 8px !important; }
+    *::-webkit-scrollbar-track { background: var(--ink) !important; }
+    *::-webkit-scrollbar-thumb { background: var(--wire) !important; border-radius: 4px !important; border: 2px solid var(--ink) !important; background-clip: padding-box !important; }
+    *::-webkit-scrollbar-thumb:hover { background: var(--evidence) !important; background-clip: padding-box !important; }
 
     /* ── Modal scroll lock ── */
     .modal-open { overflow: hidden; }
@@ -199,10 +199,10 @@
       scrollbar-width: thin !important;
       scrollbar-color: var(--wire) var(--dossier-card) !important;
     }
-    .modal-scroll::-webkit-scrollbar { width: 8px; }
+    .modal-scroll::-webkit-scrollbar { width: 8px !important; }
     .modal-scroll::-webkit-scrollbar-track { background: var(--dossier-card) !important; }
-    .modal-scroll::-webkit-scrollbar-thumb { background: var(--wire) !important; border-radius: 4px; border: 2px solid var(--dossier-card); background-clip: padding-box; }
-    .modal-scroll::-webkit-scrollbar-thumb:hover { background: var(--evidence) !important; background-clip: padding-box; }
+    .modal-scroll::-webkit-scrollbar-thumb { background: var(--wire) !important; border-radius: 4px !important; border: 2px solid var(--dossier-card) !important; background-clip: padding-box !important; }
+    .modal-scroll::-webkit-scrollbar-thumb:hover { background: var(--evidence) !important; background-clip: padding-box !important; }
 
     /* ── Anchor offset: keeps section titles clear of the sticky nav ── */
     section[id] { scroll-margin-top: 88px; }
@@ -1169,10 +1169,9 @@
         </ul>
       </div>
 
-      <div class="mt-2 pt-4 border-t border-slate-800 text-center">
-        <p class="text-xs text-slate-600">— End of case file —</p>
-      </div>
-
+    </div>
+    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+      <p class="text-xs text-slate-600">— End of case file —</p>
     </div>
   </div>
 </div>
@@ -1282,10 +1281,9 @@
         </ul>
       </div>
 
-      <div class="mt-2 pt-4 border-t border-slate-800 text-center">
-        <p class="text-xs text-slate-600">— End of case file —</p>
-      </div>
-
+    </div>
+    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+      <p class="text-xs text-slate-600">— End of case file —</p>
     </div>
   </div>
 </div>
@@ -1379,10 +1377,9 @@
         </ul>
       </div>
 
-      <div class="mt-2 pt-4 border-t border-slate-800 text-center">
-        <p class="text-xs text-slate-600">— End of case file —</p>
-      </div>
-
+    </div>
+    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+      <p class="text-xs text-slate-600">— End of case file —</p>
     </div>
   </div>
 </div>
@@ -1564,10 +1561,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
         </ul>
       </div>
 
-      <div class="mt-2 pt-4 border-t border-slate-800 text-center">
-        <p class="text-xs text-slate-600">— End of case file —</p>
-      </div>
-
+    </div>
+    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+      <p class="text-xs text-slate-600">— End of case file —</p>
     </div>
   </div>
 </div>
@@ -1652,10 +1648,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
         </ul>
       </div>
 
-      <div class="mt-2 pt-4 border-t border-slate-800 text-center">
-        <p class="text-xs text-slate-600">— End of case file —</p>
-      </div>
-
+    </div>
+    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+      <p class="text-xs text-slate-600">— End of case file —</p>
     </div>
   </div>
 </div>
@@ -1745,10 +1740,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
         </ul>
       </div>
 
-      <div class="mt-2 pt-4 border-t border-slate-800 text-center">
-        <p class="text-xs text-slate-600">— End of case file —</p>
-      </div>
-
+    </div>
+    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+      <p class="text-xs text-slate-600">— End of case file —</p>
     </div>
   </div>
 </div>
@@ -1813,10 +1807,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
         <p class="text-sm text-slate-300">A real, fundable, legitimate project name is not proof the person contacting you represents it. Verify the <strong class="text-white">messenger</strong>, not just the project — every time, even (especially) when the brand checks out on a quick search.</p>
       </div>
 
-      <div class="mt-2 pt-4 border-t border-slate-800 text-center">
-        <p class="text-xs text-slate-600">— End of case file —</p>
-      </div>
-
+    </div>
+    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+      <p class="text-xs text-slate-600">— End of case file —</p>
     </div>
   </div>
 </div>
@@ -1914,10 +1907,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
         </ul>
       </div>
 
-      <div class="mt-2 pt-4 border-t border-slate-800 text-center">
-        <p class="text-xs text-slate-600">— End of case file —</p>
-      </div>
-
+    </div>
+    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+      <p class="text-xs text-slate-600">— End of case file —</p>
     </div>
   </div>
 </div>
@@ -2008,10 +2000,9 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
         <p class="text-xs text-slate-500 italic leading-relaxed">Verdict: This specific file is safe for educational use. The behavior shown is standard Adobe Acrobat activity when opening a PDF. Use this report as your baseline for "normal" — anything significantly different warrants immediate investigation before proceeding.</p>
       </div>
 
-      <div class="mt-2 pt-4 border-t border-slate-800 text-center">
-        <p class="text-xs text-slate-600">— End of case file —</p>
-      </div>
-
+    </div>
+    <div class="flex-shrink-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur px-5 py-2.5 text-center">
+      <p class="text-xs text-slate-600">— End of case file —</p>
     </div>
   </div>
 </div>
