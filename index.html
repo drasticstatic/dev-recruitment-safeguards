@@ -215,12 +215,18 @@
     #backToTop.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
     /* ── Modal footer: only appears once the reader has actually
-       scrolled to the bottom of that modal's content ── */
+       scrolled to the bottom of that modal's content. Height stays
+       constant at all times (only opacity/pointer-events change) —
+       animating max-height here would shrink/grow the flex-1 scroll
+       container above it every time visibility toggles, which moves
+       the scroll container's own "am I at the bottom?" threshold and
+       creates a show → shrinks scroll area → no longer at bottom →
+       hide → grows scroll area → at bottom again → show loop. ── */
     .modal-footer {
-      opacity: 0; pointer-events: none; max-height: 0; overflow: hidden;
-      transition: opacity 0.2s ease, max-height 0.2s ease;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease;
     }
-    .modal-footer.visible { opacity: 1; pointer-events: auto; max-height: 60px; }
+    .modal-footer.visible { opacity: 1; pointer-events: auto; }
     @media (prefers-reduced-motion: reduce) {
       #backToTop, .modal-footer { transition: none; }
     }
@@ -899,39 +905,33 @@
       </div>
     </div>
 
-    <!-- ── Cross-Case Analysis: Aged-Account Takeover Pattern ── -->
-    <div class="case-card case-card-link bg-slate-900 border border-amber-700/40 rounded-2xl overflow-hidden flex flex-col" onclick="openModal('modal-account-analysis')">
-      <div class="case-card-header bg-gradient-to-r from-amber-950 to-slate-900 p-5 border-b border-amber-800/30">
-        <div class="flex items-center justify-between mb-3">
-          <span class="bg-slate-700 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap">🔍 ANALYSIS</span>
-          <span class="text-slate-500 text-xs">Cross-Case</span>
-        </div>
-        <h3 class="font-display text-xl text-white mb-1">🔓 How These Profiles Get This Convincing</h3>
-        <p class="text-slate-400 text-sm">Aged-account takeover, not fabrication — reading the LinkedIn metadata</p>
-      </div>
-      <div class="p-5 flex flex-col flex-1">
-        <div class="space-y-2.5 mb-5 flex-1 text-sm">
-          <div class="flex gap-2">
-            <span class="text-slate-500 w-16 flex-shrink-0">Covers</span>
-            <span class="text-slate-300 text-xs">Cases #4, #7, #8 — three personas, one shared pattern</span>
-          </div>
-          <div class="flex gap-2">
-            <span class="text-slate-500 w-16 flex-shrink-0">Finding</span>
-            <span class="text-slate-300 text-xs">All three accounts predate LinkedIn's IPO. Two carry genuine verification badges.</span>
-          </div>
-          <div class="mt-2 p-3 bg-amber-950/20 border border-amber-800/30 rounded-xl">
-            <div class="text-xs text-amber-300 font-semibold mb-1">💡 Key insight</div>
-            <div class="text-xs text-slate-400">A verification badge is a snapshot, not a live guarantee. Real mutual connections riding a taken-over account are what make it convincing.</div>
-          </div>
-        </div>
-        <button onclick="openModal('modal-account-analysis')"
-          class="w-full bg-amber-800/20 hover:bg-amber-700/30 border border-amber-700/40 text-amber-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">
-          🔬 Read the Full Analysis
-        </button>
-      </div>
-    </div>
-
   </div>
+
+  <!-- ── Cross-Case Analysis strip: spans the full case-studies width,
+       deliberately not another grid cell — this is cross-cutting
+       pattern analysis over Cases #4/#7/#8, not a 9th incident ── -->
+  <div class="case-card-link bg-slate-900 border border-amber-700/40 rounded-2xl overflow-hidden mt-6 md:flex md:items-center" onclick="openModal('modal-account-analysis')">
+    <div class="bg-gradient-to-r from-amber-950 to-slate-900 p-5 md:w-80 md:flex-shrink-0 md:border-r border-b md:border-b-0 border-amber-800/30">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="bg-slate-700 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap">🔍 ANALYSIS</span>
+        <span class="text-slate-500 text-xs">Cross-Case — #4, #7, #8</span>
+      </div>
+      <h3 class="font-display text-lg text-white mb-1">🔓 How These Profiles Get This Convincing</h3>
+      <p class="text-slate-400 text-xs">Aged-account takeover, not fabrication — reading the LinkedIn metadata</p>
+    </div>
+    <div class="p-5 flex flex-col sm:flex-row sm:items-center gap-4 flex-1">
+      <p class="text-slate-300 text-sm flex-1">
+        All three accounts predate LinkedIn's IPO. Two carry genuine verification badges — but a badge is a
+        snapshot, not a live guarantee, and the real mutual connections riding a taken-over account are
+        exactly what make it convincing.
+      </p>
+      <button onclick="openModal('modal-account-analysis')"
+        class="flex-shrink-0 bg-amber-800/20 hover:bg-amber-700/30 border border-amber-700/40 text-amber-300 text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors whitespace-nowrap">
+        🔬 Read the Full Analysis
+      </button>
+    </div>
+  </div>
+
 </section>
 
 <!-- ═══════════════════════════════════════════
