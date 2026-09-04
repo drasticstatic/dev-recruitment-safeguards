@@ -25,7 +25,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 3,
       "norm_label": "linkedin web3 recruiter audits",
       "id": "linkedin_security_alerts_md"
     },
@@ -51,7 +51,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 6,
       "norm_label": "contribution guidelines",
       "id": "contributing_md"
     },
@@ -64,7 +64,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 4,
       "norm_label": "ai agent configuration",
       "id": "agents_md"
     },
@@ -77,7 +77,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 4,
       "norm_label": "claude code session rules",
       "id": "claude_md"
     },
@@ -90,7 +90,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 2,
       "norm_label": "security policy",
       "id": "security_md"
     },
@@ -116,7 +116,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 2,
       "norm_label": "case #2 \u2014 the lure (pdf + code task)",
       "id": "case_2_pdf_lure"
     },
@@ -142,7 +142,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 0,
       "norm_label": "case #6 \u2014 the weaponized repo (rce)",
       "id": "case_6_weaponized_repo"
     },
@@ -155,7 +155,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 3,
       "norm_label": "beavertail infostealer",
       "id": "malware_beavertail"
     },
@@ -168,7 +168,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 3,
       "norm_label": "invisibleferret rat",
       "id": "malware_invisibleferret"
     },
@@ -194,7 +194,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 2,
       "norm_label": "josepha russe",
       "id": "persona_josepha_russe"
     },
@@ -207,7 +207,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 0,
       "norm_label": "daniel perez valdes",
       "id": "persona_daniel_perez_valdes"
     },
@@ -220,9 +220,152 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 2,
       "norm_label": "apom-dapp project description.pdf",
       "id": "apom_dapp_pdf"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "claude.md",
+      "id": "claude_claude_md"
+    },
+    {
+      "label": "Security Rules",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Security Rules (Non-Negotiable)",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "security rules",
+      "id": "claude_security_rules"
+    },
+    {
+      "label": "Project Scope",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Project Scope",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "project scope",
+      "id": "claude_project_scope"
+    },
+    {
+      "label": "Repo Architecture",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Repo Architecture",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 7,
+      "norm_label": "repo architecture",
+      "id": "claude_repo_architecture"
+    },
+    {
+      "label": "External Dependency Audit",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Before Cloning or Installing Any External Repo / Package",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "external dependency audit",
+      "id": "claude_external_dependency_audit"
+    },
+    {
+      "label": "Claude Code Skills",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Skills",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 8,
+      "norm_label": "claude code skills",
+      "id": "claude_skills"
+    },
+    {
+      "label": "Canonical References",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Canonical References",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "canonical references",
+      "id": "claude_canonical_references"
+    },
+    {
+      "label": "Graphify Knowledge Graph",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "graphify",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "graphify knowledge graph",
+      "id": "claude_graphify"
+    },
+    {
+      "label": "Commit Convention",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Commit Convention",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "commit convention",
+      "id": "claude_commit_convention"
+    },
+    {
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "norm_label": "agents.md",
+      "id": "agents_agents_md"
+    },
+    {
+      "label": "GRAPH_REPORT.md",
+      "file_type": "document",
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "graph_report.md",
+      "id": "graphify_out_graph_report_md"
     }
   ],
   "links": [
@@ -355,8 +498,78 @@
       "weight": 1.0,
       "source": "case_6_weaponized_repo",
       "target": "persona_daniel_perez_valdes"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_security_rules"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_project_scope"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_external_dependency_audit"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_graphify"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_commit_convention"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_canonical_references",
+      "target": "agents_agents_md"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_graphify",
+      "target": "graphify_out_graph_report_md"
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2f2202db68d9221252fcd58ebc8fbbf0c64d4209"
+  "built_at_commit": "83b318d658fa5d0bec2ca1c0f82573a6ef1951f7"
 }
