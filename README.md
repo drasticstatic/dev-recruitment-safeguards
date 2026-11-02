@@ -1,6 +1,11 @@
+<!-- readme-standard: 2026-11-02 -->
+<div align="center">
+
+<img src="assets/banner.svg" width="100%" alt="Dev Recruitment Safeguards: an arch of eight stones lighting inward, one for each documented case, a threshold to stop at.">
+
 # 🛡️ Dev Recruitment Safeguards
 
-> **A living database of high-fidelity recruitment scams targeting Web3 and fullstack developers.**
+*A living database of high-fidelity recruitment scams targeting Web3 and fullstack developers.*
 
 [![VirusTotal — APOM-DAPP PDF](https://img.shields.io/badge/VirusTotal%20APOM--DAPP%20PDF-0%2F72%20engines-brightgreen?style=flat-square&logo=virustotal&logoColor=white)](https://www.virustotal.com/gui/file/a4c04694e8e703f30e64423d60148de58d7f6f9829f356f40acf9596b4442b57)
 [![Portal Live](https://img.shields.io/badge/portal-live-0a7bff?style=flat-square&logo=githubpages&logoColor=white)](https://drasticstatic.github.io/dev-recruitment-safeguards)
@@ -9,6 +14,16 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
 [![Security Policy](https://img.shields.io/badge/security_policy-active-blueviolet?style=flat-square&logo=shieldsdotio&logoColor=white)](SECURITY.md)
 [![Pages](https://github.com/drasticstatic/dev-recruitment-safeguards/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/drasticstatic/dev-recruitment-safeguards/actions/workflows/pages/pages-build-deployment)
+
+<img src="assets/icons/map-pin.svg" width="16" height="16" alt=""> **You are here:** drasticstatic lab › `dev-recruitment-safeguards` · public · `main` is the working branch
+
+</div>
+
+## <img src="assets/icons/compass.svg" width="24" height="24" alt=""> TL;DR
+
+1. <img src="assets/icons/sprout.svg" width="16" height="16" alt=""> **What this is.** A living database of recruitment scams aimed at Web3 and fullstack developers.
+2. <img src="assets/icons/users-round.svg" width="16" height="16" alt=""> **Who it is for.** Any developer who has just been offered a take-home task or a repo to run.
+3. <img src="assets/icons/footprints.svg" width="16" height="16" alt=""> **Do this first.** Read the [Quick Security Checklist](#️-quick-security-checklist) before you run anything a recruiter sent.
 
 In the current job market, scammers are deploying sophisticated **"long-con" tactics** — professional 15-page PDFs, fake company identities, shell corporations, hijacked/aged LinkedIn profiles, and confirmed remote-code-execution backdoors disguised as job-application take-home tests — to deliver infostealers, RATs, and crypto-wallet drainers. This project documents real-world examples with full technical analysis, sourced evidence chains, and reproducible verification steps to help developers stay safe.
 
@@ -194,3 +209,9 @@ dev-recruitment-safeguards/
 ---
 
 **⚠️ Disclaimer:** *The materials in this repository are for educational and security-awareness purposes only. All examples were vetted and sanitized before inclusion. Screenshots are used under fair use for educational reporting.*
+
+## <img src="assets/icons/git-pull-request.svg" width="24" height="24" alt=""> Suggest a change
+
+Noticed something? Open an [issue](../../issues) or a pull request against `main`; Christopher reads them and a person with the role merges. Not on GitHub? Reach Christopher through [his contact page](https://drasticstatic.github.io/resume/pages/contact.html).
+
+<sub>The front door follows the living [README standard](https://github.com/drasticstatic/my-template/blob/main/README-STANDARD.md). Copy it, improve it.</sub>
