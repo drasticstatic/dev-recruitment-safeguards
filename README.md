@@ -8,11 +8,11 @@
 *A living database of high-fidelity recruitment scams targeting Web3 and fullstack developers.*
 
 [![VirusTotal — APOM-DAPP PDF](https://img.shields.io/badge/VirusTotal%20APOM--DAPP%20PDF-0%2F72%20engines-brightgreen?style=flat-square&logo=virustotal&logoColor=white)](https://www.virustotal.com/gui/file/a4c04694e8e703f30e64423d60148de58d7f6f9829f356f40acf9596b4442b57)
-[![Portal Live](https://img.shields.io/badge/portal-live-0a7bff?style=flat-square&logo=githubpages&logoColor=white)](https://drasticstatic.github.io/dev-recruitment-safeguards)
+[![Portal Live](https://img.shields.io/badge/portal-live-5c1a2b?style=flat-square&logo=githubpages&logoColor=white)](https://drasticstatic.github.io/dev-recruitment-safeguards)
 [![Cases Documented](https://img.shields.io/badge/cases_documented-8-critical?style=flat-square&logo=databricks&logoColor=white)](https://github.com/drasticstatic/dev-recruitment-safeguards#-documented-case-studies)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange?style=flat-square&logo=github&logoColor=white)](https://github.com/drasticstatic/dev-recruitment-safeguards/blob/main/CONTRIBUTING.md)
-[![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
-[![Security Policy](https://img.shields.io/badge/security_policy-active-blueviolet?style=flat-square&logo=shieldsdotio&logoColor=white)](SECURITY.md)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-5c1a2b?style=flat-square&logo=github&logoColor=white)](https://github.com/drasticstatic/dev-recruitment-safeguards/blob/main/CONTRIBUTING.md)
+[![License: MIT](https://img.shields.io/badge/license-MIT-1a1a2e?style=flat-square)](LICENSE)
+[![Security Policy](https://img.shields.io/badge/security_policy-active-5c1a2b?style=flat-square&logo=shieldsdotio&logoColor=white)](SECURITY.md)
 [![Pages](https://github.com/drasticstatic/dev-recruitment-safeguards/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/drasticstatic/dev-recruitment-safeguards/actions/workflows/pages/pages-build-deployment)
 
 <img src="assets/icons/map-pin.svg" width="16" height="16" alt=""> **You are here:** drasticstatic lab › `dev-recruitment-safeguards` · public · `main` is the working branch
